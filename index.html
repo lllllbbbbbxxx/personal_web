@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Zhou Xuyun - AI Systems</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand-mark" href="#research" aria-label="Zhou Xuyun">
+        <span class="seed"></span>
+        <strong>Zhou Xuyun</strong>
+        <i></i>
+      </a>
+      <nav class="top-nav" aria-label="Primary navigation">
+        <a class="active" href="#home" data-nav-target="home">首页</a>
+        <a href="#project" data-nav-target="project">项目</a>
+        <a href="#other" data-nav-target="other">其他</a>
+      </nav>
+      <div class="time-place">
+        <span>上海，中国</span>
+        <time>10:42 AM</time>
+        <b></b>
+      </div>
+    </header>
+
+    <main>
+      <section class="scroll-story" id="research" aria-label="Research and project story">
+        <div class="story-sticky">
+          <div class="story-copy" data-story-copy>
+            <p class="index-label">01 <span></span></p>
+            <h1>我在研究：<br />人与 AI 如何<span>长期协作</span>。</h1>
+            <p class="lead">通过构建 Agent、Workflow 和信息系统，探索更自然、更可靠的人机协作方式。</p>
+            <p class="code-line">// 让 AI 成为我的长期队友，而不是临时工具。</p>
+            <div class="focus-list">
+              <strong><i></i>当前关注</strong>
+              <span>/ 人与 AI 的长期协作</span>
+              <span>/ Workflow 系统</span>
+              <span>/ 长期记忆</span>
+              <span>/ 信息摩擦</span>
+              <span>/ 真实世界中的 AI 应用</span>
+              <em>+ 更多正在探索...</em>
+            </div>
+            <div class="scroll-hint" data-scroll-hint>
+              <span>↑</span>
+              <p>向上滑动<br />探索项目</p>
+            </div>
+          </div>
+
+          <aside class="project-reader" id="projects" data-project-reader>
+            <div class="project-copy active" data-project="0">
+              <p class="index-label">01 <span></span></p>
+              <h2>日程 Agent</h2>
+              <h3>理解你的目标和状态</h3>
+              <p>一个理解你目标和状态的日程 Agent，帮助你拆解任务、动态重排优先级，并在每天结束后复盘和学习。</p>
+              <div class="tag-row">
+                <span>Python</span><span>LangGraph</span><span>Streamlit</span><span>PostgreSQL</span><span>OpenAI API</span>
+              </div>
+              <a href="#project-detail">查看完整案例 <span>→</span></a>
+            </div>
+            <div class="project-copy" data-project="1">
+              <p class="index-label">02 <span></span></p>
+              <h2>收藏夹记忆</h2>
+              <h3>信息的第二大脑</h3>
+              <p>把收藏夹、阅读记录和临时灵感变成可检索、可关联、可生成新问题的长期记忆系统。</p>
+              <div class="tag-row">
+                <span>RAG</span><span>Vector DB</span><span>Embedding</span><span>Notion API</span><span>Memory</span>
+              </div>
+              <a href="#project-detail">查看完整案例 <span>→</span></a>
+            </div>
+          </aside>
+
+          <div class="project-detail" id="project-detail" data-project-detail>
+            <article class="case-card active" data-case="0">
+              <div class="schedule-card">
+                <header><strong>5月20日</strong><span>星期一</span><em>今天</em></header>
+                <ul>
+                  <li><time>09:00</time><span>复盘昨天 & 明确今日目标</span><b>完成</b></li>
+                  <li><time>09:30</time><span>产品需求评审</span><b>完成</b></li>
+                  <li><time>11:00</time><span>深度工作：Agent 核心逻辑</span><b>进行中</b></li>
+                  <li><time>14:00</time><span>用户访谈 & 需求整理</span><b>进行中</b></li>
+                  <li><time>19:30</time><span>学习：强化学习基础</span><b>待办</b></li>
+                </ul>
+              </div>
+              <div class="flow-card">
+                <header>重排逻辑（简化）<button aria-label="close">×</button></header>
+                <div class="flow-diagram">
+                  <span>目标 & 任务</span><span>状态分析</span><span>重排筛选</span><span>执行 & 记录</span><span>复盘 & 学习</span>
+                </div>
+                <pre>def reschedule(tasks, state):
+    priority = evaluate(state)
+    new_order = sort(tasks, by=priority)
+    return new_order</pre>
+              </div>
+            </article>
+            <article class="case-card" data-case="1">
+              <div class="memory-card">
+                <header><strong>Memory Map</strong><span>长期记忆</span></header>
+                <div class="memory-graph" aria-hidden="true">
+                  <i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+                </div>
+              </div>
+              <div class="flow-card">
+                <header>检索链路<button aria-label="close">×</button></header>
+                <div class="flow-diagram memory-flow">
+                  <span>收藏</span><span>摘要</span><span>向量化</span><span>关联问题</span><span>再次使用</span>
+                </div>
+                <pre>memory.query(intent)
+  .rank(context)
+  .compose(answer)</pre>
+              </div>
+            </article>
+          </div>
+
+          <div class="orbit-system" aria-hidden="true">
+            <div class="dial" data-dial>
+              <img class="record-disc" src="./assets/record-disc.svg" alt="" />
+              <div class="dial-mark mark-1"></div>
+            </div>
+            <ol class="dial-list">
+              <li class="active"><span>01</span><strong>日程 Agent</strong><em>理解你的目标和状态</em></li>
+              <li><span>02</span><strong>收藏夹记忆</strong><em>信息的第二大脑</em></li>
+              <li><span>03</span><strong>AI 陪伴体</strong><em>情绪与对话实验</em></li>
+              <li><span>04</span><strong>文化探针</strong><em>城市观察计划</em></li>
+              <li><span>05</span><strong>更多项目</strong><em>实验 & 小玩意</em></li>
+            </ol>
+          </div>
+        </div>
+      </section>
+
+      <section class="portal-grid" id="thinking">
+        <article>
+          <p>02 <i></i></p>
+          <h2>一些实验</h2>
+          <span>小而有趣的实验，快速原型，探索更多可能性。</span>
+          <div class="experiment-card"><strong>useless<br />button</strong><em>v2.0</em><b></b></div>
+        </article>
+        <article>
+          <p>03 <i></i></p>
+          <h2>最近在想</h2>
+          <span>记录碎片化的思考、问题和灵感，持续沉淀中。</span>
+          <div class="note-card">为什么大多数 AI 产品，最后都会退化成聊天框？<small>2024.05.18</small></div>
+        </article>
+        <article id="logs">
+          <p>04 <i></i></p>
+          <h2>系统日志</h2>
+          <span>工作记录、草图、未完成的想法和那些还没做完的事。</span>
+          <div class="folder-row"><b></b><b></b><b></b></div>
+        </article>
+        <article id="about">
+          <p>05 <i></i></p>
+          <h2>关于我</h2>
+          <span>背景、价值观，以及我构建这些系统的原因。</span>
+          <div class="about-card"><div></div><small>设计是复杂的方式，AI 是变简单的工具。</small></div>
+        </article>
+      </section>
+
+      <footer class="site-footer">
+        <section>
+          <h3>最近记录</h3>
+          <p>05.18&nbsp;&nbsp;为什么大多数 AI 产品最后都会退化成聊天框？</p>
+          <p>05.14&nbsp;&nbsp;长期记忆对 AI Agent 到底意味着什么？</p>
+          <p>05.09&nbsp;&nbsp;我们的与 AI 建立信任关系？</p>
+          <a href="#thinking">查看全部 →</a>
+        </section>
+        <section class="terminal-card">
+          <h3>当前构建中</h3>
+          <pre>$ building...
+> schedule agent   [████████--] 80%
+> bookmark memory  [██████----] 60%
+> ai companion     [███-------] 30%</pre>
+          <div class="terminal-orbit"><i></i><i></i><i></i></div>
+        </section>
+        <section>
+          <h3>快速链接</h3>
+          <a href="https://github.com/">GitHub</a>
+          <a href="https://www.linkedin.com/">LinkedIn</a>
+          <a href="mailto:hello@example.com">Email</a>
+        </section>
+      </footer>
+    </main>
+
+    <script src="./script.js"></script>
+  </body>
+</html>

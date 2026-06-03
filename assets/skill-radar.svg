@@ -1,0 +1,41 @@
+<svg width="620" height="410" viewBox="0 0 620 410" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="620" height="410" fill="transparent"/>
+  <g transform="translate(310 195)">
+    <circle r="122" stroke="#A7B88B" stroke-width="1" opacity=".18"/>
+    <circle r="82" stroke="#A7B88B" stroke-width="1" opacity=".14"/>
+    <circle r="42" stroke="#A7B88B" stroke-width="1" opacity=".12"/>
+    <path d="M0 -136V136M-136 0H136M-96 -96 96 96M96 -96 -96 96" stroke="#89A06B" stroke-width="1" opacity=".34"/>
+    <path d="M0 -112 118 -12 58 105 -96 0 -38 -88Z" fill="#0A110A" opacity=".94"/>
+    <path d="M0 -112 118 -12 58 105 -96 0 -38 -88Z" stroke="#DDE8C5" stroke-width=".8" opacity=".38"/>
+    <path d="M0 -86 88 -8 46 82 -72 0 -30 -66Z" fill="#678A3E" opacity=".16"/>
+    <circle r="78" fill="url(#glow)" opacity=".95"/>
+    <circle r="3.4" fill="#E6EDCC"/>
+    <path d="M-15 0 0-8 15 0 0 8Z" fill="#E9F0D3"/>
+    <path d="M0-18 5-2 0 18-5 2Z" fill="#F7FAEF" opacity=".9"/>
+  </g>
+  <g font-family="Inter, Arial, sans-serif" font-size="14" fill="#697263">
+    <text x="310" y="28" text-anchor="middle" font-size="17" font-weight="700" fill="#64823F">AI / 数据</text>
+    <text x="310" y="60" text-anchor="middle">Machine Learning</text>
+    <text x="310" y="82" text-anchor="middle">NLP / LLM</text>
+    <text x="310" y="104" text-anchor="middle">RAG / Vector DB</text>
+    <text x="564" y="187" text-anchor="end" font-size="17" font-weight="700" fill="#64823F">工程能力</text>
+    <text x="564" y="219" text-anchor="end">Python / SQL</text>
+    <text x="564" y="241" text-anchor="end">Streamlit / FastAPI</text>
+    <text x="564" y="263" text-anchor="end">Git / Docker</text>
+    <text x="310" y="318" text-anchor="middle" font-size="17" font-weight="700" fill="#64823F">产品意识</text>
+    <text x="310" y="348" text-anchor="middle">Product Thinking</text>
+    <text x="310" y="370" text-anchor="middle">Workflow Design</text>
+    <text x="310" y="392" text-anchor="middle">Problem Solving</text>
+    <text x="56" y="187" text-anchor="start" font-size="17" font-weight="700" fill="#64823F">设计思维</text>
+    <text x="56" y="219" text-anchor="start">UX / Service Design</text>
+    <text x="56" y="241" text-anchor="start">User Research</text>
+    <text x="56" y="263" text-anchor="start">Information Architecture</text>
+  </g>
+  <defs>
+    <radialGradient id="glow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="rotate(90) scale(82)">
+      <stop stop-color="#E6EDCC"/>
+      <stop offset=".36" stop-color="#89A957" stop-opacity=".72"/>
+      <stop offset="1" stop-color="#89A957" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+</svg>
