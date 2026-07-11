@@ -1,50 +1,38 @@
 <svg width="1400" height="1400" viewBox="0 0 1400 1400" fill="none" xmlns="http://www.w3.org/2000/svg">
   <rect width="1400" height="1400" fill="transparent"/>
-  <circle cx="700" cy="700" r="650" stroke="#D9DDD2" stroke-width="2" opacity=".62"/>
-  <circle cx="700" cy="700" r="604" stroke="#EEF0EA" stroke-width="18" opacity=".82"/>
-  <circle cx="700" cy="700" r="548" stroke="#D9DDD2" stroke-width="1.5" opacity=".56"/>
-  <circle cx="700" cy="700" r="498" stroke="#D9DDD2" stroke-width="1.2" opacity=".42"/>
-  <circle cx="700" cy="700" r="452" stroke="#D9DDD2" stroke-width="1" opacity=".36"/>
-  <circle cx="700" cy="700" r="408" stroke="#D9DDD2" stroke-width="1" opacity=".32"/>
-  <circle cx="700" cy="700" r="366" stroke="#D9DDD2" stroke-width=".9" opacity=".28"/>
-  <circle cx="700" cy="700" r="326" stroke="#D9DDD2" stroke-width=".9" opacity=".26"/>
-  <circle cx="700" cy="700" r="288" stroke="#D9DDD2" stroke-width=".85" opacity=".24"/>
-  <circle cx="700" cy="700" r="252" stroke="#D9DDD2" stroke-width=".8" opacity=".22"/>
-  <circle cx="700" cy="700" r="218" stroke="#D9DDD2" stroke-width=".75" opacity=".2"/>
-  <circle cx="700" cy="700" r="186" stroke="#D9DDD2" stroke-width=".72" opacity=".18"/>
-  <circle cx="700" cy="700" r="156" stroke="#D9DDD2" stroke-width=".7" opacity=".16"/>
-  <circle cx="700" cy="700" r="128" stroke="#D9DDD2" stroke-width=".7" opacity=".15"/>
-  <circle cx="700" cy="700" r="102" stroke="#D9DDD2" stroke-width=".65" opacity=".14"/>
-  <g opacity=".32" stroke="#D6DAD0" stroke-width="1">
-    <path d="M700 50V1350"/>
-    <path d="M50 700H1350"/>
-    <path d="M240.4 240.4 1159.6 1159.6"/>
-    <path d="M1159.6 240.4 240.4 1159.6"/>
-  </g>
-  <g opacity=".18" stroke="#CACEBF" stroke-width="1">
-    <path d="M700 50C760 205 804 378 834 565c38 239 46 493 28 785"/>
-    <path d="M493 84c90 132 161 295 213 489 62 231 91 488 88 771"/>
-    <path d="M890 78c-88 160-140 337-156 531-21 248 17 489 118 724"/>
-    <path d="M1090 180C925 352 833 535 812 730c-22 207 41 396 188 568"/>
-    <path d="M302 180c180 182 287 379 321 591 34 213-16 390-151 531"/>
-  </g>
-  <g opacity=".2" stroke="#D1D6C9" stroke-width=".9">
-    <path d="M145 432c342 58 707 52 1110-18"/>
-    <path d="M116 895c378-72 768-80 1172-22"/>
-    <path d="M366 110c189 338 284 737 284 1196"/>
-    <path d="M1018 122c-222 353-322 744-300 1174"/>
-  </g>
-  <path d="M700 92a608 608 0 0 1 0 1216" stroke="#E3E7DC" stroke-width="14" opacity=".35"/>
-  <path d="M700 92a608 608 0 0 0 0 1216" stroke="#EEF1EA" stroke-width="6" opacity=".54"/>
-  <circle cx="700" cy="700" r="78" fill="url(#hubGlow)" opacity=".82"/>
-  <circle cx="700" cy="700" r="54" fill="#060806"/>
-  <circle cx="700" cy="700" r="72" stroke="#D8DDD1" stroke-width="12" opacity=".75"/>
-  <circle cx="700" cy="700" r="6" fill="#A8E957"/>
-  <defs>
-    <radialGradient id="hubGlow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(700 700) rotate(90) scale(360)">
-      <stop stop-color="#A8E957" stop-opacity=".42"/>
-      <stop offset=".35" stop-color="#B7D880" stop-opacity=".16"/>
-      <stop offset="1" stop-color="#B7D880" stop-opacity="0"/>
-    </radialGradient>
-  </defs>
+  <circle cx="700" cy="700" r="692.0" stroke="#C7CCBE" stroke-width="1.35" opacity="0.350"/>
+  <circle cx="700" cy="700" r="685.5" stroke="#C7CCBE" stroke-width="1.34" opacity="0.346"/>
+  <circle cx="700" cy="700" r="678.8" stroke="#B7BEAC" stroke-width="1.83" opacity="0.433"/>
+  <circle cx="700" cy="700" r="671.8" stroke="#C7CCBE" stroke-width="1.32" opacity="0.339"/>
+  <circle cx="700" cy="700" r="664.5" stroke="#C7CCBE" stroke-width="1.31" opacity="0.334"/>
+  <circle cx="700" cy="700" r="657.0" stroke="#C7CCBE" stroke-width="1.30" opacity="0.330"/>
+  <circle cx="700" cy="700" r="649.2" stroke="#C7CCBE" stroke-width="1.29" opacity="0.326"/>
+  <circle cx="700" cy="700" r="641.0" stroke="#B7BEAC" stroke-width="1.78" opacity="0.411"/>
+  <circle cx="700" cy="700" r="632.5" stroke="#C7CCBE" stroke-width="1.27" opacity="0.316"/>
+  <circle cx="700" cy="700" r="623.7" stroke="#C7CCBE" stroke-width="1.26" opacity="0.311"/>
+  <circle cx="700" cy="700" r="614.5" stroke="#C7CCBE" stroke-width="1.25" opacity="0.306"/>
+  <circle cx="700" cy="700" r="604.9" stroke="#C7CCBE" stroke-width="1.24" opacity="0.301"/>
+  <circle cx="700" cy="700" r="594.9" stroke="#B7BEAC" stroke-width="1.72" opacity="0.385"/>
+  <circle cx="700" cy="700" r="584.5" stroke="#C7CCBE" stroke-width="1.21" opacity="0.289"/>
+  <circle cx="700" cy="700" r="573.7" stroke="#C7CCBE" stroke-width="1.20" opacity="0.283"/>
+  <circle cx="700" cy="700" r="562.4" stroke="#C7CCBE" stroke-width="1.18" opacity="0.277"/>
+  <circle cx="700" cy="700" r="550.6" stroke="#C7CCBE" stroke-width="1.17" opacity="0.270"/>
+  <circle cx="700" cy="700" r="538.3" stroke="#B7BEAC" stroke-width="1.65" opacity="0.353"/>
+  <circle cx="700" cy="700" r="525.4" stroke="#C7CCBE" stroke-width="1.13" opacity="0.256"/>
+  <circle cx="700" cy="700" r="512.1" stroke="#C7CCBE" stroke-width="1.12" opacity="0.248"/>
+  <circle cx="700" cy="700" r="498.1" stroke="#C7CCBE" stroke-width="1.10" opacity="0.240"/>
+  <circle cx="700" cy="700" r="483.5" stroke="#C7CCBE" stroke-width="1.08" opacity="0.232"/>
+  <circle cx="700" cy="700" r="468.3" stroke="#B7BEAC" stroke-width="1.56" opacity="0.314"/>
+  <circle cx="700" cy="700" r="452.4" stroke="#C7CCBE" stroke-width="1.04" opacity="0.215"/>
+  <circle cx="700" cy="700" r="435.9" stroke="#C7CCBE" stroke-width="1.02" opacity="0.205"/>
+  <circle cx="700" cy="700" r="418.5" stroke="#C7CCBE" stroke-width="0.99" opacity="0.195"/>
+  <circle cx="700" cy="700" r="400.5" stroke="#C7CCBE" stroke-width="0.97" opacity="0.185"/>
+  <circle cx="700" cy="700" r="381.6" stroke="#B7BEAC" stroke-width="1.45" opacity="0.265"/>
+  <circle cx="700" cy="700" r="361.8" stroke="#C7CCBE" stroke-width="0.92" opacity="0.163"/>
+  <circle cx="700" cy="700" r="341.2" stroke="#C7CCBE" stroke-width="0.89" opacity="0.152"/>
+  <circle cx="700" cy="700" r="319.7" stroke="#C7CCBE" stroke-width="0.86" opacity="0.140"/>
+  <circle cx="700" cy="700" r="297.1" stroke="#C7CCBE" stroke-width="0.83" opacity="0.127"/>
+  <circle cx="700" cy="700" r="273.6" stroke="#B7BEAC" stroke-width="1.30" opacity="0.204"/>
+  <circle cx="700" cy="700" r="249.0" stroke="#C7CCBE" stroke-width="0.77" opacity="0.100"/>
+  <circle cx="700" cy="700" r="232.0" stroke="#C7CCBE" stroke-width="1" opacity="0.14"/>
 </svg>

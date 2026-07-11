@@ -1,0 +1,12 @@
+# macOS
+.DS_Store
+**/.DS_Store
+
+# local tooling / editor state
+.claude/
+
+# unrelated skill export
+botanical-portfolio.zip
+
+# large unused source image (optimized about-photo.jpg is what's used)
+assets/IMG_0335.JPG

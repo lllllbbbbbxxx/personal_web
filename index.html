@@ -3,157 +3,256 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Zhou Xuyun - AI Systems</title>
-    <link rel="stylesheet" href="./styles.css" />
+    <meta http-equiv="Cache-Control" content="no-cache, must-revalidate" />
+    <title>jun. — Growing Systems</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600&family=IBM+Plex+Mono:ital,wght@0,400;0,700;1,400&family=Inter:ital,opsz,wght@0,14..32,300..900;1,14..32,300..900&family=Noto+Sans+SC:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./styles.css?v=34" />
   </head>
   <body>
     <header class="site-header">
-      <a class="brand-mark" href="#research" aria-label="Zhou Xuyun">
-        <span class="seed"></span>
-        <strong>Zhou Xuyun</strong>
+      <a class="brand-mark" href="#systems" aria-label="jun.">
+        <span class="brand-logo">jun.</span>
         <i></i>
       </a>
       <nav class="top-nav" aria-label="Primary navigation">
-        <a class="active" href="#home" data-nav-target="home">首页</a>
-        <a href="#project" data-nav-target="project">项目</a>
-        <a href="#other" data-nav-target="other">其他</a>
+        <a class="active" href="#systems" data-nav-target="systems">Systems</a>
+        <a href="#experiments" data-nav-target="experiments">Experiments</a>
+        <a href="#cambium" data-nav-target="cambium">Cambium</a>
+        <a href="#archive" data-nav-target="archive">Archive</a>
+        <a href="#about" data-nav-target="about">About</a>
       </nav>
       <div class="time-place">
-        <span>上海，中国</span>
-        <time>10:42 AM</time>
         <b></b>
+        <span>Building</span>
       </div>
     </header>
 
     <main>
-      <section class="scroll-story" id="research" aria-label="Research and project story">
+
+      <!-- ── Scroll story: split hero + disc ── -->
+      <section class="scroll-story" id="systems" aria-label="Projects">
         <div class="story-sticky">
-          <div class="story-copy" data-story-copy>
-            <p class="index-label">01 <span></span></p>
-            <h1>我在研究：<br />人与 AI 如何<span>长期协作</span>。</h1>
-            <p class="lead">通过构建 Agent、Workflow 和信息系统，探索更自然、更可靠的人机协作方式。</p>
-            <p class="code-line">// 让 AI 成为我的长期队友，而不是临时工具。</p>
-            <div class="focus-list">
-              <strong><i></i>当前关注</strong>
-              <span>/ 人与 AI 的长期协作</span>
-              <span>/ Workflow 系统</span>
-              <span>/ 长期记忆</span>
-              <span>/ 信息摩擦</span>
-              <span>/ 真实世界中的 AI 应用</span>
-              <em>+ 更多正在探索...</em>
+
+          <!-- LEFT: morphs hero → demo -->
+          <div class="story-left">
+
+            <!-- Hero (first screen) -->
+            <div class="hero-block" data-hero-block>
+              <h1 class="hero-wordmark">jun.</h1>
+              <p class="hero-sub">构建能够持续生长的 AI 系统。</p>
+              <a href="#experiments" class="hero-cta">
+                EXPLORE SYSTEMS
+                <span class="hero-cta-arrow">→</span>
+              </a>
+              <div class="hero-note" aria-hidden="true">
+                <svg width="40" height="44" viewBox="0 0 40 44" fill="none">
+                  <path d="M34 6 C24 12, 8 24, 4 40" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+                  <path d="M4 36 L4 40 L8 38" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span>Still building.</span>
+              </div>
             </div>
+
+            <!-- Demo (appears while browsing projects) — vertical carousel synced to the dial -->
+            <div class="demo-block" data-demo-block aria-hidden="true">
+              <div class="demo-viewport">
+                <div class="demo-strip" data-demo-strip></div>
+              </div>
+              <a href="#" class="demo-cta" data-open-detail>
+                <span class="demo-cta-ic">▤</span>
+                查看项目档案
+                <span class="demo-cta-arrow">→</span>
+              </a>
+            </div>
+
+          </div>
+
+          <!-- RIGHT: Disc + vertical project track -->
+          <div class="story-right">
+
+            <!-- Handwritten annotation: in progress -->
+            <div class="annot-inprogress" aria-hidden="true">
+              <span>in progress</span>
+              <svg width="32" height="28" viewBox="0 0 32 28" fill="none">
+                <path d="M28 4 C20 8, 8 16, 4 24" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+                <path d="M4 20 L4 24 L8 22" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+
+            <div class="orbit-wrap" data-orbit-wrap>
+              <div class="dial" data-dial>
+                <img class="record-disc" src="./assets/record-disc.svg?v=10" alt="" />
+              </div>
+
+              <!-- Center thumbnail (soft project preview, browse only) -->
+              <div class="disc-thumb" data-disc-thumb></div>
+
+              <!-- Selected-project wedge — a true annular sector, JS-drawn -->
+              <svg class="project-wedge" data-wedge aria-hidden="true" preserveAspectRatio="none">
+                <path data-wedge-path fill="rgba(255,255,255,0.82)" />
+              </svg>
+
+              <div class="project-track" data-project-track aria-hidden="true">
+                <div class="track-item active" data-track-item="0">
+                  <span class="track-num">01</span>
+                  <div class="track-text">
+                    <strong>灵活规划</strong>
+                    <span>反馈驱动的持续规划</span>
+                  </div>
+                </div>
+                <div class="track-item" data-track-item="1">
+                  <span class="track-num">02</span>
+                  <div class="track-text">
+                    <strong>AI 知识回顾助手</strong>
+                    <span>信息的第二大脑</span>
+                  </div>
+                </div>
+                <div class="track-item" data-track-item="2">
+                  <span class="track-num">03</span>
+                  <div class="track-text">
+                    <strong>随手做菜</strong>
+                    <span>待补充</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="track-dot" data-track-dot></div>
+            </div>
+
+            <!-- Sticky note: current project tags -->
+            <div class="sticky-note" aria-hidden="true">
+              <ul class="sticky-tags">
+                <li>Python</li>
+                <li>LangGraph</li>
+                <li>OpenAI API</li>
+              </ul>
+              <span class="sticky-star">✦</span>
+            </div>
+
             <div class="scroll-hint" data-scroll-hint>
-              <span>↑</span>
-              <p>向上滑动<br />探索项目</p>
+              <span>↓</span>
+              <p>SCROLL TO EXPLORE</p>
             </div>
           </div>
 
-          <aside class="project-reader" id="projects" data-project-reader>
-            <div class="project-copy active" data-project="0">
-              <p class="index-label">01 <span></span></p>
-              <h2>日程 Agent</h2>
-              <h3>理解你的目标和状态</h3>
-              <p>一个理解你目标和状态的日程 Agent，帮助你拆解任务、动态重排优先级，并在每天结束后复盘和学习。</p>
-              <div class="tag-row">
-                <span>Python</span><span>LangGraph</span><span>Streamlit</span><span>PostgreSQL</span><span>OpenAI API</span>
-              </div>
-              <a href="#project-detail">查看完整案例 <span>→</span></a>
-            </div>
-            <div class="project-copy" data-project="1">
-              <p class="index-label">02 <span></span></p>
-              <h2>收藏夹记忆</h2>
-              <h3>信息的第二大脑</h3>
-              <p>把收藏夹、阅读记录和临时灵感变成可检索、可关联、可生成新问题的长期记忆系统。</p>
-              <div class="tag-row">
-                <span>RAG</span><span>Vector DB</span><span>Embedding</span><span>Notion API</span><span>Memory</span>
-              </div>
-              <a href="#project-detail">查看完整案例 <span>→</span></a>
-            </div>
-          </aside>
-
-          <div class="project-detail" id="project-detail" data-project-detail>
-            <article class="case-card active" data-case="0">
-              <div class="schedule-card">
-                <header><strong>5月20日</strong><span>星期一</span><em>今天</em></header>
-                <ul>
-                  <li><time>09:00</time><span>复盘昨天 & 明确今日目标</span><b>完成</b></li>
-                  <li><time>09:30</time><span>产品需求评审</span><b>完成</b></li>
-                  <li><time>11:00</time><span>深度工作：Agent 核心逻辑</span><b>进行中</b></li>
-                  <li><time>14:00</time><span>用户访谈 & 需求整理</span><b>进行中</b></li>
-                  <li><time>19:30</time><span>学习：强化学习基础</span><b>待办</b></li>
-                </ul>
-              </div>
-              <div class="flow-card">
-                <header>重排逻辑（简化）<button aria-label="close">×</button></header>
-                <div class="flow-diagram">
-                  <span>目标 & 任务</span><span>状态分析</span><span>重排筛选</span><span>执行 & 记录</span><span>复盘 & 学习</span>
-                </div>
-                <pre>def reschedule(tasks, state):
-    priority = evaluate(state)
-    new_order = sort(tasks, by=priority)
-    return new_order</pre>
-              </div>
-            </article>
-            <article class="case-card" data-case="1">
-              <div class="memory-card">
-                <header><strong>Memory Map</strong><span>长期记忆</span></header>
-                <div class="memory-graph" aria-hidden="true">
-                  <i></i><i></i><i></i><i></i><i></i><i></i><i></i>
-                </div>
-              </div>
-              <div class="flow-card">
-                <header>检索链路<button aria-label="close">×</button></header>
-                <div class="flow-diagram memory-flow">
-                  <span>收藏</span><span>摘要</span><span>向量化</span><span>关联问题</span><span>再次使用</span>
-                </div>
-                <pre>memory.query(intent)
-  .rank(context)
-  .compose(answer)</pre>
-              </div>
-            </article>
-          </div>
-
-          <div class="orbit-system" aria-hidden="true">
-            <div class="dial" data-dial>
-              <img class="record-disc" src="./assets/record-disc.svg" alt="" />
-              <div class="dial-mark mark-1"></div>
-            </div>
-            <ol class="dial-list">
-              <li class="active"><span>01</span><strong>日程 Agent</strong><em>理解你的目标和状态</em></li>
-              <li><span>02</span><strong>收藏夹记忆</strong><em>信息的第二大脑</em></li>
-              <li><span>03</span><strong>AI 陪伴体</strong><em>情绪与对话实验</em></li>
-              <li><span>04</span><strong>文化探针</strong><em>城市观察计划</em></li>
-              <li><span>05</span><strong>更多项目</strong><em>实验 & 小玩意</em></li>
-            </ol>
-          </div>
         </div>
       </section>
 
-      <section class="portal-grid" id="thinking">
-        <article>
+      <!-- ── Portal grid ── -->
+      <section class="portal-grid">
+
+        <article id="experiments">
           <p>02 <i></i></p>
-          <h2>一些实验</h2>
+          <h2>Experiments</h2>
           <span>小而有趣的实验，快速原型，探索更多可能性。</span>
-          <div class="experiment-card"><strong>useless<br />button</strong><em>v2.0</em><b></b></div>
+          <div class="exp-grid">
+            <a class="exp-card" href="./experiment.html">
+              <div class="exp-card-meta">
+                <strong>AI 记忆可视化</strong>
+                <em>让 AI 记忆可被看见</em>
+              </div>
+              <div class="pet-preview">▤▤</div>
+            </a>
+            <a class="exp-card" href="https://github.com/lllllbbbbbxxx/deskpet" target="_blank" rel="noopener">
+              <div class="exp-card-meta">
+                <strong>桌宠</strong>
+                <em>桌面上的小伙伴</em>
+              </div>
+              <div class="pet-preview">( ᵒᵕᵒ )</div>
+            </a>
+            <a class="exp-card" href="https://github.com/lllllbbbbbxxx/BIT" target="_blank" rel="noopener">
+              <div class="exp-card-meta">
+                <strong>useless<br>button</strong>
+                <em>v2.0</em>
+              </div>
+              <div class="useless-preview"><b></b></div>
+            </a>
+            <a class="exp-card" href="#">
+              <div class="exp-card-meta">
+                <strong>文化探针</strong>
+                <em>城市观察计划</em>
+              </div>
+              <div class="pet-preview">◉ ⌖</div>
+            </a>
+            <a class="exp-card exp-card--more" href="./experiments.html">
+              <span>+<br>更多<br>探索中</span>
+            </a>
+          </div>
         </article>
-        <article>
+
+        <article id="cambium">
           <p>03 <i></i></p>
-          <h2>最近在想</h2>
+          <h2>Cambium</h2>
           <span>记录碎片化的思考、问题和灵感，持续沉淀中。</span>
-          <div class="note-card">为什么大多数 AI 产品，最后都会退化成聊天框？<small>2024.05.18</small></div>
+          <div class="thought-stack">
+            <a class="thought-card thought-card--accent" href="./cambium-article.html" style="display:block">
+              为什么大多数 AI 产品，最后都会退化成聊天框？
+              <small>2024.05.18</small>
+            </a>
+            <a class="thought-card" href="./cambium.html" style="display:block">
+              长期记忆对 AI Agent 到底意味着什么？
+              <small>2024.05.14</small>
+            </a>
+            <a class="thought-more" href="./cambium.html">查看全部 →</a>
+          </div>
         </article>
-        <article id="logs">
+
+        <article id="archive">
           <p>04 <i></i></p>
-          <h2>系统日志</h2>
+          <h2>Archive</h2>
           <span>工作记录、草图、未完成的想法和那些还没做完的事。</span>
-          <div class="folder-row"><b></b><b></b><b></b></div>
+          <div class="log-folders">
+            <a class="log-folder-item log-folder-item--current" href="./thesis.html">
+              <div class="log-folder-icon lf--current"></div>
+              <div class="log-folder-info">
+                <strong>LLM Synthetic Users</strong>
+                <small><i></i> 毕设 · 进行中</small>
+              </div>
+            </a>
+            <a class="log-folder-item" href="./archive.html">
+              <div class="log-folder-icon"></div>
+              <div class="log-folder-info">
+                <strong>服务设计</strong>
+                <small>12 个文件</small>
+              </div>
+            </a>
+            <a class="log-folder-item" href="./archive.html">
+              <div class="log-folder-icon lf--2"></div>
+              <div class="log-folder-info">
+                <strong>旧项目</strong>
+                <small>8 个文件</small>
+              </div>
+            </a>
+            <a class="log-folder-item" href="./archive.html">
+              <div class="log-folder-icon lf--3"></div>
+              <div class="log-folder-info">
+                <strong>草图记录</strong>
+                <small>进行中…</small>
+              </div>
+            </a>
+          </div>
         </article>
+
         <article id="about">
           <p>05 <i></i></p>
-          <h2>关于我</h2>
+          <h2>About</h2>
           <span>背景、价值观，以及我构建这些系统的原因。</span>
-          <div class="about-card"><div></div><small>设计是复杂的方式，AI 是变简单的工具。</small></div>
+          <div class="about-section">
+            <div class="about-photo-wrap">
+              <img class="about-photo" src="./assets/about-photo.jpg?v=1" alt="jun."
+                   onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+              <div class="about-photo-fallback">jun.</div>
+            </div>
+            <div class="about-note">
+              <blockquote>设计是思考的方式，<br>AI 是变简单的工具。</blockquote>
+              <small>上海 · 中国</small>
+              <a href="mailto:zxjzxj626@gmail.com" class="about-contact">联系我 →</a>
+            </div>
+          </div>
         </article>
+
       </section>
 
       <footer class="site-footer">
@@ -161,7 +260,8 @@
           <h3>最近记录</h3>
           <p>05.18&nbsp;&nbsp;为什么大多数 AI 产品最后都会退化成聊天框？</p>
           <p>05.14&nbsp;&nbsp;长期记忆对 AI Agent 到底意味着什么？</p>
-          <p>05.09&nbsp;&nbsp;我们的与 AI 建立信任关系？</p>
+          <p>05.09&nbsp;&nbsp;我们如何与 AI 建立信任关系？</p>
+          <p>05.05&nbsp;&nbsp;设计工作时，真正为人服务的是什么？</p>
           <a href="#thinking">查看全部 →</a>
         </section>
         <section class="terminal-card">
@@ -174,13 +274,44 @@
         </section>
         <section>
           <h3>快速链接</h3>
-          <a href="https://github.com/">GitHub</a>
-          <a href="https://www.linkedin.com/">LinkedIn</a>
-          <a href="mailto:hello@example.com">Email</a>
+          <a href="https://github.com/lllllbbbbbxxx" target="_blank" rel="noopener">GitHub</a>
+          <a href="https://www.linkedin.com/in/xuyun-zhou-1580453a8/" target="_blank" rel="noopener">LinkedIn</a>
+          <a href="mailto:zxjzxj626@gmail.com">Email</a>
         </section>
+        <div class="footer-quote">
+          <p>一起构建<br>更好的系统。</p>
+          <span class="footer-smile">:)</span>
+          <small>Built with ♥ and curiosity</small>
+        </div>
       </footer>
+
     </main>
 
-    <script src="./script.js"></script>
+    <!-- ── Case File overlay (opened from 查看项目档案) ── -->
+    <div class="casefile" data-casefile aria-hidden="true">
+      <button class="cf-scrim" data-cf-close aria-label="关闭档案"></button>
+      <div class="cf-panel" data-cf-panel>
+        <aside class="cf-demo">
+          <span class="cf-tag" data-cf-tag>01 · 日程 Agent</span>
+          <div class="cf-demo-frame">
+            <button class="demo-play" type="button" aria-label="播放预览"><span>▶</span></button>
+            <span class="cf-demo-time">Preview · 0:45</span>
+          </div>
+          <div class="cf-actions">
+            <button class="cf-back" type="button" data-cf-close>
+              <span>←</span> 返回 demo
+            </button>
+            <a class="cf-gh" data-cf-gh href="#" target="_blank" rel="noopener">
+              <svg viewBox="0 0 16 16" width="15" height="15" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.6 7.6 0 012-.27c.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+              GitHub <span class="cf-gh-arrow">↗</span>
+            </a>
+          </div>
+        </aside>
+        <svg class="cf-lines" data-cf-lines aria-hidden="true"></svg>
+        <div class="cf-sections" data-cf-sections></div>
+      </div>
+    </div>
+
+    <script src="./script.js?v=34"></script>
   </body>
 </html>

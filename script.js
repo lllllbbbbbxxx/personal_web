@@ -1,95 +1,632 @@
-const story = document.querySelector(".scroll-story");
-const copy = document.querySelector("[data-story-copy]");
-const reader = document.querySelector("[data-project-reader]");
-const detail = document.querySelector("[data-project-detail]");
-const dial = document.querySelector("[data-dial]");
-const scrollHint = document.querySelector("[data-scroll-hint]");
-const projectCopies = [...document.querySelectorAll("[data-project]")];
-const caseCards = [...document.querySelectorAll("[data-case]")];
-const dialItems = [...document.querySelectorAll(".dial-list li")];
-const navItems = [...document.querySelectorAll(".top-nav a")];
+// ── Project data ──────────────────────────────────────────────────────────────
 
-function clamp(value, min = 0, max = 1) {
-  return Math.min(max, Math.max(min, value));
+const PROJECTS = [
+  {
+    num: '01',
+    title: '灵活规划',
+    tagline: '反馈驱动的 AI 持续规划系统',
+    h3: '让 AI 持续维护你的计划',
+    desc: '大多数日程工具只是记录，而计划一整天都在变。灵活规划（Adaptive Planning）让 AI 持续理解意图、维护状态、根据反馈动态重排——你不必重新创建计划，它替你维护。',
+    github: 'https://github.com/lllllbbbbbxxx/ai-schedule-butler',
+    tags: ['LangGraph', 'FastAPI', 'React', 'PostgreSQL', 'OpenAI API'],
+    link: '查看完整案例 →',
+    visual: `
+      <div class="pd-card pd-card--main">
+        <div class="pd-card-header">5月20日&nbsp; 星期一</div>
+        <div class="pd-card-rows">
+          <div class="pd-row"><span>09:00 复盘昨天 & 明确今日目标</span><em class="done">完成</em></div>
+          <div class="pd-row"><span>10:00 产品需求评审</span><em class="done">完成</em></div>
+          <div class="pd-row"><span>11:00 深度工作：Agent 核心逻辑</span><em class="wip">进行中</em></div>
+          <div class="pd-row"><span>14:00 用户访谈 & 需求整理</span><em class="wip">进行中</em></div>
+          <div class="pd-row muted"><span>16:00 运动 & 休息</span><em>待定</em></div>
+        </div>
+      </div>
+      <div class="pd-card pd-card--sm pd-card--code">
+        <pre>def reschedule(tasks, state):
+  priority = evaluate(state)
+  new_order = sort(tasks, by=priority)
+  return new_order</pre>
+      </div>`
+  },
+  {
+    num: '02',
+    title: 'AI 知识回顾助手',
+    tagline: '信息的第二大脑 · 语义检索',
+    h3: '让信息真正为你所用',
+    desc: '一个智能书签系统，自动为保存的内容打标签、生成摘要，并通过自然语言检索——让你的收藏夹真正成为可查询的知识库。',
+    github: 'https://github.com/lllllbbbbbxxx/bookmark',
+    tags: ['Python', 'Embeddings', 'Qdrant', 'Telegram Bot'],
+    link: '查看项目详情 →',
+    visual: `
+      <div class="pd-card pd-card--main">
+        <div class="pd-bm-search">⌕&nbsp; 搜索我保存的内容…</div>
+        <div class="pd-bm-list">
+          <div class="pd-bm-item">
+            <div class="pd-bm-tags"><span>Agent</span><span>论文</span></div>
+            <strong>Attention is All You Need 阅读笔记</strong>
+            <small>arxiv.org · 05.10</small>
+          </div>
+          <div class="pd-bm-item">
+            <div class="pd-bm-tags"><span>设计</span></div>
+            <strong>如何设计一个好的 Onboarding 流程</strong>
+            <small>nngroup.com · 05.08</small>
+          </div>
+          <div class="pd-bm-item">
+            <div class="pd-bm-tags"><span>工具</span><span>LLM</span></div>
+            <strong>LangGraph 状态机完全指南</strong>
+            <small>langchain.com · 04.29</small>
+          </div>
+        </div>
+      </div>
+      <div class="pd-card pd-card--sm pd-stat-card">
+        <div class="pd-stat"><strong>247</strong><span>已保存</span></div>
+        <div class="pd-stat"><strong>18</strong><span>标签</span></div>
+      </div>`
+  },
+  {
+    num: '03',
+    title: '随手做菜',
+    tagline: '待补充 · 快速原型',
+    h3: '（待补充）',
+    desc: '（项目简介待补充。）',
+    github: 'https://github.com/lllllbbbbbxxx/recipe',
+    tags: ['待补充'],
+    link: '查看项目详情 →',
+    visual: `
+      <div class="pd-card pd-card--main pd-cook-card">
+        <div class="pd-cook-head">🍳&nbsp; 随手做菜</div>
+        <div class="pd-cook-body">项目内容待补充……</div>
+      </div>
+      <div class="pd-card pd-card--sm pd-cook-note">
+        <small>进行中</small>
+      </div>`
+  }
+];
+
+// ── DOM refs ──────────────────────────────────────────────────────────────────
+
+const story      = document.querySelector('.scroll-story');
+const orbitWrap  = document.querySelector('[data-orbit-wrap]');
+const dial       = document.querySelector('[data-dial]');
+const scrollHint = document.querySelector('[data-scroll-hint]');
+const trackItems = [...document.querySelectorAll('[data-track-item]')];
+const trackDot   = document.querySelector('[data-track-dot]');
+const trackEl    = document.querySelector('[data-project-track]');
+const navItems   = [...document.querySelectorAll('.top-nav a')];
+
+// hero ↔ demo morph
+const heroBlock    = document.querySelector('[data-hero-block]');
+const demoBlock    = document.querySelector('[data-demo-block]');
+const demoStrip    = document.querySelector('[data-demo-strip]');
+const demoViewport = document.querySelector('.demo-viewport');
+const openDetail   = document.querySelector('[data-open-detail]');
+const DEMO_GAP     = 56;   // px gap between demo cards (matches .demo-strip gap)
+
+// disc extras
+const discThumb  = document.querySelector('[data-disc-thumb]');
+const wedgeEl    = document.querySelector('[data-wedge]');
+const wedgePathEl = document.querySelector('[data-wedge-path]');
+
+// sticky note tags
+const stickyTags = [...document.querySelectorAll('.sticky-tags li')];
+
+const NUM_PROJECTS  = 3;
+const HERO_END      = 0.14;   // hero fully faded, browsing begins
+const PROJECTS_END  = 0.92;
+const RIGHT_SHIFT   = 26;      // % the ring slides right in browse state
+const DOT_R         = 0.30;    // ring radius (fraction of disc) the dot/wedge tip rides on
+const LABEL_R       = 0.42;    // arc radius the project labels sit on
+const SLOT_ANGLE    = 24 * Math.PI / 180;  // angular gap between adjacent projects
+const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+// ── Demo carousel slides ──────────────────────────────────────────────────────
+
+function buildDemoSlides() {
+  if (!demoStrip) return;
+  demoStrip.innerHTML = PROJECTS.map(p => `
+    <div class="demo-slide">
+      <span class="demo-proj-tag">${p.num} · ${p.title}</span>
+      <button class="demo-play" type="button" aria-label="播放 ${p.title} 预览"><span>▶</span></button>
+      <div class="demo-bar">
+        <span>Preview</span>
+        <span class="demo-time">0:00 / 0:45</span>
+        <span class="demo-full">⛶</span>
+      </div>
+    </div>`).join('');
+}
+buildDemoSlides();
+
+// ── Utilities ─────────────────────────────────────────────────────────────────
+
+function clamp(v, lo = 0, hi = 1) {
+  return Math.min(hi, Math.max(lo, v));
 }
 
-function setActiveProject(index) {
-  dialItems.forEach((item, i) => item.classList.toggle("active", i === index));
+function smoothstep(t) {
+  const c = clamp(t);
+  return c * c * (3 - 2 * c);
 }
 
-function setProjectTransition(projectProgress) {
-  const leaveFirst = clamp((projectProgress - 0.24) / 0.16);
-  const enterSecond = clamp((projectProgress - 0.64) / 0.18);
-  const activeProject = enterSecond > 0.45 ? 1 : 0;
+// ── Project detail rendering ──────────────────────────────────────────────────
 
-  projectCopies.forEach((item, index) => {
-    const isFirst = index === 0;
-    const opacity = isFirst ? 1 - leaveFirst : enterSecond;
-    const translate = isFirst ? -96 * leaveFirst : 96 * (1 - enterSecond);
-    const scale = isFirst ? 1 - leaveFirst * 0.025 : 0.985 + enterSecond * 0.015;
-    item.classList.add("active");
-    item.style.opacity = opacity.toFixed(3);
-    item.style.transform = `translateY(${translate.toFixed(1)}px) scale(${scale.toFixed(3)})`;
-    item.style.zIndex = isFirst ? 1 : 2;
-    item.style.visibility = opacity < 0.08 ? "hidden" : "visible";
-    item.style.pointerEvents = opacity > 0.55 ? "auto" : "none";
+function renderProject(index) {
+  const p = PROJECTS[index];
+  if (!p) return;
+
+  // disc center: project cover if provided, else the green placeholder blob
+  if (discThumb) {
+    discThumb.style.backgroundImage = p.cover ? `url("${p.cover}")` : '';
+    discThumb.classList.toggle('has-cover', !!p.cover);
+  }
+
+  // sticky note tags
+  const tags = p.tags.slice(0, 3);
+  stickyTags.forEach((li, i) => { li.textContent = tags[i] || ''; });
+}
+
+// ── Rotating dial: labels ride the left arc, selected sits at 9 o'clock ────────
+
+// Place every label along the ring's left arc. `fpos` is the continuous active
+// position (0..N-1); the item at off=0 lands at 9 o'clock (the selected slot),
+// and scrolling advances fpos so items rotate up through that slot.
+// `focus` 0 → even hero spread (all labels equal); 1 → browse, faded by distance
+function layoutTrack(fpos, focus = 1) {
+  if (!orbitWrap) return;
+  const wr = orbitWrap.getBoundingClientRect();
+  if (wr.width < 2) return;
+  const cx = wr.width / 2, cy = wr.height / 2;
+  const R  = wr.width * LABEL_R;
+
+  trackItems.forEach((el, i) => {
+    const off   = i - fpos;
+    const theta = Math.PI - off * SLOT_ANGLE;          // 180° (9 o'clock) at off 0
+    el.style.left = `${(cx + R * Math.cos(theta)).toFixed(1)}px`;
+    el.style.top  = `${(cy + R * Math.sin(theta)).toFixed(1)}px`;
+    const faded   = Math.max(0.14, 1 - Math.abs(off) * 0.34);
+    const opacity = 0.6 * (1 - focus) + faded * focus;  // even → distance-faded
+    el.style.opacity = opacity.toFixed(2);
+    el.style.zIndex  = String(20 - Math.round(Math.abs(off) * 3));
   });
-
-  caseCards.forEach((item, index) => {
-    const isFirst = index === 0;
-    const opacity = isFirst ? 1 - leaveFirst : enterSecond;
-    const translate = isFirst ? -84 * leaveFirst : 84 * (1 - enterSecond);
-    const scale = isFirst ? 1 - leaveFirst * 0.02 : 0.986 + enterSecond * 0.014;
-    item.classList.add("active");
-    item.style.opacity = opacity.toFixed(3);
-    item.style.transform = `translateY(${translate.toFixed(1)}px) scale(${scale.toFixed(3)})`;
-    item.style.zIndex = isFirst ? 1 : 2;
-    item.style.visibility = opacity < 0.08 ? "hidden" : "visible";
-    item.style.pointerEvents = opacity > 0.55 ? "auto" : "none";
-  });
-
-  setActiveProject(activeProject);
 }
+
+// Annular-sector path (two arcs + two radii) — the curved wedge
+function sectorPath(cx, cy, rIn, rOut, a0, a1) {
+  const P = (r, a) => `${(cx + r * Math.cos(a)).toFixed(1)} ${(cy + r * Math.sin(a)).toFixed(1)}`;
+  return `M ${P(rOut, a0)} A ${rOut} ${rOut} 0 0 1 ${P(rOut, a1)} ` +
+         `L ${P(rIn, a1)} A ${rIn} ${rIn} 0 0 0 ${P(rIn, a0)} Z`;
+}
+
+// The dot + wedge live permanently at the 9-o'clock slot (selected is centred).
+function placeSelection() {
+  if (!orbitWrap) return;
+  const wr = orbitWrap.getBoundingClientRect();
+  if (wr.width < 2) return;
+  const cx = wr.width / 2, cy = wr.height / 2;
+  const Rdot = wr.width * DOT_R;
+  const Rlab = wr.width * LABEL_R;
+
+  if (trackDot) {
+    const ds = trackDot.offsetWidth || 15;
+    trackDot.style.left = `${cx - Rdot - ds / 2}px`;
+    trackDot.style.top  = `${cy - ds / 2}px`;
+  }
+  if (wedgePathEl) {
+    const half = 12 * Math.PI / 180;
+    const rOut = wr.width * 0.65;   // reaches left past the enlarged active title
+    wedgePathEl.setAttribute('d',
+      sectorPath(cx, cy, Rdot - 2, rOut, Math.PI - half, Math.PI + half));
+  }
+}
+
+let lastIndex = -2;   // -2 = uninitialised, -1 = hero (no selection)
+
+function setActiveIndex(index) {
+  if (index === lastIndex) return;
+  lastIndex = index;
+
+  const selected = index >= 0;
+  trackItems.forEach((el, i) => el.classList.toggle('active', i === index));
+
+  trackDot?.classList.toggle('is-on', selected);
+  wedgeEl?.classList.toggle('is-on', selected);
+  discThumb?.classList.toggle('is-on', selected);
+
+  if (selected) renderProject(index);
+}
+
+// ── Scroll driver ─────────────────────────────────────────────────────────────
 
 function updateStory() {
   if (!story) return;
 
-  const rect = story.getBoundingClientRect();
+  const rect       = story.getBoundingClientRect();
   const scrollable = Math.max(1, rect.height - window.innerHeight);
-  const progress = clamp(-rect.top / scrollable);
-  const projectProgress = clamp((progress - 0.18) / 0.62);
+  const progress   = clamp(-rect.top / scrollable);
 
-  copy?.classList.toggle("is-exiting", progress > 0.13);
-  scrollHint?.classList.toggle("is-hidden", progress > 0.08);
-  reader?.classList.toggle("is-visible", progress > 0.14);
-  detail?.classList.toggle("is-visible", progress > 0.16);
-  setProjectTransition(projectProgress);
-
-  if (dial) {
-    const rotation = progress * 72;
-    const exit = clamp((progress - 0.12) / 0.26);
-    dial.style.transform = `translate(${exit * 14}vw, -50%) rotate(${rotation}deg)`;
+  // Hero → demo crossfade
+  const heroFade = smoothstep((progress - 0.02) / (HERO_END - 0.02));
+  if (heroBlock) {
+    heroBlock.style.opacity   = (1 - heroFade).toFixed(3);
+    heroBlock.style.transform = `translateY(calc(-50% - ${(heroFade * 22).toFixed(1)}px))`;
+  }
+  if (demoBlock) {
+    demoBlock.style.opacity       = heroFade.toFixed(3);
+    demoBlock.style.transform     = `translateY(calc(-50% + ${((1 - heroFade) * 22).toFixed(1)}px))`;
+    demoBlock.style.pointerEvents = heroFade > 0.6 ? 'auto' : 'none';
   }
 
-  const listShift = clamp((progress - 0.16) / 0.24);
-  document.documentElement.style.setProperty("--dial-list-right", `${96 - listShift * 84}px`);
+  scrollHint?.classList.toggle('is-hidden', progress > 0.03);
 
-  navItems.forEach((item) => item.classList.remove("active"));
-  const activeNav = progress < 0.2 ? navItems[0] : progress < 0.82 ? navItems[1] : navItems[2];
-  activeNav?.classList.add("active");
+  // Dial position & focus.
+  //  · hero  (progress 0 → HERO_END): even spread, project 03 centred, no highlight,
+  //    rotating toward project 01 so browsing begins on 01.
+  //  · browse (HERO_END → PROJECTS_END): fpos 0 → N-1, distance-faded, highlight on.
+  const mid = (NUM_PROJECTS - 1) / 2;
+  let fpos, focus, idx;
+  if (progress >= HERO_END) {
+    const pp = clamp((progress - HERO_END) / (PROJECTS_END - HERO_END));
+    fpos  = pp * (NUM_PROJECTS - 1);
+    focus = 1;
+    idx   = clamp(Math.round(fpos), 0, NUM_PROJECTS - 1);
+  } else {
+    const h = clamp(progress / HERO_END);        // 0 → 1 across the hero zone
+    fpos  = mid * (1 - h);                        // 2 → 0
+    focus = h;                                    // even spread → focused
+    // switch the highlight on as project 01 settles into the centre, so the
+    // wedge/dot/cover are present even if the snap lands just shy of HERO_END
+    idx   = fpos < 0.18 ? 0 : -1;
+  }
+  layoutTrack(fpos, focus);
+  placeSelection();
+  setActiveIndex(idx);
+
+  // Demo carousel: the whole framed card slides through, active one centred.
+  // During the hero zone it stays parked on project 01 (just fades in) instead of
+  // riding the ring's spread→01 rotation, so the first demo doesn't slide down.
+  const demoFpos = progress < HERO_END ? 0 : fpos;
+  if (demoStrip && demoViewport) {
+    const vpW  = demoViewport.clientWidth;
+    const vpH  = demoViewport.clientHeight;
+    const cardH = vpW * 10 / 16;             // slide aspect is 16/10
+    const pitch = cardH + DEMO_GAP;
+    const ty = vpH / 2 - cardH / 2 - demoFpos * pitch;
+    demoStrip.style.transform = `translateY(${ty.toFixed(1)}px)`;
+    const cards = demoStrip.children;
+    for (let i = 0; i < cards.length; i++) {
+      const off = i - demoFpos;
+      cards[i].style.opacity = clamp(1 - off * off, 0, 1).toFixed(3);
+    }
+  }
+
+  // Ring exit at the very end
+  const exitRaw   = clamp((progress - PROJECTS_END) / (1 - PROJECTS_END));
+  const exitEased = smoothstep(exitRaw);
+  if (orbitWrap) {
+    orbitWrap.style.opacity   = (1 - exitEased).toFixed(3);
+    const shiftX = reduced ? 0 : (heroFade * RIGHT_SHIFT + exitEased * 10);
+    orbitWrap.style.transform = `translateX(${shiftX.toFixed(1)}%)`;
+  }
+
+  navItems.forEach(el => el.classList.remove('active'));
+  if (progress < PROJECTS_END) navItems[0]?.classList.add('active'); // Systems
 }
 
-navItems.forEach((item) => {
-  item.addEventListener("click", (event) => {
-    event.preventDefault();
-    const target = item.dataset.navTarget;
+// ── Case File overlay ─────────────────────────────────────────────────────────
+
+// Structure per PRD §8.3. Section bodies come from 项目档案.md (loaded at runtime),
+// keyed by the Chinese section name `k` — edit that file to update the content.
+const CASE_SECTIONS = [
+  { n: '01', en: 'Problem',    k: '问题' },
+  { n: '02', en: 'Context',    k: '背景' },
+  { n: '03', en: 'User',       k: '用户' },
+  { n: '04', en: 'Workflow',   k: '工作流程' },
+  { n: '05', en: 'Tech',       k: '技术方案' },
+  { n: '06', en: 'Prompt',     k: 'Prompt 设计' },
+  { n: '07', en: 'Eval',       k: '评估方法' },
+  { n: '08', en: 'Reflection', k: '反思' },
+];
+
+// Per-project case-file text, parsed from 项目档案.md at runtime.
+let caseData = {};
+
+function parseCaseFiles(md) {
+  const data = {};
+  md.split(/^##\s+/m).slice(1).forEach(block => {
+    const nl = block.indexOf('\n');
+    const header = (nl < 0 ? block : block.slice(0, nl)).trim();   // e.g. "01 日程 Agent"
+    const num = (header.match(/^(\d{2})/) || [])[1];
+    if (!num) return;
+    const sections = {};
+    block.split(/^###\s+/m).slice(1).forEach(sec => {
+      const snl = sec.indexOf('\n');
+      const name = (snl < 0 ? sec : sec.slice(0, snl)).trim();
+      const body = (snl < 0 ? '' : sec.slice(snl + 1)).trim();
+      sections[name] = body;
+    });
+    data[num] = sections;
+  });
+  return data;
+}
+
+function escapeHtml(s) {
+  return s.replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+}
+
+// cache-bust so edits to 项目档案.md show up on a normal reload
+fetch(encodeURI('./项目档案.md') + '?t=' + Date.now(), { cache: 'no-store' })
+  .then(r => r.ok ? r.text() : Promise.reject(r.status))
+  .then(t => { caseData = parseCaseFiles(t); })
+  .catch(() => { /* fall back to the built-in placeholder */ });
+
+const casefile   = document.querySelector('[data-casefile]');
+const cfPanel     = document.querySelector('[data-cf-panel]');
+const cfSections  = document.querySelector('[data-cf-sections]');
+const cfLines     = document.querySelector('[data-cf-lines]');
+const cfTag       = document.querySelector('[data-cf-tag]');
+const cfGh        = document.querySelector('[data-cf-gh]');
+const cfCloseEls  = [...document.querySelectorAll('[data-cf-close]')];
+const SVGNS       = 'http://www.w3.org/2000/svg';
+
+function buildCaseSections(num) {
+  if (!cfSections) return;
+  const proj = caseData[num] || {};
+  cfSections.innerHTML = CASE_SECTIONS.map(s => {
+    const raw  = (proj[s.k] || '').trim() || '（待补充）';
+    const body = escapeHtml(raw).replace(/\n{2,}/g, '<br><br>').replace(/\n/g, '<br>');
+    return `
+    <article class="cf-sec" data-cf-sec>
+      <div class="cf-sec-head"><span class="cf-sec-n">${s.n}</span><span class="cf-sec-en">${s.en}</span></div>
+      <h3 class="cf-sec-title">${s.k}</h3>
+      <p class="cf-sec-body">${body}</p>
+    </article>`;
+  }).join('');
+}
+
+// Thin connectors from the demo out to each case-file section
+function drawLines(animate = true) {
+  if (!cfPanel || !cfLines || !cfSections) return;
+  const frame = cfPanel.querySelector('.cf-demo-frame');
+  if (!frame) return;
+  const panel = cfPanel.getBoundingClientRect();
+  const demo  = frame.getBoundingClientRect();
+  if (panel.width < 2) return;
+
+  const x1 = demo.right - panel.left;
+  const y1 = demo.top + demo.height / 2 - panel.top;
+
+  cfLines.setAttribute('viewBox', `0 0 ${panel.width} ${panel.height}`);
+  while (cfLines.firstChild) cfLines.removeChild(cfLines.firstChild);
+
+  const secs = [...cfSections.querySelectorAll('[data-cf-sec]')];
+  secs.forEach((sec, i) => {
+    const r  = sec.getBoundingClientRect();
+    const x2 = r.left - panel.left;
+    const y2 = r.top + r.height / 2 - panel.top;
+    // skip sections scrolled out of the panel
+    if (y2 < -20 || y2 > panel.height + 20) return;
+    const mx = x1 + (x2 - x1) * 0.5;
+    const path = document.createElementNS(SVGNS, 'path');
+    path.setAttribute('d', `M ${x1} ${y1} C ${mx} ${y1}, ${mx} ${y2}, ${x2} ${y2}`);
+    path.setAttribute('class', 'cf-line');
+    cfLines.appendChild(path);
+    if (animate && !reduced) {
+      const len = path.getTotalLength();
+      path.style.strokeDasharray  = len;
+      path.style.strokeDashoffset = len;
+      requestAnimationFrame(() => {
+        path.style.transition = `stroke-dashoffset 520ms ${120 + i * 55}ms var(--ease-out)`;
+        path.style.strokeDashoffset = '0';
+      });
+    }
+  });
+
+  const hub = document.createElementNS(SVGNS, 'circle');
+  hub.setAttribute('cx', x1);
+  hub.setAttribute('cy', y1);
+  hub.setAttribute('r', '4');
+  hub.setAttribute('class', 'cf-line-hub');
+  cfLines.appendChild(hub);
+}
+
+let cfTimers = [];
+function clearCfTimers() { cfTimers.forEach(clearTimeout); cfTimers = []; }
+
+function openCaseFile() {
+  if (!casefile) return;
+  clearCfTimers();
+
+  const p = PROJECTS[lastIndex >= 0 ? lastIndex : 0];
+  if (cfTag) cfTag.textContent = `${p.num} · ${p.title}`;
+  if (cfGh) {
+    cfGh.href = p.github || '#';
+    cfGh.style.display = p.github ? '' : 'none';
+  }
+  buildCaseSections(p.num);   // rebuild for the current project (content differs)
+
+  // capture the active browse card as the FLIP source before the overlay opens
+  const activeCard = demoStrip?.children[lastIndex >= 0 ? lastIndex : 0];
+  const source = activeCard?.getBoundingClientRect();
+
+  casefile.classList.add('is-open');
+  casefile.setAttribute('aria-hidden', 'false');
+  document.body.style.overflow = 'hidden';
+
+  const frame = cfPanel?.querySelector('.cf-demo-frame');
+
+  const connect = () => {
+    casefile.classList.add('cf-connected');   // reveal sections (staggered)
+    drawLines(true);                           // grow the connecting lines
+  };
+
+  if (frame && source && source.width > 2 && !reduced) {
+    // FLIP: start the frame exactly where the browse demo is, then animate to rest
+    const target = frame.getBoundingClientRect();
+    const dx = source.left - target.left;
+    const dy = source.top  - target.top;
+    const sx = source.width  / target.width;
+    const sy = source.height / target.height;
+    frame.style.transition = 'none';
+    frame.style.transform  = `translate(${dx.toFixed(1)}px, ${dy.toFixed(1)}px) scale(${sx.toFixed(3)}, ${sy.toFixed(3)})`;
+    void frame.offsetWidth;                    // commit the start state
+    requestAnimationFrame(() => {
+      frame.style.transition = 'transform 480ms var(--ease-out)';
+      frame.style.transform  = 'none';         // → shrink/slide into place
+    });
+    cfTimers.push(setTimeout(connect, 500));    // lines + sections after it settles
+  } else {
+    connect();
+    requestAnimationFrame(() => requestAnimationFrame(() => drawLines(true)));
+  }
+}
+
+function closeCaseFile() {
+  if (!casefile) return;
+  clearCfTimers();
+
+  const frame = cfPanel?.querySelector('.cf-demo-frame');
+  const activeCard = demoStrip?.children[lastIndex >= 0 ? lastIndex : 0];
+  const dest  = activeCard?.getBoundingClientRect();
+
+  // sections + lines leave first
+  casefile.classList.remove('cf-connected');
+
+  const hardHide = () => {
+    casefile.classList.remove('is-open');
+    casefile.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+    if (frame) { frame.style.transition = ''; frame.style.transform = ''; }
+  };
+
+  if (frame && dest && dest.width > 2 && !reduced) {
+    // reverse FLIP: grow the archive frame back to the browse demo, then fade out
+    const cur = frame.getBoundingClientRect();
+    const dx = dest.left - cur.left;
+    const dy = dest.top  - cur.top;
+    const sx = dest.width  / cur.width;
+    const sy = dest.height / cur.height;
+    frame.style.transition = 'transform 420ms var(--ease-out)';
+    frame.style.transform  = `translate(${dx.toFixed(1)}px, ${dy.toFixed(1)}px) scale(${sx.toFixed(3)}, ${sy.toFixed(3)})`;
+    // start the scrim fade as the frame nears the browse position…
+    cfTimers.push(setTimeout(() => {
+      casefile.classList.remove('is-open');
+      casefile.setAttribute('aria-hidden', 'true');
+    }, 260));
+    // …then clean up transform only once fully hidden
+    cfTimers.push(setTimeout(() => {
+      document.body.style.overflow = '';
+      if (frame) { frame.style.transition = ''; frame.style.transform = ''; }
+    }, 620));
+  } else {
+    hardHide();
+  }
+}
+
+openDetail?.addEventListener('click', e => { e.preventDefault(); openCaseFile(); });
+cfCloseEls.forEach(el => el.addEventListener('click', closeCaseFile));
+cfSections?.addEventListener('scroll', () => {
+  if (casefile?.classList.contains('cf-connected')) drawLines(false);
+}, { passive: true });
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape' && casefile?.classList.contains('is-open')) closeCaseFile();
+});
+window.addEventListener('resize', () => {
+  if (casefile?.classList.contains('cf-connected')) drawLines(false);
+});
+
+// ── Nav smooth scroll ─────────────────────────────────────────────────────────
+
+navItems.forEach(item => {
+  item.addEventListener('click', e => {
+    e.preventDefault();
+    const t = item.dataset.navTarget;
+    if (!story) return;
     const max = story.offsetHeight - window.innerHeight;
-    const progress = target === "home" ? 0 : target === "project" ? 0.34 : 1;
-    const top = target === "other" ? document.querySelector(".portal-grid").offsetTop : story.offsetTop + max * progress;
-    window.scrollTo({ top, behavior: "smooth" });
+    let top;
+    if (t === 'systems') {
+      top = story.offsetTop;
+    } else if (['experiments', 'cambium', 'archive', 'about'].includes(t)) {
+      const el = document.getElementById(t);
+      top = el ? el.offsetTop : story.offsetTop + max;
+    } else {
+      top = story.offsetTop + max;
+    }
+    window.scrollTo({ top, behavior: 'smooth' });
   });
 });
 
-window.addEventListener("scroll", updateStory, { passive: true });
-window.addEventListener("resize", updateStory);
+// ── Track item click ──────────────────────────────────────────────────────────
+
+trackItems.forEach((item, i) => {
+  item.addEventListener('click', () => {
+    if (!story) return;
+    const max = story.offsetHeight - window.innerHeight;
+    // scroll so project i lands at the centred (selected) slot: fpos === i
+    const targetProgress = HERO_END + (i / (NUM_PROJECTS - 1)) * (PROJECTS_END - HERO_END);
+    window.scrollTo({ top: story.offsetTop + max * targetProgress, behavior: 'smooth' });
+  });
+});
+
+// ── Scroll reveal ─────────────────────────────────────────────────────────────
+
+if (!reduced) {
+  const revealTargets = [...document.querySelectorAll('.portal-grid article')];
+
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.07 });
+
+  revealTargets.forEach((el, i) => {
+    el.classList.add('reveal-item');
+    el.style.transitionDelay = `${i * 70}ms`;
+    revealObserver.observe(el);
+  });
+}
+
+// ── Live clock ────────────────────────────────────────────────────────────────
+
+function updateClock() {
+  const el = document.getElementById('live-time');
+  if (!el) return;
+  el.textContent = new Date().toLocaleTimeString('zh-CN', {
+    hour: '2-digit', minute: '2-digit', hour12: false,
+    timeZone: 'Asia/Shanghai'
+  });
+}
+updateClock();
+setInterval(updateClock, 30000);
+
+// ── Init ──────────────────────────────────────────────────────────────────────
+
+window.addEventListener('scroll', updateStory, { passive: true });
+window.addEventListener('resize', updateStory);
 updateStory();
+// re-run once fonts settle so label widths/positions are exact
+window.addEventListener('load', updateStory);
+
+// ── Auto-snap: settle on the nearest project when scrolling stops ──────────────
+let snapTimer = null;
+function snapToNearest() {
+  if (!story || casefile?.classList.contains('is-open')) return;
+  const rect = story.getBoundingClientRect();
+  const scrollable = Math.max(1, rect.height - window.innerHeight);
+  const progress = clamp(-rect.top / scrollable);
+  if (progress < HERO_END || progress > PROJECTS_END) return;   // only inside the browse zone
+  const pp = clamp((progress - HERO_END) / (PROJECTS_END - HERO_END));
+  const nearest = clamp(Math.round(pp * (NUM_PROJECTS - 1)), 0, NUM_PROJECTS - 1);
+  const targetProgress = HERO_END + (nearest / (NUM_PROJECTS - 1)) * (PROJECTS_END - HERO_END);
+  const targetY = story.offsetTop + scrollable * targetProgress;
+  if (Math.abs(window.scrollY - targetY) > 6) {
+    window.scrollTo({ top: targetY, behavior: 'smooth' });
+  }
+}
+if (!reduced) {
+  window.addEventListener('scroll', () => {
+    clearTimeout(snapTimer);
+    snapTimer = setTimeout(snapToNearest, 160);
+  }, { passive: true });
+}
