@@ -9,6 +9,7 @@ const PROJECTS = [
     desc: '大多数日程工具只是记录，而计划一整天都在变。灵活规划（Adaptive Planning）让 AI 持续理解意图、维护状态、根据反馈动态重排——你不必重新创建计划，它替你维护。',
     github: 'https://github.com/lllllbbbbbxxx/ai-schedule-butler',
     caseUrl: './replan.html',
+    cover: './assets/covers/replan.jpg',
     tags: ['LangGraph', 'FastAPI', 'React', 'PostgreSQL', 'OpenAI API'],
     link: '查看完整案例 →',
     visual: `
@@ -37,6 +38,7 @@ const PROJECTS = [
     desc: '一个智能书签系统，自动为保存的内容打标签、生成摘要，并通过自然语言检索——让你的收藏夹真正成为可查询的知识库。',
     github: 'https://github.com/lllllbbbbbxxx/bookmark',
     caseUrl: './bookmark.html',
+    cover: './assets/covers/bookmark.jpg',
     tags: ['Chrome Extension', 'Python', 'BGE-M3', 'LLM'],
     link: '查看项目详情 →',
     visual: `
@@ -72,6 +74,7 @@ const PROJECTS = [
     h3: '用现有食材快速决定今天吃什么',
     desc: '一个帮你用现有食材快速决定今天吃什么、顺便减少浪费的微信小程序——不是菜谱库，而是库存驱动的轻量决策工具。',
     github: 'https://github.com/lllllbbbbbxxx/recipe',
+    cover: './assets/covers/recipe.jpg',
     tags: ['微信小程序', '云开发', '腾讯云 OCR', '数据埋点'],
     link: '查看项目详情 →',
     visual: `

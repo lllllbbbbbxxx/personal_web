@@ -10,3 +10,6 @@ botanical-portfolio.zip
 
 # large unused source image (optimized about-photo.jpg is what's used)
 assets/IMG_0335.JPG
+
+# cover source PNGs (optimized .jpg are committed)
+assets/covers/*.png
