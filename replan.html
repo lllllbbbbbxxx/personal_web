@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Cache-Control" content="no-cache, must-revalidate" />
+    <title>Replan — 灵活规划 · Case Study — jun.</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600&family=IBM+Plex+Mono:ital,wght@0,400;0,700;1,400&family=Inter:ital,opsz,wght@0,14..32,300..900;1,14..32,300..900&family=Noto+Sans+SC:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./styles.css?v=34" />
+    <link rel="stylesheet" href="./pages.css?v=2" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand-mark" href="./index.html" aria-label="jun."><span class="brand-logo">jun.</span><i></i></a>
+      <nav class="top-nav" aria-label="Primary navigation">
+        <a class="active" href="./index.html#systems">Systems</a>
+        <a href="./experiments.html">Experiments</a>
+        <a href="./cambium.html">Cambium</a>
+        <a href="./archive.html">Archive</a>
+        <a href="./index.html#about">About</a>
+      </nav>
+      <div class="time-place"><b></b><span>Building</span></div>
+    </header>
+
+    <main class="page" style="max-width:940px;">
+      <a class="page-back" href="./index.html#systems"><span>←</span> Systems</a>
+
+      <header class="subpage-hero">
+        <a class="subpage-gh" href="https://github.com/lllllbbbbbxxx/ai-schedule-butler" target="_blank" rel="noopener">
+          <svg viewBox="0 0 16 16" width="15" height="15" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.6 7.6 0 012-.27c.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+          GitHub <span class="subpage-gh-arrow">↗</span>
+        </a>
+        <p class="subpage-tag">SYSTEM · CASE STUDY</p>
+        <h1>Replan</h1>
+        <p class="cs-oneliner">
+          灵活规划 · 长期任务的拆解 · 排期 · 自适应重排系统。
+          <br><em>对话式规划引擎：一句话说个目标 → 拆成可执行子任务 → 按 deadline / 作息智能排期 → 反馈后自动重排。LLM 负责理解语义，确定性引擎负责排得对。</em>
+        </p>
+        <div class="subpage-meta">
+          <span>类型 · 对话式规划系统</span>
+          <span>角色 · 独立开发</span>
+          <span>~265 项自动化测试 · CI</span>
+        </div>
+      </header>
+
+      <section class="subpage-section">
+        <h2>一句话</h2>
+        <p>一个面向学生 / 个人效率场景的对话式规划系统。用户用自然语言输入「帮我七天学完一个课程」或「今天只完成了一半」，系统自动拆解任务、安排时间、展示周视图，并在反馈后重新规划剩余日程。</p>
+      </section>
+
+      <section class="subpage-section">
+        <h2>为什么做（问题）</h2>
+        <p>普通日历只能存「事件」，不理解「任务」。真实痛点不是「记个时间」，而是：<strong>有个目标（写论文 / 学课程），却不知道怎么拆、每天做什么、做不完怎么调整。</strong></p>
+        <p>所以目标不是「做个日历」，而是做一个能理解任务、安排时间、并在进度变化后自动重排的系统。</p>
+      </section>
+
+      <section class="subpage-section">
+        <h2>定位</h2>
+        <div class="cs-two">
+          <div class="cs-point">
+            <strong>不是聊天机器人</strong>
+            <span>是围绕「任务状态」运转的规划系统——每次输入都改变当前计划，而非只回一段话。</span>
+          </div>
+          <div class="cs-point">
+            <strong>任务-时间双向闭环</strong>
+            <span>任务理解 → 时间安排 → 状态更新 → 自动重排，连成完整回路。</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="subpage-section">
+        <h2>架构 · 语义层 vs 正确性层</h2>
+        <p>整个项目最关键的一条分界：让 LLM 只做它擅长的语义理解，把排期的正确性交给确定性引擎。</p>
+        <div class="cs-flow">
+          <div class="cs-node">
+            <div class="cs-node-t">自然语言输入</div>
+            <div class="cs-node-d">「帮我七天学完一门课」 · 「今天只做了一半」</div>
+          </div>
+          <div class="cs-arrow">↓</div>
+          <div class="cs-layer cs-layer--llm">
+            <div class="cs-layer-label">语义层 · LLM（只做它擅长的）</div>
+            <div class="cs-node"><div class="cs-node-t">意图理解</div><div class="cs-node-d">6 个纯语义意图 + 状态机解析（LLM 判语义，状态定动作）</div></div>
+            <div class="cs-node"><div class="cs-node-t">语义拆解</div><div class="cs-node-d">目标 → 可执行子任务（few-shot + 抽象↔具体对照）</div></div>
+          </div>
+          <div class="cs-arrow">↓<small>结构化任务</small></div>
+          <div class="cs-layer cs-layer--det">
+            <div class="cs-layer-label">正确性层 · 确定性引擎（保证排得对）</div>
+            <div class="cs-node"><div class="cs-node-t">按 deadline 反推均摊排期</div><div class="cs-node-d">排不下时溢出而非丢弃</div></div>
+            <div class="cs-node"><div class="cs-node-t">时间槽统一收口</div><div class="cs-node-d">find_available_slot · validate_no_overlap</div></div>
+          </div>
+          <div class="cs-arrow">↓</div>
+          <div class="cs-node">
+            <div class="cs-node-t">周视图计划 · 任务状态</div>
+            <div class="cs-node-d">反馈后自动重排剩余日程</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="subpage-section">
+        <h2>成长主线 · 一次「从选框架到分层」的转变</h2>
+        <div class="acts">
+          <article class="act">
+            <span class="act-n">01</span>
+            <h3>第一幕 · 拆成多引擎（规则 + LLM 混合）</h3>
+            <p>最初把能力拆成独立引擎：T02 拆解 / T03 排程 / T04 反馈解析 / T05 重排 + Orchestrator 路由。优点是职责清楚、易单测、易定位。</p>
+            <p>代价开始显现：跨模块数据结构必须严格一致，中间任一层格式偏一点，用户看到的就是「整个计划都不对」，但根因藏在任意一层的缝隙里。</p>
+          </article>
+          <article class="act">
+            <span class="act-n">02</span>
+            <h3>第二幕 · 怀疑架构，做 A/B 实验</h3>
+            <p>复杂度上来后我开始问：「是不是直接全交给 AI 更简单？」我没停在想法，而是真做了两条实验链路（<code>langgraph-practice</code> 分支）：LangGraph 编排 / 单次 LLM JSON。</p>
+            <p>结论很关键——三条路单独都不行：</p>
+            <ul>
+              <li><strong>纯规则</strong>：稳，但死板，不懂自然语言的灵活诉求。</li>
+              <li><strong>全 LLM / 单次 JSON</strong>：灵活，但不稳——拆解抽象、排期会重叠 / 把任务丢掉、结果不可控。</li>
+              <li><strong>LangGraph</strong>：让编排更清晰，但没解决真正的问题（问题不在编排形式）。</li>
+            </ul>
+          </article>
+          <article class="act act--key">
+            <span class="act-n">03</span>
+            <h3>第三幕 · 转变——不是「选一个框架」，而是「分层 + 评测驱动」</h3>
+            <p>真正的顿悟是：卡点根本不在「用规则还是 LLM 还是 graph」，而在 ① 领域建模和确定性排程算法本身；② 没有可信的评测。于是两个决定：</p>
+            <ul>
+              <li><strong>分层</strong>：让 LLM 只做语义理解，把排期正确性交给确定性引擎（不会排出重叠 / 丢任务 / 塌缩）。意图进一步收敛成 6 个纯语义意图 + 状态机解析，不再让 LLM 和规则互相打架。</li>
+              <li><strong>评测驱动</strong>：我发现原本「全绿」的评测报告其实是伪造的、和真实链路脱节。于是重建了端到端确定性评测 + LLM-as-judge 质量评测 + 覆盖矩阵 + CI，把「感觉对了」变成「数据证明对了」，再据此系统性修复。</li>
+            </ul>
+            <p class="act-quote">这一幕是整个项目最有价值的部分：我从「加功能 / 修 bug」进入到「系统设计 + 评测文化」。</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="subpage-section">
+        <h2>具体难点 &amp; 怎么解</h2>
+        <table class="cs-table">
+          <thead>
+            <tr><th>难点</th><th>现象</th><th>解决</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>拆解「像对了」但抽象</td><td>LLM 输出「学习监督学习基础」这类占位 / 大块</td><td>few-shot + 抽象↔具体对照 + 调用重试；拆解质量 66→85（LLM-as-judge）</td></tr>
+            <tr><td>排期堆在同一天</td><td>贪心塞满，「7 天计划」3 天排完</td><td>从「正向贪心」改为按 deadline 反推均摊；排不下溢出而非丢弃</td></tr>
+            <tr><td>新旧任务重叠</td><td>每个入口各写避让 → 失控</td><td>时间槽后处理统一收口：共享 find_available_slot + validate_no_overlap</td></tr>
+            <tr><td>模糊反馈难</td><td>「做了一半」要定位任务、算剩余、重排</td><td>统一 task_id / slot 结构，反馈与重排复用同一套时间表管线；补范围序数 / 取消 / 模糊澄清</td></tr>
+            <tr><td>隐藏 bug</td><td>建评测时暴露 8 个此前看不见的真 bug</td><td>时长塌缩成 1h、分数小时假重叠崩溃、意图误判等，逐个修</td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section class="subpage-section">
+        <h2>结果</h2>
+        <div class="cs-stats">
+          <div class="cs-stat"><strong>66 → 85</strong><span>拆解质量（LLM-as-judge）</span></div>
+          <div class="cs-stat"><strong>83% → 100%</strong><span>意图准确率（收敛后）</span></div>
+          <div class="cs-stat"><strong>~265</strong><span>项自动化测试（后端 249 + 前端 16）</span></div>
+          <div class="cs-stat"><strong>12/12</strong><span>端到端评测通过 · T04→T05 8/8</span></div>
+          <div class="cs-stat"><strong>0</strong><span>重叠 / 碎片 / 丢任务 / 塌缩</span></div>
+          <div class="cs-stat"><strong>CI</strong><span>GitHub Actions 守护（pytest + 端到端 + 前端）</span></div>
+        </div>
+        <p style="margin-top:18px;">新增能力：时间约束（「周三上午有课别排」）、个人作息画像 + 预设身份、改排已有计划、从反馈学各类任务的估时倍率。</p>
+      </section>
+
+      <section class="subpage-section">
+        <h2>我的思考（成长 / 反思）</h2>
+        <p>这个项目最有价值的不是把页面做出来，而是让我从「功能开发」进入「系统设计」：</p>
+        <ul class="subpage-list">
+          <li>任务状态该用什么结构贯穿全链路？</li>
+          <li>规则编排什么时候会失控？纯 LLM 什么时候更划算？成本边界在哪？</li>
+          <li>怎么判断「它真的对了」——而不是「看起来对了」？</li>
+        </ul>
+        <p style="margin-top:16px;">我没停在「怀疑架构」，而是真做了 LangGraph 和单次 LLM 两种实验去比较稳定性 / 灵活性 / 维护成本；最后想明白答案不是二选一，而是分层 + 用评测把正确性钉死。这让项目从一个产品原型，变成了一个「AI 应用编排方式」的实验场。</p>
+      </section>
+
+      <section class="subpage-section">
+        <h2>当前状态与下一步</h2>
+        <p><strong>✅ 已完成：</strong>核心闭环（拆解→排期→反馈→重排）、时间约束 / 作息画像、改排、个性化估时、今日视图、评测体系 + CI。</p>
+        <p><strong>⏳ 优化中 / 未做：</strong>图片 / 文件输入（多模态）、复杂反馈的语义匹配更稳、单次 LLM 链路的拆解约束更强、活动提取 / 消费记录等 P1 模块。</p>
+      </section>
+
+      <section class="subpage-section">
+        <h2>技术栈</h2>
+        <p style="font-family:var(--mono);font-size:13px;color:var(--muted);line-height:1.9;">
+          React / Vite 前端 · Python HTTP API 后端 · LLM（DeepSeek，OpenAI 兼容）+ 本地规则兜底 · GitHub Actions CI · 端到端 / LLM-as-judge 评测体系。
+        </p>
+      </section>
+
+      <a class="page-back" href="./index.html#systems" style="margin-top:8px;"><span>←</span> 返回 Systems</a>
+    </main>
+  </body>
+</html>

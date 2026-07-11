@@ -8,6 +8,7 @@ const PROJECTS = [
     h3: '让 AI 持续维护你的计划',
     desc: '大多数日程工具只是记录，而计划一整天都在变。灵活规划（Adaptive Planning）让 AI 持续理解意图、维护状态、根据反馈动态重排——你不必重新创建计划，它替你维护。',
     github: 'https://github.com/lllllbbbbbxxx/ai-schedule-butler',
+    caseUrl: './replan.html',
     tags: ['LangGraph', 'FastAPI', 'React', 'PostgreSQL', 'OpenAI API'],
     link: '查看完整案例 →',
     visual: `
@@ -521,7 +522,12 @@ function closeCaseFile() {
   }
 }
 
-openDetail?.addEventListener('click', e => { e.preventDefault(); openCaseFile(); });
+openDetail?.addEventListener('click', e => {
+  e.preventDefault();
+  const p = PROJECTS[lastIndex >= 0 ? lastIndex : 0];
+  if (p && p.caseUrl) { window.location.href = p.caseUrl; return; }  // rich case-study page
+  openCaseFile();                                                    // else the overlay
+});
 cfCloseEls.forEach(el => el.addEventListener('click', closeCaseFile));
 cfSections?.addEventListener('scroll', () => {
   if (casefile?.classList.contains('cf-connected')) drawLines(false);

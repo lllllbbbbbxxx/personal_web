@@ -540,6 +540,136 @@
 .fp-doc-lead { font-size: 14px; color: #3a3f36; margin-top: 20px; }
 .fp-doc-meta { margin-top: 40px; font-family: var(--mono); font-size: 12px; color: var(--muted); line-height: 2; }
 
+/* ═══ Case study (flagship project) ═══ */
+
+.cs-oneliner {
+  margin: 0 0 8px;
+  font-size: 17px;
+  line-height: 1.7;
+  color: #2a2f26;
+  max-width: 680px;
+}
+.cs-oneliner em { font-style: italic; color: var(--soft); }
+
+.cs-two { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.cs-point {
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 18px 20px;
+  background: rgba(255, 255, 255, 0.5);
+}
+.cs-point strong { display: block; font-size: 14px; margin-bottom: 6px; }
+.cs-point span { font-size: 13.5px; color: var(--muted); line-height: 1.65; }
+
+/* architecture diagram — layered flow */
+.cs-flow { display: flex; flex-direction: column; align-items: center; margin: 10px 0; }
+.cs-node {
+  width: 100%; max-width: 660px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 15px 20px;
+  background: rgba(255, 255, 255, 0.6);
+  text-align: center;
+}
+.cs-node-t { font-weight: 700; font-size: 14px; }
+.cs-node-d { margin-top: 4px; font-family: var(--mono); font-size: 12px; color: var(--muted); }
+.cs-arrow { color: var(--muted); font-size: 16px; line-height: 1; padding: 9px 0; text-align: center; }
+.cs-arrow small { display: block; font-family: var(--mono); font-size: 10.5px; margin-top: 2px; }
+
+.cs-layer { width: 100%; max-width: 660px; border-radius: 12px; padding: 12px; }
+.cs-layer--llm { background: rgba(147, 165, 143, 0.12); border: 1px solid rgba(147, 165, 143, 0.32); }
+.cs-layer--det { background: rgba(26, 29, 27, 0.045); border: 1px solid var(--line); }
+.cs-layer-label {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  padding: 2px 6px 10px;
+}
+.cs-layer--llm .cs-layer-label { color: var(--soft); }
+.cs-layer--det .cs-layer-label { color: var(--ink); }
+.cs-layer .cs-node { background: rgba(255, 255, 255, 0.7); }
+.cs-layer .cs-node + .cs-node { margin-top: 8px; }
+
+/* three-act growth narrative */
+.acts { display: flex; flex-direction: column; gap: 16px; margin-top: 8px; }
+.act {
+  position: relative;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 22px 26px 22px 84px;
+  background: rgba(255, 255, 255, 0.5);
+}
+.act-n {
+  position: absolute;
+  left: 24px; top: 22px;
+  font-family: var(--mono);
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--soft);
+  opacity: 0.5;
+}
+.act h3 { margin: 0 0 10px; font-size: 17px; font-weight: 700; letter-spacing: -0.01em; }
+.act p { margin: 0 0 8px; font-size: 14.5px; line-height: 1.8; color: #3a3f36; }
+.act ul { margin: 6px 0 0; padding-left: 18px; }
+.act li { font-size: 14px; line-height: 1.75; color: var(--muted); }
+.act--key {
+  background: #fdf9ec;
+  border-color: rgba(147, 165, 143, 0.35);
+}
+.act--key .act-n { color: var(--soft); opacity: 1; }
+.act-quote {
+  margin-top: 12px;
+  padding: 12px 16px;
+  border-left: 3px solid var(--soft);
+  background: rgba(147, 165, 143, 0.08);
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--ink);
+}
+
+/* stat cards */
+.cs-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 14px;
+}
+.cs-stat {
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 18px;
+  background: rgba(255, 255, 255, 0.5);
+}
+.cs-stat strong {
+  display: block;
+  font-size: 26px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+.cs-stat span { display: block; margin-top: 5px; font-size: 12.5px; color: var(--muted); line-height: 1.5; }
+
+/* difficulty table */
+.cs-table { width: 100%; border-collapse: collapse; margin-top: 8px; }
+.cs-table th {
+  text-align: left;
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--muted);
+  font-weight: 500;
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--line);
+}
+.cs-table td {
+  padding: 14px;
+  font-size: 13.5px;
+  line-height: 1.65;
+  color: #2a2f26;
+  border-bottom: 1px solid var(--line);
+  vertical-align: top;
+}
+.cs-table td:first-child { font-weight: 700; color: var(--ink); white-space: nowrap; }
+.cs-table tr:hover td { background: rgba(255, 255, 255, 0.5); }
+
 /* ── Cultural probe gallery (sub-page) ── */
 .probe-figs {
   display: grid;
