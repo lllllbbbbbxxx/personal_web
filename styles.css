@@ -1703,6 +1703,31 @@ button, input { font: inherit; }
 .cf-gh svg { display: block; }
 .cf-gh-arrow { color: var(--muted); }
 
+/* primary CTA: open the full case-study page */
+.cf-full {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  align-self: flex-start;
+  margin-top: 12px;
+  padding: 12px 22px;
+  border-radius: 999px;
+  border: 1px solid rgba(147, 165, 143, 0.5);
+  background: rgba(197, 255, 87, 0.1);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--ink);
+  text-decoration: none;
+  transition: transform 200ms var(--ease-out), box-shadow 200ms var(--ease-out), background 200ms var(--ease-out);
+}
+.cf-full span { transition: transform 200ms var(--ease-spring); }
+.cf-full:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-hover);
+  background: rgba(197, 255, 87, 0.18);
+}
+.cf-full:hover span { transform: translateX(4px); }
+
 /* connecting lines layer sits above the columns */
 .cf-lines {
   position: absolute;

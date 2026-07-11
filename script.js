@@ -366,6 +366,7 @@ const cfSections  = document.querySelector('[data-cf-sections]');
 const cfLines     = document.querySelector('[data-cf-lines]');
 const cfTag       = document.querySelector('[data-cf-tag]');
 const cfGh        = document.querySelector('[data-cf-gh]');
+const cfFull      = document.querySelector('[data-cf-full]');
 const cfCloseEls  = [...document.querySelectorAll('[data-cf-close]')];
 const SVGNS       = 'http://www.w3.org/2000/svg';
 
@@ -442,6 +443,10 @@ function openCaseFile() {
   if (cfGh) {
     cfGh.href = p.github || '#';
     cfGh.style.display = p.github ? '' : 'none';
+  }
+  if (cfFull) {
+    cfFull.href = p.caseUrl || '#';
+    cfFull.style.display = p.caseUrl ? '' : 'none';
   }
   buildCaseSections(p.num);   // rebuild for the current project (content differs)
 
@@ -523,12 +528,7 @@ function closeCaseFile() {
   }
 }
 
-openDetail?.addEventListener('click', e => {
-  e.preventDefault();
-  const p = PROJECTS[lastIndex >= 0 ? lastIndex : 0];
-  if (p && p.caseUrl) { window.location.href = p.caseUrl; return; }  // rich case-study page
-  openCaseFile();                                                    // else the overlay
-});
+openDetail?.addEventListener('click', e => { e.preventDefault(); openCaseFile(); });
 cfCloseEls.forEach(el => el.addEventListener('click', closeCaseFile));
 cfSections?.addEventListener('scroll', () => {
   if (casefile?.classList.contains('cf-connected')) drawLines(false);
