@@ -590,6 +590,11 @@
 .cs-layer .cs-node { background: rgba(255, 255, 255, 0.7); }
 .cs-layer .cs-node + .cs-node { margin-top: 8px; }
 
+/* horizontal node row (e.g. the 4-table data layer) */
+.cs-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 8px; }
+.cs-row .cs-node { margin-top: 0 !important; padding: 12px 10px; }
+.cs-layer-cap { margin: 10px 6px 2px; font-size: 12px; line-height: 1.55; color: var(--muted); }
+
 /* three-act growth narrative */
 .acts { display: flex; flex-direction: column; gap: 16px; margin-top: 8px; }
 .act {

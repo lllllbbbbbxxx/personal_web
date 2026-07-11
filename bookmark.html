@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Cache-Control" content="no-cache, must-revalidate" />
+    <title>Bookmark — AI 收藏回顾系统 · Case Study — jun.</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600&family=IBM+Plex+Mono:ital,wght@0,400;0,700;1,400&family=Inter:ital,opsz,wght@0,14..32,300..900;1,14..32,300..900&family=Noto+Sans+SC:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./styles.css?v=34" />
+    <link rel="stylesheet" href="./pages.css?v=3" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand-mark" href="./index.html" aria-label="jun."><span class="brand-logo">jun.</span><i></i></a>
+      <nav class="top-nav" aria-label="Primary navigation">
+        <a class="active" href="./index.html#systems">Systems</a>
+        <a href="./experiments.html">Experiments</a>
+        <a href="./cambium.html">Cambium</a>
+        <a href="./archive.html">Archive</a>
+        <a href="./index.html#about">About</a>
+      </nav>
+      <div class="time-place"><b></b><span>Building</span></div>
+    </header>
+
+    <main class="page" style="max-width:940px;">
+      <a class="page-back" href="./index.html#systems"><span>←</span> Systems</a>
+
+      <header class="subpage-hero">
+        <a class="subpage-gh" href="https://github.com/lllllbbbbbxxx/bookmark" target="_blank" rel="noopener">
+          <svg viewBox="0 0 16 16" width="15" height="15" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.6 7.6 0 012-.27c.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+          GitHub <span class="subpage-gh-arrow">↗</span>
+        </a>
+        <p class="subpage-tag">SYSTEM · CASE STUDY</p>
+        <h1>Bookmark</h1>
+        <p class="cs-oneliner">
+          AI 收藏回顾系统。
+          <br><em>一键保存网页后自动分类、摘要、语义检索，并主动把「存了就忘」的收藏在合适的时间重新推给你。从课程作业的小 demo，迭代成一个评测驱动的 AI 产品原型。</em>
+        </p>
+        <div class="subpage-meta">
+          <span>类型 · Chrome 扩展 + 后端</span>
+          <span>角色 · 独立开发</span>
+          <span>评测驱动 · CI</span>
+        </div>
+      </header>
+
+      <section class="subpage-section">
+        <h2>项目背景（问题）</h2>
+        <p>收藏夹是最典型的「信息垃圾填埋场」：只进不出。人们在小红书、知乎、掘金和各类网站上收藏「想稍后再看」的内容，但绝大多数在保存的那一刻就被遗忘——过段时间既想不起当初为什么收藏，也无法按主题重新找到。</p>
+        <p>这个项目要解决的不是「存不下」，而是<strong>「存了取不回、也从不回看」</strong>。</p>
+      </section>
+
+      <section class="subpage-section">
+        <h2>定位 · 一次产品重定义</h2>
+        <p>用户真正的痛点不是「分类不准」，而是「存了就忘」。于是我把核心价值重新定义——从「更好的文件夹」转向「主动帮你重新想起」。</p>
+        <div class="cs-two">
+          <div class="cs-point">
+            <strong>✗ 原来的方向：整理</strong>
+            <span>做一个「更好的文件夹」——把分类、搜索做准。本质还是等用户主动回来翻。</span>
+          </div>
+          <div class="cs-point" style="background:#fdf9ec;border-color:rgba(147,165,143,0.35);">
+            <strong>✓ 重定义后：回顾</strong>
+            <span>引入间隔重复式的「今日回顾」作为核心，主动把遗忘的收藏推回来；分类与搜索退为支撑能力。</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="subpage-section">
+        <h2>项目演进 · 从课程 demo 到 AI 产品</h2>
+        <div class="acts">
+          <article class="act">
+            <span class="act-n">01</span>
+            <h3>起点 · 课程作业，方向调整</h3>
+            <p>先做过移动端 SwiftUI 原型，很快意识到「网页收藏」这个场景天然发生在浏览器里——让用户复制链接再切到另一个 App，流程就断了。于是转向 Chrome 扩展。</p>
+          </article>
+          <article class="act">
+            <span class="act-n">02</span>
+            <h3>早期版本 · 闭环通了，但很弱</h3>
+            <p>能一键保存、抓正文、启发式摘要、关键词匹配分类、本地 JSON 存储。核心闭环通了，但分类很差、检索只能靠标题关键词。</p>
+          </article>
+          <article class="act act--key">
+            <span class="act-n">03</span>
+            <h3>深化为 AI 产品 · 围绕重定义的问题重做</h3>
+            <ul>
+              <li><strong>产品重定义</strong>：核心从「整理」改为「主动回顾」，今日回顾成为第一入口。</li>
+              <li><strong>重建数据层</strong>：SQLite 四表把「原始页面 / AI 衍生 / 用户行为 / 向量」分离——改进分类器只重跑 AI 层、换模型只重算向量层，都不丢用户已读/收藏状态。</li>
+              <li><strong>升级 AI 能力</strong>：用 LLM 按固定 taxonomy 分类替代关键词表；用 embedding（BGE-M3，本地运行）做跨语言语义搜索与相似推荐。</li>
+              <li><strong>建立评测体系</strong>：标注数据集 + 逐类指标，用数据而非直觉驱动迭代。</li>
+            </ul>
+            <p class="act-quote">这是把项目带出「作业范畴」的一步：围绕一个重新定义过的问题，把小 demo 重做成能持续迭代的 AI 产品。</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="subpage-section">
+        <h2>架构 · 后端做大脑，客户端做薄采集</h2>
+        <p>扩展只负责交互和网页内容提取，后端负责富化、向量化、排序与存储。好处：AI 逻辑收敛成一份、API key 不进插件代码、无 AI 服务时插件仍可用、未来加移动端只是多一个调后端的客户端。</p>
+        <div class="cs-flow">
+          <div class="cs-node">
+            <div class="cs-node-t">Chrome 扩展（薄采集）</div>
+            <div class="cs-node-d">popup / 快捷键 / 页面浮动按钮 · 网页内容提取</div>
+          </div>
+          <div class="cs-arrow">↓<small>API</small></div>
+          <div class="cs-layer cs-layer--llm">
+            <div class="cs-layer-label">Python 后端（大脑）</div>
+            <div class="cs-node"><div class="cs-node-t">富化 · 分类 · 摘要 · 向量化 · 排序</div><div class="cs-node-d">LLM 优先 → AI 不可用时降级本地规则（仍返回真实分类，而非全 Other）</div></div>
+          </div>
+          <div class="cs-arrow">↓</div>
+          <div class="cs-layer cs-layer--det">
+            <div class="cs-layer-label">数据层 · SQLite 四表分离</div>
+            <div class="cs-row">
+              <div class="cs-node"><div class="cs-node-t">原始页面</div></div>
+              <div class="cs-node"><div class="cs-node-t">AI 衍生</div></div>
+              <div class="cs-node"><div class="cs-node-t">用户行为</div></div>
+              <div class="cs-node"><div class="cs-node-t">向量</div></div>
+            </div>
+            <p class="cs-layer-cap">改进分类器只重跑 AI 层、换模型只重算向量层——都不丢用户的已读 / 收藏状态。这是「能持续迭代 AI 而不破坏数据」的前提。</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="subpage-section">
+        <h2>核心功能</h2>
+        <ul class="subpage-list">
+          <li>一键保存（popup / 快捷键 / 页面浮动按钮），自动抽取标题、正文、og 元数据（描述、封面、作者、阅读时长）</li>
+          <li>LLM 自动分类（15 类固定 taxonomy）+ 摘要 + 关键词；AI 不可用时降级本地规则</li>
+          <li>来源识别（知乎 / 微信 / 小红书 / 掘金 / 通用网页）</li>
+          <li><strong>今日回顾</strong>：按「未读 × 时间衰减」评分主动推送，支持「打开 / 稍后 / 不看了」</li>
+          <li><strong>语义搜索</strong>：用一句话的意思检索（中文 query 命中英文文章，反之亦然）</li>
+          <li><strong>相似推荐</strong>：查看某条时展示「相关收藏」</li>
+          <li>独立管理页：搜索、来源 / 分类筛选、删除与撤销</li>
+        </ul>
+      </section>
+
+      <section class="subpage-section">
+        <h2>测评 · 一次评测驱动的根因定位</h2>
+        <p>一度「分类几乎全是 Other」，第一反应是「模型不行、该换模型」。但我先建了标注评测集用数据定位，发现真凶是<strong>配置 / 降级链路的 bug</strong>（后端没读到 key、直接把一切打成 Other），而非模型能力。修好后再用逐类指标发现并修复了总分掩盖的类别回归——全程不 train-on-test。</p>
+        <div class="cs-stats">
+          <div class="cs-stat"><strong>57% → 96%</strong><span>本地分类器（修复配置 bug 后）</span></div>
+          <div class="cs-stat"><strong>98.2%</strong><span>LLM 分类路径（macro F1 0.98）</span></div>
+          <div class="cs-stat"><strong>92.9%</strong><span>本地关键词分类器（macro F1 0.88）</span></div>
+          <div class="cs-stat"><strong>56 / 14</strong><span>条人工标注 / 类别（中英混排 + 边界样本）</span></div>
+          <div class="cs-stat"><strong>94.6% → 98.2%</strong><span>prompt 消歧修复类别回归（Product F1 0.40→）</span></div>
+          <div class="cs-stat"><strong>CI</strong><span>带准确率门槛的冒烟测试</span></div>
+        </div>
+        <p style="margin-top:16px;">核心想法也被验证：<strong>网页收藏一旦加入内容提取、语义检索和主动回顾，会比传统书签明显更容易被「再次用起来」。</strong></p>
+      </section>
+
+      <section class="subpage-section">
+        <h2>成长与反思</h2>
+        <div class="acts">
+          <article class="act" style="padding:20px 26px;">
+            <h3 style="margin:0 0 8px;">「功能完整」不等于「产品可用」</h3>
+            <p style="margin:0;">早期我盯着「能不能接上 AI、能不能生成摘要」，实测后才明白：用户首先要的是稳定保存、快速找回、清晰管理；AI 是增强，不是地基。这直接体现在「LLM 优先 + 本地降级」的设计上。</p>
+          </article>
+          <article class="act" style="padding:20px 26px;">
+            <h3 style="margin:0 0 8px;">不被表象带偏——用评测找根因</h3>
+            <p style="margin:0;">「分类全是 Other」时先建评测集量化归因，定位到是配置 bug 而非模型能力（本地 57%→96%、LLM 98.2%）。先量化、先归因，再动手。</p>
+          </article>
+          <article class="act" style="padding:20px 26px;">
+            <h3 style="margin:0 0 8px;">逐类指标能看见总分掩盖的问题</h3>
+            <p style="margin:0;">整体准确率看着没问题，但逐类 F1 暴露 LLM 在 Product 类崩到 0.40——是 taxonomy 边界设计问题，不是模型问题。用给 prompt 加类别定义消歧（刻意避免拿测试样本调参），整体回到 98.2%。</p>
+          </article>
+          <article class="act" style="padding:20px 26px;">
+            <h3 style="margin:0 0 8px;">工程与安全意识 · 范围控制</h3>
+            <p style="margin:0;">API key 从写死改为 .env + .gitignore；CORS 从全开收紧到只允许扩展来源；加 CI 与准确率门槛的冒烟测试。整理杂乱的原型/demo，只把完成度最高的浏览器插件版本作为正式仓库发布。</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="subpage-section">
+        <h2>局限性 &amp; 下一步</h2>
+        <div class="cs-two">
+          <div class="cs-point">
+            <strong>局限性</strong>
+            <span>本地单机服务，未做多用户 / 云同步 · 回顾评分是手调启发式，未用真实行为校准 · 推荐仅到「相似条目」 · taxonomy 固定 15 类。</span>
+          </div>
+          <div class="cs-point">
+            <strong>下一步</strong>
+            <span>兴趣聚类 + 用 review_log 行为信号优化回顾排序 · 回顾节奏 A/B 校准 · 埋点北极星指标（每周「被回顾并读完」数）· 多端采集与云同步。</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="subpage-section">
+        <h2>技术栈</h2>
+        <p style="font-family:var(--mono);font-size:13px;color:var(--muted);line-height:1.9;">
+          Chrome Extension (Manifest V3) · JavaScript / HTML / CSS · Python 后端 (SQLite) · LLM (NVIDIA API, Llama 3.1) · Embeddings (BGE-M3 / sentence-transformers) · scikit-learn（评测）· GitHub Actions（CI）
+        </p>
+      </section>
+
+      <a class="page-back" href="./index.html#systems" style="margin-top:8px;"><span>←</span> 返回 Systems</a>
+    </main>
+  </body>
+</html>

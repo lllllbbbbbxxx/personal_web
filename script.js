@@ -36,7 +36,8 @@ const PROJECTS = [
     h3: '让信息真正为你所用',
     desc: '一个智能书签系统，自动为保存的内容打标签、生成摘要，并通过自然语言检索——让你的收藏夹真正成为可查询的知识库。',
     github: 'https://github.com/lllllbbbbbxxx/bookmark',
-    tags: ['Python', 'Embeddings', 'Qdrant', 'Telegram Bot'],
+    caseUrl: './bookmark.html',
+    tags: ['Chrome Extension', 'Python', 'BGE-M3', 'LLM'],
     link: '查看项目详情 →',
     visual: `
       <div class="pd-card pd-card--main">
