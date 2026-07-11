@@ -66,11 +66,11 @@ const PROJECTS = [
   {
     num: '03',
     title: '随手做菜',
-    tagline: '待补充 · 快速原型',
-    h3: '（待补充）',
-    desc: '（项目简介待补充。）',
+    tagline: '库存驱动的做饭决策 · 微信小程序',
+    h3: '用现有食材快速决定今天吃什么',
+    desc: '一个帮你用现有食材快速决定今天吃什么、顺便减少浪费的微信小程序——不是菜谱库，而是库存驱动的轻量决策工具。',
     github: 'https://github.com/lllllbbbbbxxx/recipe',
-    tags: ['待补充'],
+    tags: ['微信小程序', '云开发', '腾讯云 OCR', '数据埋点'],
     link: '查看项目详情 →',
     visual: `
       <div class="pd-card pd-card--main pd-cook-card">
