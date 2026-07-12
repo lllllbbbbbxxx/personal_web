@@ -505,7 +505,7 @@ button, input { font: inherit; }
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 30%;
+  width: 35%;
   aspect-ratio: 1;
   border-radius: 50%;
   background:
@@ -543,9 +543,10 @@ button, input { font: inherit; }
 
 /* when a real project cover is set, show it sharp instead of the blurred blob */
 .disc-thumb.has-cover {
-  background-size: cover;
+  background-size: 108%;          /* slight zoom to trim the illustration's outer white padding */
   background-position: center;
   filter: none;
+  box-shadow: inset 0 0 0 1px rgba(20, 24, 18, 0.05);  /* no white inner glow → no white halo */
 }
 .disc-thumb.has-cover.is-on { opacity: 1; }
 

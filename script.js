@@ -234,9 +234,14 @@ function setActiveIndex(index) {
 
   trackDot?.classList.toggle('is-on', selected);
   wedgeEl?.classList.toggle('is-on', selected);
-  discThumb?.classList.toggle('is-on', selected);
+  discThumb?.classList.add('is-on');   // centre always shows: green blob on hero, cover when browsing
 
-  if (selected) renderProject(index);
+  if (selected) {
+    renderProject(index);              // sets the project cover (or blob if none)
+  } else if (discThumb) {
+    discThumb.classList.remove('has-cover');   // hero → green blob
+    discThumb.style.backgroundImage = '';
+  }
 }
 
 // ── Scroll driver ─────────────────────────────────────────────────────────────
