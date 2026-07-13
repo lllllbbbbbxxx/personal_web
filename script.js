@@ -516,18 +516,17 @@ document.querySelector('[data-explore]')?.addEventListener('click', e => {
 
 navItems.forEach(item => {
   item.addEventListener('click', e => {
-    e.preventDefault();
     const t = item.dataset.navTarget;
+    if (!t) return;               // 真实链接（子页面）→ 交给浏览器正常跳转
+    e.preventDefault();
     if (!story) return;
     const max = story.offsetHeight - window.innerHeight;
     let top;
     if (t === 'systems') {
       top = story.offsetTop;
-    } else if (['experiments', 'cambium', 'archive', 'about'].includes(t)) {
+    } else {
       const el = document.getElementById(t);
       top = el ? el.offsetTop : story.offsetTop + max;
-    } else {
-      top = story.offsetTop + max;
     }
     window.scrollTo({ top, behavior: 'smooth' });
   });
