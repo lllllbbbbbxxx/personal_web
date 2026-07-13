@@ -970,6 +970,21 @@ button, input { font: inherit; }
   color: var(--soft);
 }
 
+.about-bio p {
+  margin: 0 0 9px;
+  font-size: 12.5px;
+  line-height: 1.75;
+  color: #3a3f36;
+}
+
+.about-sign {
+  display: block;
+  margin: 12px 0 10px;
+  font-family: var(--handwriting);
+  font-size: 17px;
+  color: var(--soft);
+}
+
 .about-note blockquote {
   margin: 0 0 12px;
   padding: 0;

@@ -189,6 +189,21 @@
 }
 .cb-more:hover { color: var(--ink); }
 
+/* "关于 Cambium" 侧栏说明 */
+.cb-about p {
+  margin: 0 0 12px;
+  font-size: 13.5px;
+  line-height: 1.8;
+  color: var(--muted);
+}
+
+.cb-about .cb-hand {
+  font-family: var(--handwriting);
+  font-size: 19px;
+  color: var(--soft);
+  margin-top: 18px;
+}
+
 /* evolution timeline */
 .cb-side-title {
   margin: 0 0 24px;

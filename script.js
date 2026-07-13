@@ -4,9 +4,10 @@ const PROJECTS = [
   {
     num: '01',
     title: '灵活规划',
-    tagline: '反馈驱动的 AI 持续规划系统',
-    h3: '让 AI 持续维护你的计划',
-    desc: '大多数日程工具只是记录，而计划一整天都在变。灵活规划（Adaptive Planning）让 AI 持续理解意图、维护状态、根据反馈动态重排——你不必重新创建计划，它替你维护。',
+    tagline: '持续规划，而非一次生成',
+    h3: '计划生成之后，世界就变了',
+    desc: '传统日程工具的问题不是记录，而是计划生成之后，世界就变了。LLM 负责理解与拆解自然语言任务，规则状态机负责排期与重排——因为时间数据容不得歧义。每日反馈作为状态输入，驱动局部重排，而不是重新生成整份计划。',
+    status: '2026.7 冻结版',
     github: 'https://github.com/lllllbbbbbxxx/ai-schedule-butler',
     caseUrl: './replan.html',
     cover: './assets/covers/replan.jpg',
@@ -15,10 +16,11 @@ const PROJECTS = [
   },
   {
     num: '02',
-    title: 'AI 知识回顾助手',
-    tagline: '信息的第二大脑 · 语义检索',
-    h3: '让信息真正为你所用',
-    desc: '一个智能书签系统，自动为保存的内容打标签、生成摘要，并通过自然语言检索——让你的收藏夹真正成为可查询的知识库。',
+    title: '书签助手',
+    tagline: '让收藏再次被用上 · 零迁移',
+    h3: '收藏的瞬间，遗忘就开始了',
+    desc: '把浏览器书签变成可对话的知识库：自动聚类、语义搜索、RAG 问答；Chrome 扩展直接读现有书签，零迁移成本。我关心的不是收纳，是「再次被用上」。',
+    status: '核心链路跑通 · 聚类优化中',
     github: 'https://github.com/lllllbbbbbxxx/bookmark',
     caseUrl: './bookmark.html',
     cover: './assets/covers/bookmark.jpg',
@@ -29,8 +31,9 @@ const PROJECTS = [
     num: '03',
     title: '随手做菜',
     tagline: '库存驱动的做饭决策 · 微信小程序',
-    h3: '用现有食材快速决定今天吃什么',
-    desc: '一个帮你用现有食材快速决定今天吃什么、顺便减少浪费的微信小程序——不是菜谱库，而是库存驱动的轻量决策工具。',
+    h3: '「有食材但不知道做什么」是每天的决策疲劳',
+    desc: '微信小程序：库存管理、OCR 入库、按现有食材推荐。定位不是炫技 AI，是帮普通人真的每天做饭。',
+    status: 'MVP · 朋友内测中',
     github: 'https://github.com/lllllbbbbbxxx/recipe',
     caseUrl: './recipe.html',
     cover: './assets/covers/recipe.jpg',
@@ -290,7 +293,7 @@ function parseCaseFiles(md) {
   const data = {};
   md.split(/^##\s+/m).slice(1).forEach(block => {
     const nl = block.indexOf('\n');
-    const header = (nl < 0 ? block : block.slice(0, nl)).trim();   // e.g. "01 日程 Agent"
+    const header = (nl < 0 ? block : block.slice(0, nl)).trim();   // e.g. "01 灵活规划"
     const num = (header.match(/^(\d{2})/) || [])[1];
     if (!num) return;
     const sections = {};
@@ -330,7 +333,7 @@ function buildCaseSections(num) {
   if (!cfSections) return;
   const proj = caseData[num] || {};
   cfSections.innerHTML = CASE_SECTIONS.map(s => {
-    const raw  = (proj[s.k] || '').trim() || '（待补充）';
+    const raw  = (proj[s.k] || '').trim() || '（内容加载中——也可直接点下方「查看完整档案」）';
     const body = escapeHtml(raw).replace(/\n{2,}/g, '<br><br>').replace(/\n/g, '<br>');
     return `
     <article class="cf-sec" data-cf-sec>
