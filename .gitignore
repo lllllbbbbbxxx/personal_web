@@ -13,3 +13,6 @@ assets/IMG_0335.JPG
 
 # cover source PNGs (optimized .jpg are committed)
 assets/covers/*.png
+
+# internal review doc (job-hunt strategy, not for deploy)
+optimization-guide.html

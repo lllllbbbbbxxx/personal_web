@@ -11,24 +11,7 @@ const PROJECTS = [
     caseUrl: './replan.html',
     cover: './assets/covers/replan.jpg',
     tags: ['LangGraph', 'FastAPI', 'React', 'PostgreSQL', 'OpenAI API'],
-    link: '查看完整案例 →',
-    visual: `
-      <div class="pd-card pd-card--main">
-        <div class="pd-card-header">5月20日&nbsp; 星期一</div>
-        <div class="pd-card-rows">
-          <div class="pd-row"><span>09:00 复盘昨天 & 明确今日目标</span><em class="done">完成</em></div>
-          <div class="pd-row"><span>10:00 产品需求评审</span><em class="done">完成</em></div>
-          <div class="pd-row"><span>11:00 深度工作：Agent 核心逻辑</span><em class="wip">进行中</em></div>
-          <div class="pd-row"><span>14:00 用户访谈 & 需求整理</span><em class="wip">进行中</em></div>
-          <div class="pd-row muted"><span>16:00 运动 & 休息</span><em>待定</em></div>
-        </div>
-      </div>
-      <div class="pd-card pd-card--sm pd-card--code">
-        <pre>def reschedule(tasks, state):
-  priority = evaluate(state)
-  new_order = sort(tasks, by=priority)
-  return new_order</pre>
-      </div>`
+    link: '查看完整案例 →'
   },
   {
     num: '02',
@@ -40,32 +23,7 @@ const PROJECTS = [
     caseUrl: './bookmark.html',
     cover: './assets/covers/bookmark.jpg',
     tags: ['Chrome Extension', 'Python', 'BGE-M3', 'LLM'],
-    link: '查看项目详情 →',
-    visual: `
-      <div class="pd-card pd-card--main">
-        <div class="pd-bm-search">⌕&nbsp; 搜索我保存的内容…</div>
-        <div class="pd-bm-list">
-          <div class="pd-bm-item">
-            <div class="pd-bm-tags"><span>Agent</span><span>论文</span></div>
-            <strong>Attention is All You Need 阅读笔记</strong>
-            <small>arxiv.org · 05.10</small>
-          </div>
-          <div class="pd-bm-item">
-            <div class="pd-bm-tags"><span>设计</span></div>
-            <strong>如何设计一个好的 Onboarding 流程</strong>
-            <small>nngroup.com · 05.08</small>
-          </div>
-          <div class="pd-bm-item">
-            <div class="pd-bm-tags"><span>工具</span><span>LLM</span></div>
-            <strong>LangGraph 状态机完全指南</strong>
-            <small>langchain.com · 04.29</small>
-          </div>
-        </div>
-      </div>
-      <div class="pd-card pd-card--sm pd-stat-card">
-        <div class="pd-stat"><strong>247</strong><span>已保存</span></div>
-        <div class="pd-stat"><strong>18</strong><span>标签</span></div>
-      </div>`
+    link: '查看项目详情 →'
   },
   {
     num: '03',
@@ -74,17 +32,10 @@ const PROJECTS = [
     h3: '用现有食材快速决定今天吃什么',
     desc: '一个帮你用现有食材快速决定今天吃什么、顺便减少浪费的微信小程序——不是菜谱库，而是库存驱动的轻量决策工具。',
     github: 'https://github.com/lllllbbbbbxxx/recipe',
+    caseUrl: './recipe.html',
     cover: './assets/covers/recipe.jpg',
     tags: ['微信小程序', '云开发', '腾讯云 OCR', '数据埋点'],
-    link: '查看项目详情 →',
-    visual: `
-      <div class="pd-card pd-card--main pd-cook-card">
-        <div class="pd-cook-head">🍳&nbsp; 随手做菜</div>
-        <div class="pd-cook-body">项目内容待补充……</div>
-      </div>
-      <div class="pd-card pd-card--sm pd-cook-note">
-        <small>进行中</small>
-      </div>`
+    link: '查看项目详情 →'
   }
 ];
 
@@ -96,7 +47,6 @@ const dial       = document.querySelector('[data-dial]');
 const scrollHint = document.querySelector('[data-scroll-hint]');
 const trackItems = [...document.querySelectorAll('[data-track-item]')];
 const trackDot   = document.querySelector('[data-track-dot]');
-const trackEl    = document.querySelector('[data-project-track]');
 const navItems   = [...document.querySelectorAll('.top-nav a')];
 
 // hero ↔ demo morph
@@ -131,12 +81,9 @@ function buildDemoSlides() {
   demoStrip.innerHTML = PROJECTS.map(p => `
     <div class="demo-slide">
       <span class="demo-proj-tag">${p.num} · ${p.title}</span>
-      <button class="demo-play" type="button" aria-label="播放 ${p.title} 预览"><span>▶</span></button>
-      <div class="demo-bar">
-        <span>Preview</span>
-        <span class="demo-time">0:00 / 0:45</span>
-        <span class="demo-full">⛶</span>
-      </div>
+      ${p.cover
+        ? `<img class="demo-cover" src="${p.cover}" alt="${p.title} 封面" loading="lazy" />`
+        : `<span class="demo-proj-tag" style="position:static">${p.title}</span>`}
     </div>`).join('');
 }
 buildDemoSlides();
@@ -374,6 +321,7 @@ const cfSections  = document.querySelector('[data-cf-sections]');
 const cfLines     = document.querySelector('[data-cf-lines]');
 const cfTag       = document.querySelector('[data-cf-tag]');
 const cfGh        = document.querySelector('[data-cf-gh]');
+const cfCover     = document.querySelector('[data-cf-cover]');
 const cfFull      = document.querySelector('[data-cf-full]');
 const cfCloseEls  = [...document.querySelectorAll('[data-cf-close]')];
 const SVGNS       = 'http://www.w3.org/2000/svg';
@@ -455,6 +403,10 @@ function openCaseFile() {
   if (cfFull) {
     cfFull.href = p.caseUrl || '#';
     cfFull.style.display = p.caseUrl ? '' : 'none';
+  }
+  if (cfCover) {
+    cfCover.src = p.cover || '';
+    cfCover.style.display = p.cover ? '' : 'none';
   }
   buildCaseSections(p.num);   // rebuild for the current project (content differs)
 
@@ -546,6 +498,15 @@ document.addEventListener('keydown', e => {
 });
 window.addEventListener('resize', () => {
   if (casefile?.classList.contains('cf-connected')) drawLines(false);
+});
+
+// ── Hero CTA: enter the Systems browse zone (project 01 snap point) ───────────
+
+document.querySelector('[data-explore]')?.addEventListener('click', e => {
+  e.preventDefault();
+  if (!story) return;
+  const max = story.offsetHeight - window.innerHeight;
+  window.scrollTo({ top: story.offsetTop + max * HERO_END, behavior: 'smooth' });
 });
 
 // ── Nav smooth scroll ─────────────────────────────────────────────────────────

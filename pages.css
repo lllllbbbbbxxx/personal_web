@@ -697,6 +697,62 @@
 .probe-fig figcaption strong { display: block; color: var(--ink); margin-bottom: 3px; font-weight: 600; }
 .probe-video { width: 100%; max-width: 760px; border: 1px solid var(--line); border-radius: 10px; display: block; background: #000; }
 
+/* ── Case-page bottom nav (keep the recruiter moving) ── */
+.case-next {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 16px;
+  align-items: center;
+  margin: 64px 0 8px;
+  padding: 22px 26px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.55);
+}
+
+.case-next-label {
+  margin: 0 0 4px;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+}
+
+.case-next a.case-next-proj {
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  text-decoration: none;
+  transition: color 200ms var(--ease-out);
+}
+
+.case-next a.case-next-proj:hover { color: var(--soft); }
+
+.case-next-contact {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 22px;
+  border-radius: 999px;
+  border: 1px solid rgba(147, 165, 143, 0.5);
+  background: rgba(197, 255, 87, 0.1);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--ink);
+  text-decoration: none;
+  transition: transform 200ms var(--ease-out), box-shadow 200ms var(--ease-out);
+}
+
+.case-next-contact:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-hover);
+}
+
+@media (max-width: 640px) {
+  .case-next { grid-template-columns: 1fr; }
+}
+
 /* ── Responsive ── */
 @media (max-width: 1000px) {
   .cb-layout, .article-layout, .ar-with-panel { grid-template-columns: 1fr; gap: 40px; }

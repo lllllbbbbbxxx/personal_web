@@ -5,10 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="Cache-Control" content="no-cache, must-revalidate" />
     <title>jun. — Growing Systems</title>
+    <meta name="description" content="jun. — Zhou Xuyun 的个人作品集：AI 产品经理 / Agent 应用方向。构建能够持续生长的 AI 系统：Replan 灵活规划、Bookmark 知识回顾、随手做菜。" />
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231a1d1b'/%3E%3Ctext x='29' y='46' font-family='-apple-system,sans-serif' font-size='38' font-weight='800' fill='%23f8f8f5' text-anchor='middle'%3Ej%3C/text%3E%3Ccircle cx='47' cy='42' r='5.5' fill='%23c5ff57'/%3E%3C/svg%3E" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600&family=IBM+Plex+Mono:ital,wght@0,400;0,700;1,400&family=Inter:ital,opsz,wght@0,14..32,300..900;1,14..32,300..900&family=Noto+Sans+SC:wght@400;500;700;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="./styles.css?v=36" />
+    <link rel="stylesheet" href="./styles.css?v=40" />
+      <meta property="og:title" content="jun. — Growing Systems" />
+    <meta property="og:description" content="jun. — Zhou Xuyun 的个人作品集：AI 产品经理 / Agent 应用方向。构建能够持续生长的 AI 系统：Replan 灵活规划、Bookmark 知识回顾、随手做菜。" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://lllllbbbbbxxx.github.io/personal_web/" />
+    <meta property="og:image" content="https://lllllbbbbbxxx.github.io/personal_web/assets/covers/replan.jpg" />
   </head>
   <body>
     <header class="site-header">
@@ -42,10 +49,20 @@
             <div class="hero-block" data-hero-block>
               <h1 class="hero-wordmark">jun.</h1>
               <p class="hero-sub">构建能够持续生长的 AI 系统。</p>
-              <a href="#experiments" class="hero-cta">
-                EXPLORE SYSTEMS
-                <span class="hero-cta-arrow">→</span>
-              </a>
+              <div class="hero-identity">
+                <p class="hero-name">
+                  Zhou Xuyun
+                  <span class="hero-status"><i></i>OPEN TO WORK</span>
+                </p>
+                <p class="hero-role">AI 产品经理 / Agent 应用方向 · MSc Data Science &amp; AI (UAL)</p>
+              </div>
+              <div class="hero-cta-row">
+                <a href="#systems" class="hero-cta" data-explore>
+                  EXPLORE SYSTEMS
+                  <span class="hero-cta-arrow">→</span>
+                </a>
+                <a href="mailto:zxjzxj626@gmail.com" class="hero-cta hero-cta--ghost">联系我</a>
+              </div>
               <div class="hero-note" aria-hidden="true">
                 <svg width="40" height="44" viewBox="0 0 40 44" fill="none">
                   <path d="M34 6 C24 12, 8 24, 4 40" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/>
@@ -124,9 +141,9 @@
             <!-- Sticky note: current project tags -->
             <div class="sticky-note" aria-hidden="true">
               <ul class="sticky-tags">
-                <li>Python</li>
                 <li>LangGraph</li>
-                <li>OpenAI API</li>
+                <li>FastAPI</li>
+                <li>React</li>
               </ul>
               <span class="sticky-star">✦</span>
             </div>
@@ -148,7 +165,7 @@
           <h2>Experiments</h2>
           <span>小而有趣的实验，快速原型，探索更多可能性。</span>
           <div class="exp-grid">
-            <a class="exp-card" href="./experiment.html">
+            <a class="exp-card" href="https://github.com/lllllbbbbbxxx/ai_memory" target="_blank" rel="noopener">
               <div class="exp-card-meta">
                 <strong>AI 记忆可视化</strong>
                 <em>让 AI 记忆可被看见</em>
@@ -225,7 +242,7 @@
                 <small>系统 · 完整档案</small>
               </div>
             </a>
-            <a class="log-folder-item" href="./index.html#systems">
+            <a class="log-folder-item" href="./recipe.html">
               <div class="log-folder-icon lf--3"></div>
               <div class="log-folder-info">
                 <strong>随手做菜</strong>
@@ -246,8 +263,10 @@
               <div class="about-photo-fallback">jun.</div>
             </div>
             <div class="about-note">
+              <strong class="about-name">Zhou Xuyun</strong>
+              <p class="about-role">AI 产品经理 / Agent 应用方向 · open to work</p>
+              <small>MSc Data Science &amp; AI · UAL<br>本科化学 → 转型 AI 产品 · 上海 / 伦敦</small>
               <blockquote>设计是思考的方式，<br>AI 是变简单的工具。</blockquote>
-              <small>上海 · 中国</small>
               <a href="mailto:zxjzxj626@gmail.com" class="about-contact">联系我 →</a>
             </div>
           </div>
@@ -258,10 +277,9 @@
       <footer class="site-footer">
         <section>
           <h3>最近记录</h3>
-          <p>05.18&nbsp;&nbsp;为什么大多数 AI 产品最后都会退化成聊天框？</p>
-          <p>05.14&nbsp;&nbsp;长期记忆对 AI Agent 到底意味着什么？</p>
-          <p>05.09&nbsp;&nbsp;我们如何与 AI 建立信任关系？</p>
-          <p>05.05&nbsp;&nbsp;设计工作时，真正为人服务的是什么？</p>
+          <p>05.18&nbsp;&nbsp;为什么 AI 产品都会退化成聊天框？</p>
+          <p>05.10&nbsp;&nbsp;AI 时代，Product Manager 的新机会</p>
+          <p>04.28&nbsp;&nbsp;从 0 到 1 做一个 AI Agent 的思考框架</p>
           <a href="./cambium.html">查看全部 →</a>
         </section>
         <section class="terminal-card">
@@ -294,8 +312,7 @@
         <aside class="cf-demo">
           <span class="cf-tag" data-cf-tag>01 · 日程 Agent</span>
           <div class="cf-demo-frame">
-            <button class="demo-play" type="button" aria-label="播放预览"><span>▶</span></button>
-            <span class="cf-demo-time">Preview · 0:45</span>
+            <img class="cf-cover" data-cf-cover src="" alt="项目封面" />
           </div>
           <div class="cf-actions">
             <button class="cf-back" type="button" data-cf-close>
@@ -313,6 +330,6 @@
       </div>
     </div>
 
-    <script src="./script.js?v=39"></script>
+    <script src="./script.js?v=40"></script>
   </body>
 </html>
