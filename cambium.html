@@ -10,7 +10,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600&family=IBM+Plex+Mono:ital,wght@0,400;0,700;1,400&family=Inter:ital,opsz,wght@0,14..32,300..900;1,14..32,300..900&family=Noto+Sans+SC:wght@400;500;700;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="./styles.css?v=41" />
+    <link rel="stylesheet" href="./styles.css?v=42" />
     <link rel="stylesheet" href="./pages.css?v=41" />
   </head>
   <body>
@@ -21,7 +21,7 @@
         <a href="./experiments.html">Experiments</a>
         <a class="active" href="./cambium.html">Cambium</a>
         <a href="./archive.html">Archive</a>
-        <a href="./index.html#about">About</a>
+        <a href="./about.html">About</a>
       </nav>
       <div class="time-place"><b></b><span>Building</span></div>
     </header>
@@ -31,43 +31,46 @@
       <div class="page-intro">
         <p class="page-kicker">03 · CAMBIUM · 形成层</p>
         <h1>Cambium</h1>
-        <p>五颗种子，每颗都来自我亲历的一手材料。写完一篇，种下一篇——文章发布后会保留它的演化时间线。</p>
+        <p>来自亲历与实践的一手记录。文章发布后会保留它的演化时间线——第一版说了什么、后来怎么改、为什么改。</p>
       </div>
 
       <div class="cb-layout">
-        <div class="cb-list">
+        <div>
+          <div class="cb-list" id="cambium-list" aria-live="polite">
 
-          <div class="cb-article cb-article--accent">
-            <p class="cb-article-meta">下一篇 · 写作中</p>
-            <h3>AI 写得越好，我懂得越少</h3>
-            <p>A/B 决断模式：前期还在讨论，后期 AI 想完方案只让我选 A 或 B，知识不再进脑。以及我给自己定的验收规则——讲不出来 = 没完成。一份 AI-native 工作流退化的一手观察。</p>
+            <div class="cb-article cb-article--accent">
+              <p class="cb-article-meta">下一篇 · 写作中</p>
+              <h3>AI 写得越好，我懂得越少</h3>
+              <p>A/B 决断模式：前期还在讨论，后期 AI 想完方案只让我选 A 或 B，知识不再进脑。以及我给自己定的验收规则——讲不出来 = 没完成。一份 AI-native 工作流退化的一手观察。</p>
+            </div>
+
+            <div class="cb-article">
+              <p class="cb-article-meta">构思中</p>
+              <h3>让 AI 当我的面试官</h3>
+              <p>车间与考场分离：为什么建造者不能批卷，怎么用全新会话考自己，错题清单如何变成押题卷。</p>
+            </div>
+
+            <div class="cb-article">
+              <p class="cb-article-meta">构思中</p>
+              <h3>地图不能先于领土完工</h3>
+              <p>一个 PRD 编号排到 07、产品还没跑通的人的自我检讨：表征为什么总跑在实体前面。</p>
+            </div>
+
+            <div class="cb-article">
+              <p class="cb-article-meta">构思中</p>
+              <h3>我为什么痴迷 evaluation</h3>
+              <p>从服务设计的「甲方口味」到产品世界的「达标数据」：一个可计算的裁判，对做产品的人意味着什么。</p>
+            </div>
+
+            <a class="cb-article" href="./thesis.html">
+              <p class="cb-article-meta">构思中 · 关联毕设</p>
+              <h3>合成用户能不能信？</h3>
+              <p>毕设进行时：LLM 模拟用户之前，先得回答「它替代的是什么」。</p>
+              <span class="cb-article-arrow">→</span>
+            </a>
           </div>
 
-          <div class="cb-article">
-            <p class="cb-article-meta">构思中</p>
-            <h3>让 AI 当我的面试官</h3>
-            <p>车间与考场分离：为什么建造者不能批卷，怎么用全新会话考自己，错题清单如何变成押题卷。</p>
-          </div>
-
-          <div class="cb-article">
-            <p class="cb-article-meta">构思中</p>
-            <h3>地图不能先于领土完工</h3>
-            <p>一个 PRD 编号排到 07、产品还没跑通的人的自我检讨：表征为什么总跑在实体前面。</p>
-          </div>
-
-          <div class="cb-article">
-            <p class="cb-article-meta">构思中</p>
-            <h3>我为什么痴迷 evaluation</h3>
-            <p>从服务设计的「甲方口味」到产品世界的「达标数据」：一个可计算的裁判，对做产品的人意味着什么。</p>
-          </div>
-
-          <a class="cb-article" href="./thesis.html">
-            <p class="cb-article-meta">构思中 · 关联毕设</p>
-            <h3>合成用户能不能信？</h3>
-            <p>毕设进行时：LLM 模拟用户之前，先得回答「它替代的是什么」。</p>
-            <span class="cb-article-arrow">→</span>
-          </a>
-
+          <p class="cb-source-note" id="cambium-source-note" hidden></p>
         </div>
 
         <aside>
@@ -80,5 +83,7 @@
         </aside>
       </div>
     </main>
+    <script src="./cambium-config.js"></script>
+    <script src="./cambium.js?v=2"></script>
   </body>
 </html>

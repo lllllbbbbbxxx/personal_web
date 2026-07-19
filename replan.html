@@ -10,29 +10,29 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600&family=IBM+Plex+Mono:ital,wght@0,400;0,700;1,400&family=Inter:ital,opsz,wght@0,14..32,300..900;1,14..32,300..900&family=Noto+Sans+SC:wght@400;500;700;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="./styles.css?v=41" />
-    <link rel="stylesheet" href="./pages.css?v=41" />
+    <link rel="stylesheet" href="./styles.css?v=45" />
+    <link rel="stylesheet" href="./pages.css?v=44" />
       <meta property="og:title" content="Replan — 灵活规划 · Case Study — jun." />
     <meta property="og:description" content="Replan 灵活规划 — 长期任务的拆解、排期与自适应重排系统。LLM 负责语义理解，确定性引擎负责排得对；评测驱动的 AI 产品案例。" />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://lllllbbbbbxxx.github.io/personal_web/replan.html" />
-    <meta property="og:image" content="https://lllllbbbbbxxx.github.io/personal_web/assets/covers/replan.jpg" />
+    <meta property="og:image" content="https://lllllbbbbbxxx.github.io/personal_web/assets/covers/replan.png" />
   </head>
   <body>
     <header class="site-header">
       <a class="brand-mark" href="./index.html" aria-label="jun."><span class="brand-logo">jun.</span><i></i></a>
       <nav class="top-nav" aria-label="Primary navigation">
-        <a class="active" href="./index.html#systems">Systems</a>
+        <a href="./index.html#systems">Systems</a>
         <a href="./experiments.html">Experiments</a>
         <a href="./cambium.html">Cambium</a>
-        <a href="./archive.html">Archive</a>
-        <a href="./index.html#about">About</a>
+        <a class="active" href="./archive.html">Archive</a>
+        <a href="./about.html">About</a>
       </nav>
       <div class="time-place"><b></b><span>Building</span></div>
     </header>
 
     <main class="page" style="max-width:940px;">
-      <a class="page-back" href="./index.html#systems"><span>←</span> Systems</a>
+      <a class="page-back" href="./archive.html"><span>←</span> Archive</a>
 
       <header class="subpage-hero">
         <a class="subpage-gh" href="https://github.com/lllllbbbbbxxx/ai-schedule-butler" target="_blank" rel="noopener">
@@ -154,7 +154,7 @@
         </table>
       </section>
 
-      <section class="subpage-section">
+      <section class="subpage-section" hidden data-review-pending="results">
         <h2>结果</h2>
         <div class="cs-stats">
           <div class="cs-stat"><strong>66 → 85</strong><span>拆解质量（LLM-as-judge）</span></div>
@@ -196,10 +196,11 @@
           <p class="case-next-label">下一个项目</p>
           <a class="case-next-proj" href="./bookmark.html">Bookmark · 书签助手 →</a>
         </div>
-        <a class="case-next-contact" href="mailto:zxjzxj626@gmail.com">觉得有意思？联系我</a>
+        <a class="case-next-contact" href="mailto:zxjzxj626@gmail.com" data-contact-trigger>觉得有意思？联系我</a>
       </div>
 
-      <a class="page-back" href="./index.html#systems" style="margin-top:8px;"><span>←</span> 返回 Systems</a>
+      <a class="page-back" href="./archive.html" style="margin-top:8px;"><span>←</span> 返回 Archive</a>
     </main>
+    <script src="./contact-modal.js?v=3" defer></script>
   </body>
 </html>

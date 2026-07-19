@@ -10,12 +10,12 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600&family=IBM+Plex+Mono:ital,wght@0,400;0,700;1,400&family=Inter:ital,opsz,wght@0,14..32,300..900;1,14..32,300..900&family=Noto+Sans+SC:wght@400;500;700;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="./styles.css?v=41" />
+    <link rel="stylesheet" href="./styles.css?v=47" />
       <meta property="og:title" content="jun. — Growing Systems" />
     <meta property="og:description" content="jun. — 周栩筠 Zhou Xuyun 的个人作品集：AI 产品方向 · 27 届。先当用户，再当开发者：灵活规划 Replan、书签助手 Bookmark、随手做菜。" />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://lllllbbbbbxxx.github.io/personal_web/" />
-    <meta property="og:image" content="https://lllllbbbbbxxx.github.io/personal_web/assets/covers/replan.jpg" />
+    <meta property="og:image" content="https://lllllbbbbbxxx.github.io/personal_web/assets/covers/replan.png" />
   </head>
   <body>
     <header class="site-header">
@@ -28,7 +28,7 @@
         <a href="./experiments.html">Experiments</a>
         <a href="./cambium.html">Cambium</a>
         <a href="./archive.html">Archive</a>
-        <a href="#about" data-nav-target="about">About</a>
+        <a href="./about.html">About</a>
       </nav>
       <div class="time-place">
         <b></b>
@@ -61,7 +61,7 @@
                   EXPLORE SYSTEMS
                   <span class="hero-cta-arrow">→</span>
                 </a>
-                <a href="mailto:zxjzxj626@gmail.com" class="hero-cta hero-cta--ghost">联系我</a>
+                <a href="mailto:zxjzxj626@gmail.com" data-contact-trigger class="hero-cta hero-cta--ghost">联系我</a>
               </div>
               <div class="hero-note" aria-hidden="true">
                 <svg width="40" height="44" viewBox="0 0 40 44" fill="none">
@@ -203,7 +203,7 @@
           <p>03 <i></i></p>
           <h2>Cambium</h2>
           <span>记录碎片化的思考、问题和灵感，持续沉淀中。</span>
-          <div class="thought-stack">
+          <div class="thought-stack" id="home-cambium-list" aria-live="polite">
             <a class="thought-card thought-card--accent" href="./cambium.html" style="display:block">
               AI 写得越好，我懂得越少
               <small>构思中 · AI-native 工作流的一手观察</small>
@@ -272,7 +272,7 @@
                 <p>我相信 AI 产品不该退化成聊天框；相信 evaluation 是 AI 产品的地基；也相信诚实的过程记录，比完美的结果展示更有用。</p>
               </div>
               <small class="about-sign">2026 夏 · 杭州 · still building</small>
-              <a href="mailto:zxjzxj626@gmail.com" class="about-contact">联系我 →</a>
+              <a href="mailto:zxjzxj626@gmail.com" data-contact-trigger class="about-contact">联系我 →</a>
             </div>
           </div>
         </article>
@@ -299,7 +299,7 @@
           <h3>快速链接</h3>
           <a href="https://github.com/lllllbbbbbxxx" target="_blank" rel="noopener">GitHub</a>
           <a href="https://www.linkedin.com/in/xuyun-zhou-1580453a8/" target="_blank" rel="noopener">LinkedIn</a>
-          <a href="mailto:zxjzxj626@gmail.com">Email</a>
+          <a href="mailto:zxjzxj626@gmail.com" data-contact-trigger>Email</a>
         </section>
         <div class="footer-quote">
           <p>一起构建<br>更好的系统。</p>
@@ -313,16 +313,17 @@
     <!-- ── Case File overlay (opened from 查看项目档案) ── -->
     <div class="casefile" data-casefile aria-hidden="true">
       <button class="cf-scrim" data-cf-close aria-label="关闭档案"></button>
+      <button class="cf-back cf-back--fixed" type="button" data-cf-close aria-label="返回 Demo">
+        <span aria-hidden="true">←</span> 返回 Demo
+      </button>
       <div class="cf-panel" data-cf-panel>
         <aside class="cf-demo">
           <span class="cf-tag" data-cf-tag>01 · 灵活规划</span>
           <div class="cf-demo-frame">
-            <img class="cf-cover" data-cf-cover src="" alt="项目封面" />
+            <img class="cf-cover cf-cover--round" data-cf-cover src="" alt="项目封面" />
+            <video class="cf-cover cf-video" data-cf-video muted loop playsinline preload="metadata"></video>
           </div>
           <div class="cf-actions">
-            <button class="cf-back" type="button" data-cf-close>
-              <span>←</span> 返回 demo
-            </button>
             <a class="cf-gh" data-cf-gh href="#" target="_blank" rel="noopener">
               <svg viewBox="0 0 16 16" width="15" height="15" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.6 7.6 0 012-.27c.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
               GitHub <span class="cf-gh-arrow">↗</span>
@@ -335,6 +336,9 @@
       </div>
     </div>
 
-    <script src="./script.js?v=42"></script>
+    <script src="./script.js?v=43"></script>
+    <script src="./cambium-config.js"></script>
+    <script src="./cambium.js?v=2"></script>
+    <script src="./contact-modal.js?v=3" defer></script>
   </body>
 </html>

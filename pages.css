@@ -95,6 +95,19 @@
   font-size: 34px;
   color: rgba(255, 255, 255, 0.8);
 }
+.xp-thumb--image {
+  overflow: hidden;
+  background: #e7e8e2;
+}
+.xp-thumb--image img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  object-position: 48% 48%;
+  transition: transform 360ms var(--ease-out);
+}
+.xp-card:hover .xp-thumb--image img { transform: scale(1.025); }
 .xp-thumb--mint  { background: linear-gradient(150deg, #d3e4cf, #a9c4a3); }
 .xp-thumb--dark  { background: linear-gradient(150deg, #2b3128, #14170f); color: rgba(255,255,255,0.55); }
 .xp-thumb--night { background: radial-gradient(circle at 60% 40%, #3a4a32, #14170f 70%); color: var(--accent); }
@@ -121,7 +134,24 @@
   color: var(--muted);
   font-size: 13px;
 }
-.xp-card--more .xp-more-plus { font-size: 22px; margin-bottom: 8px; opacity: 0.6; }
+.xp-more-icon {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  margin-bottom: 10px;
+  color: var(--soft);
+  opacity: 0.72;
+}
+.xp-more-icon svg {
+  width: 26px;
+  height: 26px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
 
 /* ═══ Cambium — list + evolution timeline ═══ */
 
@@ -188,6 +218,23 @@
   transition: color 200ms var(--ease-out);
 }
 .cb-more:hover { color: var(--ink); }
+
+.cb-source-note {
+  margin: 16px 2px 0;
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--muted);
+}
+
+.cb-empty {
+  padding: 42px 28px;
+  border: 1px dashed var(--line);
+  border-radius: 12px;
+  text-align: center;
+  color: var(--muted);
+}
+.cb-empty strong { display: block; margin-bottom: 8px; color: var(--ink); }
+.cb-empty p { margin: 0; font-size: 13px; }
 
 /* "关于 Cambium" 侧栏说明 */
 .cb-about p {
@@ -302,8 +349,33 @@
 }
 .article-body h2 .sec-n { font-family: var(--mono); color: var(--soft); margin-right: 10px; font-size: 16px; }
 .article-body p { margin: 0 0 18px; font-size: 16px; line-height: 1.9; color: #2a2f26; }
-.article-body ol { margin: 0 0 18px; padding-left: 22px; }
-.article-body ol li { font-size: 16px; line-height: 1.9; color: #2a2f26; }
+.article-body ol, .article-body ul { margin: 0 0 18px; padding-left: 22px; }
+.article-body ol li, .article-body ul li { font-size: 16px; line-height: 1.9; color: #2a2f26; }
+.article-body blockquote {
+  margin: 28px 0;
+  padding: 6px 0 6px 20px;
+  border-left: 3px solid var(--soft);
+  color: var(--muted);
+  font-size: 17px;
+  line-height: 1.8;
+}
+.article-body a { color: var(--ink); text-decoration-color: var(--soft); text-underline-offset: 3px; }
+.article-body code {
+  padding: 2px 6px;
+  border-radius: 4px;
+  background: rgba(0, 0, 0, 0.05);
+  font-family: var(--mono);
+  font-size: 0.9em;
+}
+
+.article-loading,
+.article-error {
+  padding: 48px 0;
+  font-family: var(--mono);
+  font-size: 13px;
+  color: var(--muted);
+}
+.article-error { color: #8c4d44; }
 
 .article-icons {
   display: flex;
@@ -418,6 +490,28 @@
 
 .ar-folder strong { font-size: 15px; font-weight: 700; }
 .ar-folder small { display: block; margin-top: 3px; font-size: 12px; color: var(--muted); font-family: var(--mono); }
+
+.ar-folder--visual {
+  gap: 0;
+  padding: 0;
+  overflow: hidden;
+}
+.ar-folder-cover {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1200 / 849;
+  object-fit: cover;
+  background: #fff;
+  border-bottom: 1px solid var(--line);
+}
+.ar-folder-copy {
+  min-width: 0;
+  padding: 16px 18px 18px;
+}
+.ar-folder-copy strong,
+.ar-folder-copy small {
+  overflow-wrap: anywhere;
+}
 
 .ar-folder--more {
   border-style: dashed;
@@ -710,7 +804,139 @@
 .probe-fig.natural img { height: auto; object-fit: contain; background: #fff; }
 .probe-fig figcaption { padding: 12px 16px; font-size: 13px; line-height: 1.6; color: var(--muted); }
 .probe-fig figcaption strong { display: block; color: var(--ink); margin-bottom: 3px; font-weight: 600; }
-.probe-video { width: 100%; max-width: 760px; border: 1px solid var(--line); border-radius: 10px; display: block; background: #000; }
+.probe-video {
+  width: auto;
+  height: min(68vh, 680px);
+  max-width: 100%;
+  aspect-ratio: 662 / 1344;
+  margin: 18px auto 0;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  display: block;
+  object-fit: contain;
+  background: #000;
+}
+
+/* ── Experiment detail pages ── */
+.experiment-page { max-width: 1040px; }
+.experiment-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 22px;
+}
+.experiment-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 40px;
+  padding: 0 15px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  color: var(--ink);
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: border-color 180ms ease, background 180ms ease;
+}
+.experiment-link:hover {
+  border-color: rgba(73, 96, 68, 0.38);
+  background: rgba(255, 255, 255, 0.68);
+}
+.experiment-gallery {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+  margin-top: 20px;
+}
+.experiment-figure {
+  margin: 0;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.5);
+}
+.experiment-figure--wide { grid-column: 1 / -1; }
+.experiment-figure img {
+  width: 100%;
+  height: auto;
+  display: block;
+  background: #fff;
+}
+.experiment-figure figcaption {
+  padding: 13px 16px 15px;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.6;
+}
+.experiment-figure figcaption strong {
+  display: block;
+  margin-bottom: 3px;
+  color: var(--ink);
+  font-weight: 600;
+}
+.experiment-video-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+  margin-top: 20px;
+}
+.experiment-video-item {
+  min-width: 0;
+  margin: 0;
+}
+.experiment-video {
+  width: 100%;
+  max-height: 68vh;
+  display: block;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  object-fit: contain;
+  background: #10110f;
+}
+.experiment-video-item figcaption {
+  padding: 10px 2px 0;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+/* ── Service-design portfolio boards ── */
+.sd-page {
+  max-width: 1320px;
+}
+.sd-hero {
+  max-width: 900px;
+}
+.sd-gallery {
+  display: grid;
+  gap: 28px;
+}
+.sd-board {
+  margin: 0;
+}
+.sd-board-link {
+  display: block;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: 0 12px 30px rgba(26, 29, 27, 0.07);
+  transition: transform 200ms var(--ease-out), box-shadow 200ms var(--ease-out);
+}
+.sd-board-link:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-hover);
+}
+.sd-board img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.sd-board figcaption {
+  margin-top: 10px;
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--muted);
+}
 
 /* ── Case-page bottom nav (keep the recruiter moving) ── */
 .case-next {
@@ -750,18 +976,18 @@
   gap: 8px;
   padding: 12px 22px;
   border-radius: 999px;
-  border: 1px solid rgba(147, 165, 143, 0.5);
-  background: rgba(197, 255, 87, 0.1);
+  border: 1px solid var(--ink);
+  background: var(--ink);
   font-size: 13px;
   font-weight: 700;
-  color: var(--ink);
+  color: #fff;
   text-decoration: none;
   transition: transform 200ms var(--ease-out), box-shadow 200ms var(--ease-out);
 }
 
 .case-next-contact:hover {
   transform: translateY(-2px);
-  box-shadow: var(--shadow-hover);
+  box-shadow: 0 9px 24px rgba(26, 29, 27, 0.18);
 }
 
 @media (max-width: 640px) {
@@ -776,8 +1002,22 @@
   .ar-folders { grid-template-columns: repeat(3, 1fr); }
 }
 @media (max-width: 680px) {
-  .page { padding: 100px 22px 72px; }
+  .page { padding: 132px 22px 72px; }
   .xp-grid, .ar-folders { grid-template-columns: 1fr 1fr; }
+  .experiment-gallery { grid-template-columns: 1fr; }
+  .experiment-figure--wide { grid-column: auto; }
+  .experiment-video-grid { grid-template-columns: 1fr; }
+  .experiment-video {
+    width: min(100%, 430px);
+    margin-inline: auto;
+  }
+  .probe-video { height: min(66vh, 590px); }
+  .ar-folder { padding: 16px; }
+  .ar-folder--visual { padding: 0; }
+  .ar-folder-copy { padding: 13px 14px 15px; }
+  .ar-folder-copy strong { font-size: 13px; }
+  .ar-folder-copy small { font-size: 10.5px; line-height: 1.45; }
+  .sd-gallery { gap: 22px; }
   .fp-layout { grid-template-columns: 1fr; }
   .fp-thumbs { flex-direction: row; overflow-x: auto; }
   .fp-thumb { width: 84px; flex: 0 0 auto; }

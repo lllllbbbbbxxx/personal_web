@@ -10,7 +10,7 @@ const PROJECTS = [
     status: '2026.7 冻结版',
     github: 'https://github.com/lllllbbbbbxxx/ai-schedule-butler',
     caseUrl: './replan.html',
-    cover: './assets/covers/replan.jpg',
+    cover: './assets/covers/replan.webp',
     tags: ['LangGraph', 'FastAPI', 'React', 'PostgreSQL', 'OpenAI API'],
     link: '查看完整案例 →'
   },
@@ -23,7 +23,7 @@ const PROJECTS = [
     status: '核心链路跑通 · 聚类优化中',
     github: 'https://github.com/lllllbbbbbxxx/bookmark',
     caseUrl: './bookmark.html',
-    cover: './assets/covers/bookmark.jpg',
+    cover: './assets/covers/bookmark.webp',
     tags: ['Chrome Extension', 'Python', 'BGE-M3', 'LLM'],
     link: '查看项目详情 →'
   },
@@ -36,7 +36,8 @@ const PROJECTS = [
     status: 'MVP · 朋友内测中',
     github: 'https://github.com/lllllbbbbbxxx/recipe',
     caseUrl: './recipe.html',
-    cover: './assets/covers/recipe.jpg',
+    cover: './assets/covers/recipe.webp',
+    demo: './assets/demos/recipe-demo.mp4',
     tags: ['微信小程序', '云开发', '腾讯云 OCR', '数据埋点'],
     link: '查看项目详情 →'
   }
@@ -84,8 +85,10 @@ function buildDemoSlides() {
   demoStrip.innerHTML = PROJECTS.map(p => `
     <div class="demo-slide">
       <span class="demo-proj-tag">${p.num} · ${p.title}</span>
-      ${p.cover
-        ? `<img class="demo-cover" src="${p.cover}" alt="${p.title} 封面" loading="lazy" />`
+      ${p.demo
+        ? `<video class="demo-cover" src="${p.demo}" muted loop playsinline preload="metadata" poster="${p.cover || ''}" aria-label="${p.title} demo"></video>`
+        : p.cover
+        ? `<img class="demo-cover demo-cover--round" src="${p.cover}" alt="${p.title} 封面" loading="lazy" />`
         : `<span class="demo-proj-tag" style="position:static">${p.title}</span>`}
     </div>`).join('');
 }
@@ -254,7 +257,13 @@ function updateStory() {
     const cards = demoStrip.children;
     for (let i = 0; i < cards.length; i++) {
       const off = i - demoFpos;
-      cards[i].style.opacity = clamp(1 - off * off, 0, 1).toFixed(3);
+      const opacity = clamp(1 - off * off, 0, 1);
+      cards[i].style.opacity = opacity.toFixed(3);
+      const video = cards[i].querySelector("video");
+      if (video) {
+        if (opacity > 0.72) video.play().catch(() => {});
+        else video.pause();
+      }
     }
   }
 
@@ -325,6 +334,7 @@ const cfLines     = document.querySelector('[data-cf-lines]');
 const cfTag       = document.querySelector('[data-cf-tag]');
 const cfGh        = document.querySelector('[data-cf-gh]');
 const cfCover     = document.querySelector('[data-cf-cover]');
+const cfVideo     = document.querySelector('[data-cf-video]');
 const cfFull      = document.querySelector('[data-cf-full]');
 const cfCloseEls  = [...document.querySelectorAll('[data-cf-close]')];
 const SVGNS       = 'http://www.w3.org/2000/svg';
@@ -409,7 +419,19 @@ function openCaseFile() {
   }
   if (cfCover) {
     cfCover.src = p.cover || '';
-    cfCover.style.display = p.cover ? '' : 'none';
+    cfCover.style.display = p.cover && !p.demo ? '' : 'none';
+  }
+  if (cfVideo) {
+    cfVideo.pause();
+    cfVideo.removeAttribute('src');
+    cfVideo.style.display = 'none';
+    if (p.demo) {
+      cfVideo.src = p.demo;
+      if (p.cover) cfVideo.poster = p.cover;
+      cfVideo.style.display = '';
+      cfVideo.load();
+      cfVideo.play().catch(() => {});
+    }
   }
   buildCaseSections(p.num);   // rebuild for the current project (content differs)
 

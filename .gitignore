@@ -11,8 +11,24 @@ botanical-portfolio.zip
 # large unused source image (optimized about-photo.jpg is what's used)
 assets/IMG_0335.JPG
 
-# cover source PNGs (optimized .jpg are committed)
-assets/covers/*.png
+# service-design source PDFs (optimized WebP files are deployed)
+assets/archive/service-design-*/*.pdf
+
+# experiment source videos (optimized MP4 files are deployed)
+assets/experiments/**/*.mov
+assets/experiments/**/*.MOV
+
+# experiment source images (optimized WebP files are deployed)
+assets/experiments/ai-memory/images/demo示意图.png
+assets/experiments/useless-button/images/IMG_*.JPG
+assets/experiments/useless-button/images/Screenshot*.png
 
 # internal review doc (job-hunt strategy, not for deploy)
 optimization-guide.html
+
+# Sanity Studio
+studio/node_modules/
+studio/dist/
+studio/.sanity/
+studio/.env
+.pnpm-store/
