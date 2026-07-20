@@ -10,7 +10,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600&family=IBM+Plex+Mono:ital,wght@0,400;0,700;1,400&family=Inter:ital,opsz,wght@0,14..32,300..900;1,14..32,300..900&family=Noto+Sans+SC:wght@400;500;700;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="./styles.css?v=47" />
+    <link rel="stylesheet" href="./styles.css?v=48" />
       <meta property="og:title" content="jun. — Growing Systems" />
     <meta property="og:description" content="jun. — 周栩筠 Zhou Xuyun 的个人作品集：AI 产品方向 · 27 届。先当用户，再当开发者：灵活规划 Replan、书签助手 Bookmark、随手做菜。" />
     <meta property="og:type" content="website" />
@@ -203,16 +203,12 @@
           <p>03 <i></i></p>
           <h2>Cambium</h2>
           <span>记录碎片化的思考、问题和灵感，持续沉淀中。</span>
-          <div class="thought-stack" id="home-cambium-list" aria-live="polite">
-            <a class="thought-card thought-card--accent" href="./cambium.html" style="display:block">
-              AI 写得越好，我懂得越少
-              <small>构思中 · AI-native 工作流的一手观察</small>
-            </a>
-            <a class="thought-card" href="./cambium.html" style="display:block">
-              让 AI 当我的面试官
-              <small>构思中 · 车间与考场分离</small>
-            </a>
-            <a class="thought-more" href="./cambium.html">全部选题 →</a>
+          <div class="thought-stack" id="home-cambium-list" aria-live="polite" aria-busy="true">
+            <div class="thought-loading" role="status">
+              <span>正在读取最新文章…</span>
+              <i></i>
+              <i></i>
+            </div>
           </div>
         </article>
 
@@ -281,11 +277,9 @@
 
       <footer class="site-footer">
         <section>
-          <h3>Cambium · 构思中</h3>
-          <p>AI 写得越好，我懂得越少</p>
-          <p>让 AI 当我的面试官</p>
-          <p>地图不能先于领土完工</p>
-          <a href="./cambium.html">全部选题 →</a>
+          <h3>Cambium · 持续生长</h3>
+          <p>实践记录、版本反思与仍在形成中的想法。</p>
+          <a href="./cambium.html">查看全部文章 →</a>
         </section>
         <section class="terminal-card">
           <h3>当前状态</h3>
@@ -338,7 +332,7 @@
 
     <script src="./script.js?v=43"></script>
     <script src="./cambium-config.js"></script>
-    <script src="./cambium.js?v=2"></script>
+    <script src="./cambium.js?v=3"></script>
     <script src="./contact-modal.js?v=3" defer></script>
   </body>
 </html>

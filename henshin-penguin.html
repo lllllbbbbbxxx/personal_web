@@ -10,8 +10,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600&family=IBM+Plex+Mono:ital,wght@0,400;0,700;1,400&family=Inter:ital,opsz,wght@0,14..32,300..900;1,14..32,300..900&family=Noto+Sans+SC:wght@400;500;700;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="./styles.css?v=47" />
-    <link rel="stylesheet" href="./pages.css?v=47" />
+    <link rel="stylesheet" href="./styles.css?v=49" />
+    <link rel="stylesheet" href="./pages.css?v=49" />
   </head>
   <body>
     <header class="site-header">
@@ -46,11 +46,14 @@
       </div>
 
       <section class="subpage-section">
-        <h2>运行界面</h2>
-        <p class="experiment-copy">摄像头画面、姿态标签、帧率和企鹅变身效果在同一浏览器界面中运行。模型与渲染资源均在客户端加载，不需要把摄像头画面上传到服务器。</p>
-        <figure class="experiment-figure experiment-figure--poster">
-          <img src="./assets/experiments/henshin-penguin/images/app-preview.webp" alt="Henshin Penguin 浏览器运行界面" />
-          <figcaption><strong>浏览器原型</strong>实时摄像头输入、姿态分类状态与视觉变身效果。</figcaption>
+        <h2>实时变身演示</h2>
+        <p class="experiment-copy">浏览器识别身体姿态后，企鹅会从初始造型切换为厨师角色，并同步叠加厨师帽、刀叉等视觉部件。整个识别与渲染过程都在客户端完成。</p>
+        <figure class="experiment-figure experiment-video-feature">
+          <video class="experiment-video experiment-video--feature" controls preload="metadata" playsinline poster="./assets/experiments/henshin-penguin/images/transformed-cover.webp">
+            <source src="./assets/experiments/henshin-penguin/videos/demo.mp4" type="video/mp4" />
+            你的浏览器不支持视频播放。
+          </video>
+          <figcaption><strong>Demo recording</strong>从初始姿态切换到 cooker 姿态，并完成厨师变身。</figcaption>
         </figure>
       </section>
 

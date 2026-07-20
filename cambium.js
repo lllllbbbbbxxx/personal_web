@@ -6,7 +6,12 @@
   var homeList = document.getElementById("home-cambium-list");
   var sourceNote = document.getElementById("cambium-source-note");
 
-  if ((!list && !homeList) || !config.projectId) {
+  if (!list && !homeList) {
+    return;
+  }
+
+  if (!config.projectId) {
+    renderRequestError();
     return;
   }
 
@@ -16,7 +21,7 @@
     "{_id, title, \"slug\": slug.current, excerpt, publishedAt, _updatedAt, featured}",
   ].join(" ");
 
-  fetch(buildQueryUrl(query))
+  fetch(buildQueryUrl(query), { cache: "no-store" })
     .then(function (response) {
       if (!response.ok) {
         throw new Error("Cambium request failed");
@@ -29,11 +34,33 @@
       if (homeList) renderHomeArticles(articles.slice(0, 2));
     })
     .catch(function () {
-      if (sourceNote) {
-        sourceNote.hidden = false;
-        sourceNote.textContent = "内容暂时无法更新，正在展示最近一次可用版本。";
-      }
+      renderRequestError();
     });
+
+  function renderRequestError() {
+    if (list) {
+      list.replaceChildren(createState(
+        "cb-empty cb-empty--error",
+        "文章暂时无法读取。",
+        "请稍后刷新页面。"
+      ));
+      list.setAttribute("aria-busy", "false");
+    }
+
+    if (homeList) {
+      homeList.replaceChildren(createState(
+        "thought-empty",
+        "文章暂时无法读取。",
+        ""
+      ));
+      homeList.setAttribute("aria-busy", "false");
+    }
+
+    if (sourceNote) {
+      sourceNote.hidden = false;
+      sourceNote.textContent = "Cambium 当前未能连接内容服务。";
+    }
+  }
 
   function buildQueryUrl(groq) {
     var host = "https://" + config.projectId + ".apicdn.sanity.io";
@@ -43,12 +70,14 @@
 
   function renderArticles(articles) {
     list.replaceChildren();
+    list.setAttribute("aria-busy", "false");
 
     if (!articles.length) {
-      var empty = document.createElement("div");
-      empty.className = "cb-empty";
-      empty.innerHTML = "<strong>文章正在生长中。</strong><p>第一篇发布后，会从这里出现。</p>";
-      list.appendChild(empty);
+      list.appendChild(createState(
+        "cb-empty",
+        "文章正在生长中。",
+        "第一篇发布后，会从这里出现。"
+      ));
       return;
     }
 
@@ -78,9 +107,18 @@
   }
 
   function renderHomeArticles(articles) {
-    if (!articles.length) return;
-
     homeList.replaceChildren();
+    homeList.setAttribute("aria-busy", "false");
+
+    if (!articles.length) {
+      homeList.appendChild(createState(
+        "thought-empty",
+        "文章正在生长中。",
+        ""
+      ));
+      return;
+    }
+
     articles.forEach(function (article, index) {
       var card = document.createElement("a");
       card.className = "thought-card" + (index === 0 ? " thought-card--accent" : "");
@@ -102,6 +140,23 @@
     more.href = "./cambium.html";
     more.textContent = "全部文章 →";
     homeList.appendChild(more);
+  }
+
+  function createState(className, titleText, detailText) {
+    var state = document.createElement("div");
+    state.className = className;
+
+    var title = document.createElement("strong");
+    title.textContent = titleText;
+    state.appendChild(title);
+
+    if (detailText) {
+      var detail = document.createElement("p");
+      detail.textContent = detailText;
+      state.appendChild(detail);
+    }
+
+    return state;
   }
 
   function truncate(value, maxLength) {

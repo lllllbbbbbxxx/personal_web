@@ -798,6 +798,54 @@ button, input { font: inherit; }
   gap: 10px;
 }
 
+.thought-loading {
+  min-height: 156px;
+  padding: 16px;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.45);
+}
+.thought-loading span {
+  display: block;
+  margin-bottom: 20px;
+  font-family: ui-monospace, monospace;
+  font-size: 10px;
+  color: var(--muted);
+}
+.thought-loading i {
+  display: block;
+  overflow: hidden;
+  position: relative;
+  width: 86%;
+  height: 11px;
+  margin-top: 13px;
+  border-radius: 3px;
+  background: rgba(26, 29, 27, 0.07);
+}
+.thought-loading i:last-child { width: 62%; }
+.thought-loading i::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.72), transparent);
+  transform: translateX(-100%);
+  animation: cambium-loading 1.4s ease-in-out infinite;
+}
+@keyframes cambium-loading {
+  to { transform: translateX(100%); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .thought-loading i::after { animation: none; }
+}
+.thought-empty {
+  min-height: 100px;
+  padding: 16px;
+  border: 1px dashed var(--line);
+  border-radius: 4px;
+  color: var(--muted);
+  font-size: 12px;
+}
+
 .thought-card {
   padding: 16px;
   border-radius: 4px;

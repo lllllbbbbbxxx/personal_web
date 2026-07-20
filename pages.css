@@ -109,6 +109,11 @@
 }
 .xp-card:hover .xp-thumb--image img { transform: scale(1.025); }
 .xp-thumb--top img { object-position: center 12%; }
+.xp-thumb--henshin { background: #0a0f10; }
+.xp-thumb--henshin img {
+  object-fit: contain;
+  object-position: center;
+}
 .xp-thumb--map img { object-position: center 58%; }
 .xp-thumb--typing img { object-position: center 45%; }
 .xp-thumb--mint  { background: linear-gradient(150deg, #d3e4cf, #a9c4a3); }
@@ -166,6 +171,43 @@
 }
 
 .cb-list { display: flex; flex-direction: column; gap: 14px; }
+
+.cb-loading {
+  min-height: 238px;
+  padding: 26px 28px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.45);
+}
+.cb-loading span {
+  display: block;
+  margin-bottom: 24px;
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--muted);
+}
+.cb-loading i,
+.thought-loading i {
+  display: block;
+  overflow: hidden;
+  position: relative;
+  height: 12px;
+  margin-top: 14px;
+  border-radius: 3px;
+  background: rgba(26, 29, 27, 0.07);
+}
+.cb-loading i::after,
+.thought-loading i::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.72), transparent);
+  transform: translateX(-100%);
+  animation: cambium-loading 1.4s ease-in-out infinite;
+}
+.cb-loading i:nth-of-type(1) { width: 52%; height: 18px; }
+.cb-loading i:nth-of-type(2) { width: 88%; }
+.cb-loading i:nth-of-type(3) { width: 70%; }
 
 .cb-article {
   position: relative;
@@ -238,6 +280,16 @@
 }
 .cb-empty strong { display: block; margin-bottom: 8px; color: var(--ink); }
 .cb-empty p { margin: 0; font-size: 13px; }
+.cb-empty--error { border-style: solid; }
+
+@keyframes cambium-loading {
+  to { transform: translateX(100%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cb-loading i::after,
+  .thought-loading i::after { animation: none; }
+}
 
 /* "关于 Cambium" 侧栏说明 */
 .cb-about p {
@@ -900,6 +952,15 @@
   padding: 10px 2px 0;
   color: var(--muted);
   font-size: 12px;
+}
+.experiment-video-feature {
+  max-width: 620px;
+  margin: 20px auto 0;
+}
+.experiment-video--feature {
+  aspect-ratio: 676 / 720;
+  max-height: none;
+  border-radius: 8px;
 }
 .experiment-facts {
   display: grid;
