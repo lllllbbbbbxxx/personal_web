@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Cache-Control" content="no-cache, must-revalidate" />
+    <title>Error-Friendly Typing — jun.</title>
+    <meta name="description" content="Error-Friendly Typing Tool — 一个让可读错误留下、让正确拼写消失的 p5.js 语言实验。" />
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231a1d1b'/%3E%3Ctext x='29' y='46' font-family='-apple-system,sans-serif' font-size='38' font-weight='800' fill='%23f8f8f5' text-anchor='middle'%3Ej%3C/text%3E%3Ccircle cx='47' cy='42' r='5.5' fill='%23c5ff57'/%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600&family=IBM+Plex+Mono:ital,wght@0,400;0,700;1,400&family=Inter:ital,opsz,wght@0,14..32,300..900;1,14..32,300..900&family=Noto+Sans+SC:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./styles.css?v=48" />
+    <link rel="stylesheet" href="./pages.css?v=48" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand-mark" href="./index.html" aria-label="jun."><span class="brand-logo">jun.</span><i></i></a>
+      <nav class="top-nav" aria-label="Primary navigation">
+        <a href="./index.html#systems">Systems</a>
+        <a class="active" href="./experiments.html">Experiments</a>
+        <a href="./cambium.html">Cambium</a>
+        <a href="./archive.html">Archive</a>
+        <a href="./about.html">About</a>
+      </nav>
+      <div class="time-place"><b></b><span>Building</span></div>
+    </header>
+
+    <main class="page experiment-page">
+      <a class="page-back" href="./experiments.html"><span>←</span> Experiments</a>
+      <div class="page-intro">
+        <p class="page-kicker">P5.JS · LANGUAGE BIAS</p>
+        <h1>Error-Friendly Typing</h1>
+        <p>多数写作工具把拼写错误当作需要消除的问题。这个实验把规则倒过来：正确拼写会迅速消失，可读的错误会留在画布上，而无法辨认的字符不会得到稳定反馈。</p>
+        <div class="experiment-links">
+          <a class="experiment-link" href="./assets/experiments/error-friendly-typing/demo/index.html" target="_blank" rel="noopener">全屏体验 ↗</a>
+          <a class="experiment-link" href="https://editor.p5js.org/zxjzxj626/full/u-2gSawFA" target="_blank" rel="noopener">原始 p5.js 项目 ↗</a>
+        </div>
+      </div>
+
+      <div class="experiment-facts" aria-label="项目关键信息">
+        <div class="experiment-fact"><strong>p5.js</strong><span>创意编程原型</span></div>
+        <div class="experiment-fact"><strong>10K</strong><span>英语词表</span></div>
+        <div class="experiment-fact"><strong>3 states</strong><span>正确、可读错误、乱码</span></div>
+        <div class="experiment-fact"><strong>Local</strong><span>站内直接运行</span></div>
+      </div>
+
+      <section class="subpage-section">
+        <h2>Try one word</h2>
+        <p class="experiment-copy">输入一个英文单词。可以先比较 <strong>school</strong>、<strong>skool</strong> 和 <strong>ssssss</strong> 得到的不同反馈。</p>
+        <div class="experiment-live-shell">
+          <iframe
+            class="experiment-live-frame"
+            src="./assets/experiments/error-friendly-typing/demo/index.html"
+            title="Error-Friendly Typing 互动 Demo"
+            loading="eager"
+            allow="autoplay">
+          </iframe>
+        </div>
+      </section>
+
+      <section class="subpage-section">
+        <h2>规则如何产生偏见</h2>
+        <div class="experiment-method">
+          <div><strong>正确拼写</strong><p>匹配词表后向下坠落并淡出，系统拒绝留下“正确”答案。</p></div>
+          <div><strong>可读错误</strong><p>通过长度、元音、重复字符与字符位置等启发式规则后留在画布上。</p></div>
+          <div><strong>无法辨认</strong><p>不满足规则的输入被当作背景噪声，不获得持续的视觉反馈。</p></div>
+          <div><strong>系统偏见</strong><p>英语词表与人工规则决定何为“可读”，也暴露分类系统自身的局限。</p></div>
+        </div>
+      </section>
+
+      <section class="subpage-section">
+        <h2>反思</h2>
+        <p class="experiment-copy">这个分类器刻意不追求客观：它只处理单个英文词，并用简单规则近似“人还能读懂的错误”。它因此既是一件可玩的创意编码作品，也是一种对语言工具的提问：当系统决定什么算正确、什么值得保留时，谁的语言习惯被当作默认值？</p>
+      </section>
+
+      <a class="page-back" href="./experiments.html"><span>←</span> 返回 Experiments</a>
+    </main>
+  </body>
+</html>

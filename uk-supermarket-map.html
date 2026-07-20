@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Cache-Control" content="no-cache, must-revalidate" />
+    <title>UK Supermarket Map — jun.</title>
+    <meta name="description" content="英国超市品牌空间分析 — 基于 OpenStreetMap POI 的品牌归一化、空间连接与区域主导品牌地图。" />
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231a1d1b'/%3E%3Ctext x='29' y='46' font-family='-apple-system,sans-serif' font-size='38' font-weight='800' fill='%23f8f8f5' text-anchor='middle'%3Ej%3C/text%3E%3Ccircle cx='47' cy='42' r='5.5' fill='%23c5ff57'/%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600&family=IBM+Plex+Mono:ital,wght@0,400;0,700;1,400&family=Inter:ital,opsz,wght@0,14..32,300..900;1,14..32,300..900&family=Noto+Sans+SC:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./styles.css?v=47" />
+    <link rel="stylesheet" href="./pages.css?v=47" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand-mark" href="./index.html" aria-label="jun."><span class="brand-logo">jun.</span><i></i></a>
+      <nav class="top-nav" aria-label="Primary navigation">
+        <a href="./index.html#systems">Systems</a>
+        <a class="active" href="./experiments.html">Experiments</a>
+        <a href="./cambium.html">Cambium</a>
+        <a href="./archive.html">Archive</a>
+        <a href="./about.html">About</a>
+      </nav>
+      <div class="time-place"><b></b><span>Building</span></div>
+    </header>
+
+    <main class="page experiment-page">
+      <a class="page-back" href="./experiments.html"><span>←</span> Experiments</a>
+      <div class="page-intro">
+        <p class="page-kicker">GEOSPATIAL ANALYSIS · OPEN DATA</p>
+        <h1>UK Supermarket Map</h1>
+        <p>基于 OpenStreetMap 超市 POI，完成品牌名称清洗与归一化，并将门店点位连接到英国地方行政区，比较各区域出现次数最多的超市品牌，输出全国空间分布地图。</p>
+      </div>
+
+      <div class="experiment-facts" aria-label="项目关键数据">
+        <div class="experiment-fact"><strong>OSM</strong><span>开放超市 POI 数据</span></div>
+        <div class="experiment-fact"><strong>11</strong><span>主要品牌分类</span></div>
+        <div class="experiment-fact"><strong>GeoPandas</strong><span>空间连接与聚合</span></div>
+        <div class="experiment-fact"><strong>A3</strong><span>最终地图输出</span></div>
+      </div>
+
+      <section class="subpage-section">
+        <h2>最终地图</h2>
+        <p class="experiment-copy">每个地方行政区使用该区域内数量最多的品牌着色。地图不是市场份额调查，而是对 OpenStreetMap 已记录门店点位的空间概览。</p>
+        <figure class="experiment-figure experiment-figure--poster">
+          <img src="./assets/experiments/uk-supermarket-map/images/dominant-brand-map.webp" alt="英国地方行政区主导超市品牌地图" />
+          <figcaption><strong>Dominant Supermarket Brand by Area</strong>基于 OSM 超市点位，按英国地方行政区聚合。灰色区域表示其他品牌或信息不足。</figcaption>
+        </figure>
+      </section>
+
+      <section class="subpage-section">
+        <h2>分析流程</h2>
+        <div class="experiment-method">
+          <div><strong>提取 POI</strong><p>读取 OpenStreetMap 中标记为 supermarket 的门店点位。</p></div>
+          <div><strong>品牌归一化</strong><p>合并品牌名称拼写、大小写与别名，建立统一分类。</p></div>
+          <div><strong>空间连接</strong><p>将门店点位连接到英国地方行政区边界。</p></div>
+          <div><strong>聚合制图</strong><p>统计各区品牌数量，选出主导品牌并设计地图图例。</p></div>
+        </div>
+      </section>
+
+      <section class="subpage-section">
+        <h2>限制</h2>
+        <p class="experiment-copy">结果依赖 OpenStreetMap 的覆盖度与标签一致性：活跃编辑地区可能记录得更完整，缺少品牌字段的门店也会影响区域判断。因此这张图适合用于探索地理格局，而不应直接解释为真实市场占有率。</p>
+      </section>
+
+      <a class="page-back" href="./experiments.html"><span>←</span> 返回 Experiments</a>
+    </main>
+  </body>
+</html>

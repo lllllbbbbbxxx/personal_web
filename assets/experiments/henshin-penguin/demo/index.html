@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Henshin Penguin</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="app">
+    <header class="topbar">
+      <div>
+        <h1>Henshin Penguin</h1>
+        <p class="subtitle">Real-time pose classification and meme transformation</p>
+      </div>
+      <div class="badge">Prototype</div>
+    </header>
+<!--video and canvas elements-->
+    <section class="stage-card">
+      <div class="stage">
+        <video id="video" autoplay playsinline muted></video>
+        <canvas id="canvas"></canvas>
+
+        <div class="overlay-top">
+          <span id="status" class="pill">Loading camera...</span>
+          <span id="fps" class="pill">FPS: --</span>
+        </div>
+
+        <div class="overlay-bottom">
+          <span id="poseLabel" class="pill large">Pose: none</span>
+          <span id="modeLabel" class="pill large">Mode: idle</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="info-grid">
+      <div class="info-card">
+        <h2>Controls</h2>
+        <p>Allow camera access, then face the camera and perform your poses.</p>
+      </div>
+
+      <div class="info-card">
+        <h2>Planned Poses</h2>
+        <ul>
+          <li>Start: hand near face + one hand on hip</li>
+          <li>Newspaper: both hands up</li>
+          <li>Megaphone: one fist near chest</li>
+          <li>Chef: both hands on hips</li>
+        </ul>
+      </div>
+    </section>
+  </main>
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/pose/pose.js"></script>
+  <script type="module" src="main.js"></script>
+</body>
+</html>

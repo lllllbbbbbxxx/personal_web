@@ -108,6 +108,9 @@
   transition: transform 360ms var(--ease-out);
 }
 .xp-card:hover .xp-thumb--image img { transform: scale(1.025); }
+.xp-thumb--top img { object-position: center 12%; }
+.xp-thumb--map img { object-position: center 58%; }
+.xp-thumb--typing img { object-position: center 45%; }
 .xp-thumb--mint  { background: linear-gradient(150deg, #d3e4cf, #a9c4a3); }
 .xp-thumb--dark  { background: linear-gradient(150deg, #2b3128, #14170f); color: rgba(255,255,255,0.55); }
 .xp-thumb--night { background: radial-gradient(circle at 60% 40%, #3a4a32, #14170f 70%); color: var(--accent); }
@@ -898,6 +901,102 @@
   color: var(--muted);
   font-size: 12px;
 }
+.experiment-facts {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  margin: 28px 0 4px;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+.experiment-fact {
+  min-width: 0;
+  padding: 17px 18px 18px 0;
+}
+.experiment-fact + .experiment-fact {
+  padding-left: 18px;
+  border-left: 1px solid var(--line);
+}
+.experiment-fact strong {
+  display: block;
+  margin-bottom: 5px;
+  color: var(--ink);
+  font-size: 17px;
+  line-height: 1.25;
+}
+.experiment-fact span {
+  display: block;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.5;
+}
+.experiment-copy { max-width: 760px; }
+.experiment-note {
+  max-width: 760px;
+  margin: 18px 0 0;
+  padding: 13px 16px;
+  border-left: 3px solid var(--soft);
+  background: rgba(147, 165, 143, 0.08);
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.7;
+}
+.experiment-figure--poster {
+  max-width: 760px;
+  margin: 20px auto 0;
+}
+.experiment-figure--portrait {
+  max-width: 560px;
+  margin: 20px auto 0;
+}
+.experiment-gallery--three {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+.experiment-method {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 18px;
+  margin-top: 20px;
+  counter-reset: method;
+}
+.experiment-method div {
+  min-width: 0;
+  padding-top: 13px;
+  border-top: 1px solid var(--line);
+  counter-increment: method;
+}
+.experiment-method div::before {
+  content: "0" counter(method);
+  display: block;
+  margin-bottom: 10px;
+  color: var(--soft);
+  font-family: var(--mono);
+  font-size: 11px;
+}
+.experiment-method strong {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 14px;
+}
+.experiment-method p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.65;
+}
+.experiment-live-shell {
+  overflow: hidden;
+  margin-top: 20px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #f7f9ff;
+}
+.experiment-live-frame {
+  width: 100%;
+  height: min(72vh, 680px);
+  min-height: 560px;
+  display: block;
+  border: 0;
+}
 
 /* ── Service-design portfolio boards ── */
 .sd-page {
@@ -1005,11 +1104,24 @@
   .page { padding: 132px 22px 72px; }
   .xp-grid, .ar-folders { grid-template-columns: 1fr 1fr; }
   .experiment-gallery { grid-template-columns: 1fr; }
+  .experiment-gallery--three { grid-template-columns: 1fr; }
   .experiment-figure--wide { grid-column: auto; }
   .experiment-video-grid { grid-template-columns: 1fr; }
+  .experiment-facts { grid-template-columns: 1fr 1fr; }
+  .experiment-fact:nth-child(3) {
+    padding-left: 0;
+    border-left: 0;
+    border-top: 1px solid var(--line);
+  }
+  .experiment-fact:nth-child(4) { border-top: 1px solid var(--line); }
+  .experiment-method { grid-template-columns: 1fr 1fr; }
   .experiment-video {
     width: min(100%, 430px);
     margin-inline: auto;
+  }
+  .experiment-live-frame {
+    height: 500px;
+    min-height: 500px;
   }
   .probe-video { height: min(66vh, 590px); }
   .ar-folder { padding: 16px; }

@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Cache-Control" content="no-cache, must-revalidate" />
+    <title>Henshin Penguin — jun.</title>
+    <meta name="description" content="Henshin Penguin — 基于 MediaPipe、Keras 与 TensorFlow.js 的浏览器端实时姿态识别实验。" />
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231a1d1b'/%3E%3Ctext x='29' y='46' font-family='-apple-system,sans-serif' font-size='38' font-weight='800' fill='%23f8f8f5' text-anchor='middle'%3Ej%3C/text%3E%3Ccircle cx='47' cy='42' r='5.5' fill='%23c5ff57'/%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600&family=IBM+Plex+Mono:ital,wght@0,400;0,700;1,400&family=Inter:ital,opsz,wght@0,14..32,300..900;1,14..32,300..900&family=Noto+Sans+SC:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./styles.css?v=47" />
+    <link rel="stylesheet" href="./pages.css?v=47" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand-mark" href="./index.html" aria-label="jun."><span class="brand-logo">jun.</span><i></i></a>
+      <nav class="top-nav" aria-label="Primary navigation">
+        <a href="./index.html#systems">Systems</a>
+        <a class="active" href="./experiments.html">Experiments</a>
+        <a href="./cambium.html">Cambium</a>
+        <a href="./archive.html">Archive</a>
+        <a href="./about.html">About</a>
+      </nav>
+      <div class="time-place"><b></b><span>Building</span></div>
+    </header>
+
+    <main class="page experiment-page">
+      <a class="page-back" href="./experiments.html"><span>←</span> Experiments</a>
+      <div class="page-intro">
+        <p class="page-kicker">REAL-TIME ML · WEB INTERACTION</p>
+        <h1>Henshin Penguin</h1>
+        <p>一个用身体动作触发视觉变身的浏览器实验：MediaPipe 从摄像头画面提取姿态关键点，轻量 MLP 完成分类，再由 TensorFlow.js 在浏览器端实时推理并驱动企鹅角色效果。</p>
+        <div class="experiment-links">
+          <a class="experiment-link" href="./assets/experiments/henshin-penguin/demo/index.html" target="_blank" rel="noopener">打开实时 Demo ↗</a>
+        </div>
+        <p class="experiment-note">实时 Demo 需要摄像头权限，并依赖浏览器加载 MediaPipe 与 TensorFlow.js。部署到 HTTPS 后可直接运行；本地预览可在 localhost 下使用。</p>
+      </div>
+
+      <div class="experiment-facts" aria-label="项目关键数据">
+        <div class="experiment-fact"><strong>33</strong><span>MediaPipe 身体关键点</span></div>
+        <div class="experiment-fact"><strong>99D</strong><span>x / y / z 特征向量</span></div>
+        <div class="experiment-fact"><strong>97.6%</strong><span>独立测试视频准确率</span></div>
+        <div class="experiment-fact"><strong>TF.js</strong><span>浏览器端实时推理</span></div>
+      </div>
+
+      <section class="subpage-section">
+        <h2>运行界面</h2>
+        <p class="experiment-copy">摄像头画面、姿态标签、帧率和企鹅变身效果在同一浏览器界面中运行。模型与渲染资源均在客户端加载，不需要把摄像头画面上传到服务器。</p>
+        <figure class="experiment-figure experiment-figure--poster">
+          <img src="./assets/experiments/henshin-penguin/images/app-preview.webp" alt="Henshin Penguin 浏览器运行界面" />
+          <figcaption><strong>浏览器原型</strong>实时摄像头输入、姿态分类状态与视觉变身效果。</figcaption>
+        </figure>
+      </section>
+
+      <section class="subpage-section">
+        <h2>技术链路</h2>
+        <div class="experiment-method">
+          <div><strong>采集</strong><p>在不同距离、角度、光线和服装条件下录制姿态视频。</p></div>
+          <div><strong>提取</strong><p>MediaPipe 将每帧转换为 33 个三维关键点，共 99 个输入特征。</p></div>
+          <div><strong>训练</strong><p>Keras MLP 使用约 99–64–32–N 的结构完成姿态分类。</p></div>
+          <div><strong>部署</strong><p>模型转换为 TensorFlow.js，在浏览器中连续推理并触发视觉效果。</p></div>
+        </div>
+        <div class="experiment-gallery">
+          <figure class="experiment-figure experiment-figure--wide">
+            <img src="./assets/experiments/henshin-penguin/images/system-pipeline.webp" alt="Henshin Penguin 离线训练与浏览器推理流程草图" loading="lazy" />
+            <figcaption><strong>系统草图</strong>训练视频与实时摄像头共享同一套关键点表示，Keras 模型转换后交给 TensorFlow.js。</figcaption>
+          </figure>
+          <figure class="experiment-figure experiment-figure--portrait">
+            <img src="./assets/experiments/henshin-penguin/images/pose-design.webp" alt="Henshin Penguin 姿态设计与模型实际识别姿势" loading="lazy" />
+            <figcaption><strong>姿态迭代</strong>设计动作与模型实际学到的动作存在差异，这成为后续调试的关键线索。</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="subpage-section">
+        <h2>评估与反思</h2>
+        <p class="experiment-copy">两类模型在独立测试视频上达到 97.6% 准确率，但浏览器实时输入仍出现波动。这说明离线测试集与真实摄像头输入之间存在分布差异。项目最终减少姿态类别，并通过间隔推理与连续多帧确认提高稳定性。下一步更有效的改进不是继续追求离线分数，而是直接从浏览器采集训练数据，并引入短时间窗口建模动作序列。</p>
+      </section>
+
+      <a class="page-back" href="./experiments.html"><span>←</span> 返回 Experiments</a>
+    </main>
+  </body>
+</html>
