@@ -4,16 +4,16 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="Cache-Control" content="no-cache, must-revalidate" />
-    <title>Replan — 灵活规划 · Case Study — jun.</title>
-    <meta name="description" content="Replan 灵活规划 — 长期任务的拆解、排期与自适应重排系统。LLM 负责语义理解，确定性引擎负责排得对；评测驱动的 AI 产品案例。" />
+    <title>灵活规划（Replan）｜反馈驱动的持续规划系统 — jun.</title>
+    <meta name="description" content="灵活规划（Replan）｜反馈驱动的持续规划系统。记录任务拆解、排期、反馈与重排模块的实现，以及端到端联调中暴露的问题与纠偏过程。" />
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231a1d1b'/%3E%3Ctext x='29' y='46' font-family='-apple-system,sans-serif' font-size='38' font-weight='800' fill='%23f8f8f5' text-anchor='middle'%3Ej%3C/text%3E%3Ccircle cx='47' cy='42' r='5.5' fill='%23c5ff57'/%3E%3C/svg%3E" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600&family=IBM+Plex+Mono:ital,wght@0,400;0,700;1,400&family=Inter:ital,opsz,wght@0,14..32,300..900;1,14..32,300..900&family=Noto+Sans+SC:wght@400;500;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./styles.css?v=45" />
     <link rel="stylesheet" href="./pages.css?v=44" />
-      <meta property="og:title" content="Replan — 灵活规划 · Case Study — jun." />
-    <meta property="og:description" content="Replan 灵活规划 — 长期任务的拆解、排期与自适应重排系统。LLM 负责语义理解，确定性引擎负责排得对；评测驱动的 AI 产品案例。" />
+      <meta property="og:title" content="灵活规划（Replan）｜反馈驱动的持续规划系统 — jun." />
+    <meta property="og:description" content="记录任务拆解、排期、反馈与重排模块的实现，以及端到端联调中暴露的问题与纠偏过程。" />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://lllllbbbbbxxx.github.io/personal_web/replan.html" />
     <meta property="og:image" content="https://lllllbbbbbxxx.github.io/personal_web/assets/covers/replan.png" />
@@ -40,21 +40,21 @@
           GitHub <span class="subpage-gh-arrow">↗</span>
         </a>
         <p class="subpage-tag">SYSTEM · CASE STUDY</p>
-        <h1>Replan</h1>
+        <h1>灵活规划（Replan）</h1>
         <p class="cs-oneliner">
-          灵活规划 · 传统日程工具的问题不是记录，而是计划生成之后，世界就变了。
-          <br><em>把「一次生成计划」改成「持续规划」：LLM 负责理解与拆解自然语言任务，规则状态机负责排期与重排——因为时间数据容不得歧义。每日反馈作为状态输入，驱动局部重排，而不是重新生成整份计划。</em>
+          反馈驱动的持续规划系统 · 传统日程工具的问题不是记录，而是计划生成之后，世界就变了。
+          <br><em>尝试把「一次生成计划」改成「持续规划」：LLM 负责理解与拆解自然语言任务，规则引擎负责排期与重排。各模块已经分别实现，但真实端到端交互仍在收束中。</em>
         </p>
         <div class="subpage-meta">
-          <span>状态 · 2026.7 冻结版</span>
+          <span>状态 · 最小稳定闭环收束中</span>
           <span>角色 · 独立开发</span>
-          <span>~265 项自动化测试 · CI</span>
+          <span>阶段 · 模块实现与场景联调</span>
         </div>
       </header>
 
       <section class="subpage-section">
         <h2>一句话</h2>
-        <p>一个面向学生 / 个人效率场景的对话式规划系统。用户用自然语言输入「帮我七天学完一个课程」或「今天只完成了一半」，系统自动拆解任务、安排时间、展示周视图，并在反馈后重新规划剩余日程。</p>
+        <p>一个面向学生 / 个人效率场景的对话式规划原型。系统已分别实现自然语言任务拆解、排期、周视图与反馈重排模块；目前仍在联调这些模块在同一真实交互中的状态传递和冲突处理。</p>
       </section>
 
       <section class="subpage-section">
@@ -68,11 +68,11 @@
         <div class="cs-two">
           <div class="cs-point">
             <strong>不是聊天机器人</strong>
-            <span>是围绕「任务状态」运转的规划系统——每次输入都改变当前计划，而非只回一段话。</span>
+            <span>目标是围绕「任务状态」运转：计划相关输入应改变当前计划，而非只返回一段文字。</span>
           </div>
           <div class="cs-point">
-            <strong>任务-时间双向闭环</strong>
-            <span>任务理解 → 时间安排 → 状态更新 → 自动重排，连成完整回路。</span>
+            <strong>目标闭环：任务-时间双向更新</strong>
+            <span>目标路径是任务理解 → 时间安排 → 状态更新 → 自动重排；当前仍在解决跨模块状态同步与冲突处理。</span>
           </div>
         </div>
       </section>
@@ -93,14 +93,14 @@
           </div>
           <div class="cs-arrow">↓<small>结构化任务</small></div>
           <div class="cs-layer cs-layer--det">
-            <div class="cs-layer-label">正确性层 · 确定性引擎（保证排得对）</div>
+            <div class="cs-layer-label">确定性层 · 规则引擎（处理排期约束）</div>
             <div class="cs-node"><div class="cs-node-t">按 deadline 反推均摊排期</div><div class="cs-node-d">排不下时溢出而非丢弃</div></div>
             <div class="cs-node"><div class="cs-node-t">时间槽统一收口</div><div class="cs-node-d">find_available_slot · validate_no_overlap</div></div>
           </div>
           <div class="cs-arrow">↓</div>
           <div class="cs-node">
             <div class="cs-node-t">周视图计划 · 任务状态</div>
-            <div class="cs-node-d">反馈后自动重排剩余日程</div>
+            <div class="cs-node-d">接收反馈并尝试重排剩余日程</div>
           </div>
         </div>
       </section>
@@ -130,8 +130,8 @@
             <h3>第三幕 · 转变——不是「选一个框架」，而是「分层 + 评测驱动」</h3>
             <p>真正的顿悟是：卡点根本不在「用规则还是 LLM 还是 graph」，而在 ① 领域建模和确定性排程算法本身；② 没有可信的评测。于是两个决定：</p>
             <ul>
-              <li><strong>分层</strong>：让 LLM 只做语义理解，把排期正确性交给确定性引擎（不会排出重叠 / 丢任务 / 塌缩）。意图进一步收敛成 6 个纯语义意图 + 状态机解析，不再让 LLM 和规则互相打架。</li>
-              <li><strong>评测驱动</strong>：我发现原本「全绿」的评测报告其实是伪造的、和真实链路脱节。于是重建了端到端确定性评测 + LLM-as-judge 质量评测 + 覆盖矩阵 + CI，把「感觉对了」变成「数据证明对了」，再据此系统性修复。</li>
+              <li><strong>分层</strong>：让 LLM 只做语义理解，把排期、冲突检测与状态更新交给确定性模块。这个设计降低了单点不确定性，但跨模块数据契约仍需要继续收束。</li>
+              <li><strong>评测驱动</strong>：我发现原本「全绿」的评测与真实链路脱节，于是开始重建端到端场景、质量评测与覆盖矩阵。当前评测能暴露问题，但尚未形成稳定的端到端验收基线。</li>
             </ul>
             <p class="act-quote">这一幕是整个项目最有价值的部分：我从「加功能 / 修 bug」进入到「系统设计 + 评测文化」。</p>
           </article>
@@ -145,26 +145,18 @@
             <tr><th>难点</th><th>现象</th><th>解决</th></tr>
           </thead>
           <tbody>
-            <tr><td>拆解「像对了」但抽象</td><td>LLM 输出「学习监督学习基础」这类占位 / 大块</td><td>few-shot + 抽象↔具体对照 + 调用重试；拆解质量 66→85（LLM-as-judge）</td></tr>
+            <tr><td>拆解「像对了」但抽象</td><td>LLM 输出「学习监督学习基础」这类占位 / 大块</td><td>加入 few-shot、抽象↔具体对照与调用重试，并继续用真实任务校准拆解粒度</td></tr>
             <tr><td>排期堆在同一天</td><td>贪心塞满，「7 天计划」3 天排完</td><td>从「正向贪心」改为按 deadline 反推均摊；排不下溢出而非丢弃</td></tr>
             <tr><td>新旧任务重叠</td><td>每个入口各写避让 → 失控</td><td>时间槽后处理统一收口：共享 find_available_slot + validate_no_overlap</td></tr>
             <tr><td>模糊反馈难</td><td>「做了一半」要定位任务、算剩余、重排</td><td>统一 task_id / slot 结构，反馈与重排复用同一套时间表管线；补范围序数 / 取消 / 模糊澄清</td></tr>
-            <tr><td>隐藏 bug</td><td>建评测时暴露 8 个此前看不见的真 bug</td><td>时长塌缩成 1h、分数小时假重叠崩溃、意图误判等，逐个修</td></tr>
+            <tr><td>跨模块隐藏问题</td><td>单个模块测试通过，接到真实交互后仍出现异常</td><td>针对时长塌缩、分数小时冲突、意图误判与状态不同步逐项定位</td></tr>
           </tbody>
         </table>
       </section>
 
-      <section class="subpage-section" hidden data-review-pending="results">
-        <h2>结果</h2>
-        <div class="cs-stats">
-          <div class="cs-stat"><strong>66 → 85</strong><span>拆解质量（LLM-as-judge）</span></div>
-          <div class="cs-stat"><strong>83% → 100%</strong><span>意图准确率（收敛后）</span></div>
-          <div class="cs-stat"><strong>~265</strong><span>项自动化测试（后端 249 + 前端 16）</span></div>
-          <div class="cs-stat"><strong>12/12</strong><span>端到端评测通过 · T04→T05 8/8</span></div>
-          <div class="cs-stat"><strong>0</strong><span>重叠 / 碎片 / 丢任务 / 塌缩</span></div>
-          <div class="cs-stat"><strong>CI</strong><span>GitHub Actions 守护（pytest + 端到端 + 前端）</span></div>
-        </div>
-        <p style="margin-top:18px;">新增能力：时间约束（「周三上午有课别排」）、个人作息画像 + 预设身份、改排已有计划、从反馈学各类任务的估时倍率。</p>
+      <section class="subpage-section">
+        <h2>项目结果</h2>
+        <p>该项目尚未形成稳定上线版本，但通过实际开发暴露了 Agent 系统中「局部模块通过不等于端到端可用」的问题，也促使我重新设计评测、验收与变更管理流程。</p>
       </section>
 
       <section class="subpage-section">
@@ -175,19 +167,19 @@
           <li>规则编排什么时候会失控？纯 LLM 什么时候更划算？成本边界在哪？</li>
           <li>怎么判断「它真的对了」——而不是「看起来对了」？</li>
         </ul>
-        <p style="margin-top:16px;">我没停在「怀疑架构」，而是真做了 LangGraph 和单次 LLM 两种实验去比较稳定性 / 灵活性 / 维护成本；最后想明白答案不是二选一，而是分层 + 用评测把正确性钉死。这让项目从一个产品原型，变成了一个「AI 应用编排方式」的实验场。</p>
+        <p style="margin-top:16px;">我没停在「怀疑架构」，而是真做了 LangGraph 和单次 LLM 两种实验去比较稳定性 / 灵活性 / 维护成本；最后想明白答案不是二选一，而是分层，并用评测持续暴露端到端问题。这让项目从一个产品原型，变成了一个「AI 应用编排方式」的实验场。</p>
       </section>
 
       <section class="subpage-section">
         <h2>当前状态与下一步</h2>
-        <p><strong>✅ 已完成：</strong>核心闭环（拆解→排期→反馈→重排）、时间约束 / 作息画像、改排、个性化估时、今日视图、评测体系 + CI。</p>
-        <p><strong>⏳ 优化中 / 未做：</strong>图片 / 文件输入（多模态）、复杂反馈的语义匹配更稳、单次 LLM 链路的拆解约束更强、活动提取 / 消费记录等 P1 模块。</p>
+        <p><strong>当前状态：</strong>核心模块已分别实现，并完成部分场景测试；但真实端到端交互中仍存在状态不同步、任务冲突与反馈后重排偏差，正在收束最小稳定闭环。</p>
+        <p><strong>下一步：</strong>先统一跨模块状态结构和验收场景，解决任务冲突与反馈重排偏差；在最小闭环稳定之前，不继续扩展多模态输入和其他 P1 功能。</p>
       </section>
 
       <section class="subpage-section">
         <h2>技术栈</h2>
         <p style="font-family:var(--mono);font-size:13px;color:var(--muted);line-height:1.9;">
-          React / Vite 前端 · Python HTTP API 后端 · LLM（DeepSeek，OpenAI 兼容）+ 本地规则兜底 · GitHub Actions CI · 端到端 / LLM-as-judge 评测体系。
+          React / Vite 前端 · Python HTTP API 后端 · LLM + 本地规则兜底 · 确定性排期与重排模块 · 单元测试 / 场景评测脚本。
         </p>
       </section>
 

@@ -3,15 +3,15 @@
 const PROJECTS = [
   {
     num: '01',
-    title: '灵活规划',
-    tagline: '持续规划，而非一次生成',
+    title: '灵活规划（Replan）',
+    tagline: '反馈驱动的持续规划系统',
     h3: '计划生成之后，世界就变了',
-    desc: '传统日程工具的问题不是记录，而是计划生成之后，世界就变了。LLM 负责理解与拆解自然语言任务，规则状态机负责排期与重排——因为时间数据容不得歧义。每日反馈作为状态输入，驱动局部重排，而不是重新生成整份计划。',
-    status: '2026.7 冻结版',
+    desc: '传统日程工具的问题不是记录，而是计划生成之后，世界就变了。核心模块已分别实现，并完成部分场景测试；真实端到端交互仍存在状态不同步、任务冲突与反馈后重排偏差，正在收束最小稳定闭环。',
+    status: '最小稳定闭环收束中',
     github: 'https://github.com/lllllbbbbbxxx/ai-schedule-butler',
     caseUrl: './replan.html',
     cover: './assets/covers/replan.webp',
-    tags: ['LangGraph', 'FastAPI', 'React', 'PostgreSQL', 'OpenAI API'],
+    tags: ['React', 'Python', 'LLM', 'Rule Engine', 'Evals'],
     link: '查看完整案例 →'
   },
   {
@@ -302,7 +302,7 @@ function parseCaseFiles(md) {
   const data = {};
   md.split(/^##\s+/m).slice(1).forEach(block => {
     const nl = block.indexOf('\n');
-    const header = (nl < 0 ? block : block.slice(0, nl)).trim();   // e.g. "01 灵活规划"
+    const header = (nl < 0 ? block : block.slice(0, nl)).trim();   // e.g. "01 灵活规划（Replan）"
     const num = (header.match(/^(\d{2})/) || [])[1];
     if (!num) return;
     const sections = {};
