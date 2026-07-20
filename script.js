@@ -21,7 +21,7 @@ const PROJECTS = [
     h3: '收藏的瞬间，遗忘就开始了',
     desc: '把浏览器书签变成可对话的知识库：自动聚类、语义搜索、RAG 问答；Chrome 扩展直接读现有书签，零迁移成本。我关心的不是收纳，是「再次被用上」。',
     status: '核心链路跑通 · 聚类优化中',
-    github: 'https://github.com/lllllbbbbbxxx/bookmark',
+    github: '',
     caseUrl: './bookmark.html',
     cover: './assets/covers/bookmark.webp',
     tags: ['Chrome Extension', 'Python', 'BGE-M3', 'LLM'],
