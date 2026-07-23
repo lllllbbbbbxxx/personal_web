@@ -144,11 +144,11 @@
         <h2>测评 · 一次评测驱动的根因定位</h2>
         <p>一度「分类几乎全是 Other」，第一反应是「模型不行、该换模型」。但我先建了标注评测集用数据定位，发现真凶是<strong>配置 / 降级链路的 bug</strong>（后端没读到 key、直接把一切打成 Other），而非模型能力。修好后再用逐类指标发现并修复了总分掩盖的类别回归——全程不 train-on-test。</p>
         <div class="cs-stats">
-          <div class="cs-stat"><strong>57% → 96%</strong><span>本地分类器（修复配置 bug 后）</span></div>
-          <div class="cs-stat"><strong>98.2%</strong><span>LLM 分类路径（macro F1 0.98）</span></div>
-          <div class="cs-stat"><strong>92.9%</strong><span>本地关键词分类器（macro F1 0.88）</span></div>
+          <div class="cs-stat"><strong>57% → 96%</strong><span>早期标注集 · 配置 bug 修复前后</span></div>
+          <div class="cs-stat"><strong>98.2%</strong><span>当前56条 · LLM 分类路径（macro F1 0.98）</span></div>
+          <div class="cs-stat"><strong>92.9%</strong><span>当前56条 · 本地关键词分类器（macro F1 0.88）</span></div>
           <div class="cs-stat"><strong>56 / 14</strong><span>条人工标注 / 类别（中英混排 + 边界样本）</span></div>
-          <div class="cs-stat"><strong>94.6% → 98.2%</strong><span>prompt 消歧修复类别回归（Product F1 0.40→）</span></div>
+          <div class="cs-stat"><strong>94.6% → 98.2%</strong><span>当前56条 · prompt 消歧修复类别回归（Product F1 0.40→0.89）</span></div>
           <div class="cs-stat"><strong>CI</strong><span>带准确率门槛的冒烟测试</span></div>
         </div>
         <p style="margin-top:16px;">核心想法也被验证：<strong>网页收藏一旦加入内容提取、语义检索和主动回顾，会比传统书签明显更容易被「再次用起来」。</strong></p>
@@ -163,7 +163,7 @@
           </article>
           <article class="act" style="padding:20px 26px;">
             <h3 style="margin:0 0 8px;">不被表象带偏——用评测找根因</h3>
-            <p style="margin:0;">「分类全是 Other」时先建评测集量化归因，定位到是配置 bug 而非模型能力（本地 57%→96%、LLM 98.2%）。先量化、先归因，再动手。</p>
+            <p style="margin:0;">「分类全是 Other」时先用早期标注集量化归因，定位到是配置 bug 而非模型能力（本地 57%→96%）；扩充到当前56条后，本地分类为92.9%、LLM路径为98.2%。先量化、先归因，再动手。</p>
           </article>
           <article class="act" style="padding:20px 26px;">
             <h3 style="margin:0 0 8px;">逐类指标能看见总分掩盖的问题</h3>
