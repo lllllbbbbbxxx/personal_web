@@ -10,8 +10,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600&family=IBM+Plex+Mono:ital,wght@0,400;0,700;1,400&family=Inter:ital,opsz,wght@0,14..32,300..900;1,14..32,300..900&family=Noto+Sans+SC:wght@400;500;700;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="./styles.css?v=45" />
-    <link rel="stylesheet" href="./pages.css?v=44" />
+    <link rel="stylesheet" href="./styles.css?v=50" />
+    <link rel="stylesheet" href="./pages.css?v=51" />
       <meta property="og:title" content="随手做菜 — AI 家庭做饭决策小程序 · Case Study — jun." />
     <meta property="og:description" content="随手做菜 — 库存驱动的做饭决策微信小程序。OCR 入库、加权推荐、扣库存闭环与埋点指标体系。" />
     <meta property="og:type" content="website" />
@@ -132,7 +132,8 @@
       <section class="subpage-section">
         <h2>数据驱动 · 埋点与指标体系</h2>
         <p>自研轻量埋点（事件写入云数据库）+ 云函数计算指标，围绕关键假设设计指标——<strong>用数据验证假设、决定开发优先级</strong>，而不是凭感觉堆功能。</p>
-        <table class="cs-table">
+        <div class="cs-table-wrap" tabindex="0" role="region" aria-label="关键假设与指标体系">
+          <table class="cs-table">
           <thead><tr><th>关键假设</th><th>对应指标</th><th>回答什么问题</th></tr></thead>
           <tbody>
             <tr><td>用户知道下一步做什么</td><td>首个动作转化、空转退出率</td><td>新用户是否迷失在首页</td></tr>
@@ -140,7 +141,8 @@
             <tr><td>推荐有价值</td><td>推荐接受率、按匹配度分层的接受率</td><td>推荐算法方向是否正确</td></tr>
             <tr><td>核心闭环真正跑通</td><td>做完菜扣库存率</td><td>「做饭 → 消耗」这一环是否发生</td></tr>
           </tbody>
-        </table>
+          </table>
+        </div>
       </section>
 
       <section class="subpage-section">

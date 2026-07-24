@@ -818,7 +818,14 @@
 .cs-stat span { display: block; margin-top: 5px; font-size: 12.5px; color: var(--muted); line-height: 1.5; }
 
 /* difficulty table */
-.cs-table { width: 100%; border-collapse: collapse; margin-top: 8px; }
+.cs-table-wrap {
+  max-width: 100%;
+  margin-top: 8px;
+  overflow-x: auto;
+  overscroll-behavior-inline: contain;
+  -webkit-overflow-scrolling: touch;
+}
+.cs-table { width: 100%; min-width: 620px; border-collapse: collapse; }
 .cs-table th {
   text-align: left;
   font-family: var(--mono);
@@ -1197,4 +1204,41 @@
   .ar-table-head, .ar-row { grid-template-columns: 1fr 80px; }
   .ar-table-head span:nth-child(2), .ar-row .ar-cell:nth-child(2),
   .ar-table-head span:nth-child(3), .ar-row .ar-cell:nth-child(3) { display: none; }
+}
+
+@media (max-width: 480px) {
+  .page {
+    padding: 124px 16px 64px;
+  }
+
+  .xp-grid,
+  .ar-folders {
+    grid-template-columns: 1fr;
+  }
+
+  .experiment-facts,
+  .experiment-method,
+  .cs-two {
+    grid-template-columns: 1fr;
+  }
+
+  .experiment-fact,
+  .experiment-fact + .experiment-fact {
+    padding: 14px 0;
+    border-left: 0;
+    border-top: 1px solid var(--line);
+  }
+
+  .experiment-fact:first-child {
+    border-top: 0;
+  }
+
+  .cs-table {
+    min-width: 560px;
+  }
+
+  .cs-table th,
+  .cs-table td {
+    padding-inline: 10px;
+  }
 }

@@ -195,6 +195,10 @@ button, input { font: inherit; }
   font-weight: 400;
 }
 
+.tablet-project-index {
+  display: none;
+}
+
 /* identity: who / what role / what background — the 30-second answer */
 .hero-identity { margin: 0 0 34px; }
 
@@ -1314,6 +1318,10 @@ button, input { font: inherit; }
   color: rgba(251, 250, 246, 0.82);
 }
 
+.site-footer > * {
+  min-width: 0;
+}
+
 .site-footer h3 {
   margin: 0 0 20px;
   color: var(--accent);
@@ -1340,6 +1348,8 @@ button, input { font: inherit; }
   font-size: 12.5px;
   line-height: 1.85;
   color: rgba(251, 250, 246, 0.75);
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
 }
 
 .terminal-orbit {
@@ -1870,6 +1880,12 @@ button, input { font: inherit; }
     justify-content: flex-start;
   }
 
+  .hero-block,
+  .demo-block {
+    left: 28px;
+    right: 28px;
+  }
+
   .pd-body {
     grid-template-columns: 1fr;
   }
@@ -1903,6 +1919,49 @@ button, input { font: inherit; }
   }
 }
 
+@media (min-width: 641px) and (max-width: 1100px) {
+  .tablet-project-index {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 10px;
+    margin-top: 28px;
+  }
+
+  .tablet-project-index button {
+    min-width: 0;
+    padding: 12px 14px;
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    background: rgba(255, 255, 255, 0.42);
+    color: var(--ink);
+    text-align: left;
+    cursor: pointer;
+    transition: border-color 180ms var(--ease-out), background 180ms var(--ease-out);
+  }
+
+  .tablet-project-index button:hover,
+  .tablet-project-index button:focus-visible {
+    border-color: var(--soft);
+    background: rgba(255, 255, 255, 0.72);
+    outline: none;
+  }
+
+  .tablet-project-index span {
+    display: block;
+    margin-bottom: 6px;
+    color: var(--muted);
+    font-family: var(--mono);
+    font-size: 10px;
+  }
+
+  .tablet-project-index strong {
+    display: block;
+    overflow-wrap: anywhere;
+    font-size: 12px;
+    line-height: 1.45;
+  }
+}
+
 @media (max-width: 640px) {
   .site-header {
     grid-template-columns: 1fr;
@@ -1918,6 +1977,16 @@ button, input { font: inherit; }
 
   .top-nav a {
     font-size: 11px;
+  }
+
+  .story-left {
+    padding: 106px 22px 36px;
+  }
+
+  .hero-block,
+  .demo-block {
+    left: 22px;
+    right: 22px;
   }
 
   .hero-name {
@@ -1938,7 +2007,38 @@ button, input { font: inherit; }
 
   .portal-grid { grid-template-columns: 1fr; }
   .portal-grid article { border-right: 0 !important; }
-  .site-footer { grid-template-columns: 1fr; }
+  .site-footer {
+    grid-template-columns: 1fr;
+    gap: 28px;
+    padding: 36px 22px 28px;
+  }
+
+  .footer-quote {
+    min-width: 0;
+  }
+
+  .terminal-orbit {
+    display: none;
+  }
+}
+
+@media (max-width: 360px) {
+  .site-header {
+    padding-inline: 16px;
+  }
+
+  .top-nav {
+    gap: 0;
+  }
+
+  .top-nav a {
+    padding-inline: 2px;
+    font-size: 10px;
+  }
+
+  .hero-cta-row {
+    gap: 14px;
+  }
 }
 
 /* ── Accessibility ───────────────────────────── */

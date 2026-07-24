@@ -566,6 +566,17 @@ trackItems.forEach((item, i) => {
   });
 });
 
+document.querySelectorAll('[data-project-jump]').forEach(item => {
+  item.addEventListener('click', () => {
+    if (!story) return;
+    const i = Number(item.dataset.projectJump);
+    if (!Number.isInteger(i) || i < 0 || i >= NUM_PROJECTS) return;
+    const max = story.offsetHeight - window.innerHeight;
+    const targetProgress = HERO_END + (i / (NUM_PROJECTS - 1)) * (PROJECTS_END - HERO_END);
+    window.scrollTo({ top: story.offsetTop + max * targetProgress, behavior: 'smooth' });
+  });
+});
+
 // ── Scroll reveal ─────────────────────────────────────────────────────────────
 
 if (!reduced) {

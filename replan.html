@@ -10,8 +10,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600&family=IBM+Plex+Mono:ital,wght@0,400;0,700;1,400&family=Inter:ital,opsz,wght@0,14..32,300..900;1,14..32,300..900&family=Noto+Sans+SC:wght@400;500;700;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="./styles.css?v=45" />
-    <link rel="stylesheet" href="./pages.css?v=44" />
+    <link rel="stylesheet" href="./styles.css?v=50" />
+    <link rel="stylesheet" href="./pages.css?v=51" />
       <meta property="og:title" content="灵活规划（Replan）｜反馈驱动的持续规划系统 — jun." />
     <meta property="og:description" content="记录任务拆解、排期、反馈与重排模块的实现，以及端到端联调中暴露的问题与纠偏过程。" />
     <meta property="og:type" content="website" />
@@ -140,7 +140,8 @@
 
       <section class="subpage-section">
         <h2>具体难点 &amp; 怎么解</h2>
-        <table class="cs-table">
+        <div class="cs-table-wrap" tabindex="0" role="region" aria-label="项目难点与解决方案">
+          <table class="cs-table">
           <thead>
             <tr><th>难点</th><th>现象</th><th>解决</th></tr>
           </thead>
@@ -151,7 +152,8 @@
             <tr><td>模糊反馈难</td><td>「做了一半」要定位任务、算剩余、重排</td><td>统一 task_id / slot 结构，反馈与重排复用同一套时间表管线；补范围序数 / 取消 / 模糊澄清</td></tr>
             <tr><td>跨模块隐藏问题</td><td>单个模块测试通过，接到真实交互后仍出现异常</td><td>针对时长塌缩、分数小时冲突、意图误判与状态不同步逐项定位</td></tr>
           </tbody>
-        </table>
+          </table>
+        </div>
       </section>
 
       <section class="subpage-section">
