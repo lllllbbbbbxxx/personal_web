@@ -27,8 +27,12 @@ assets/experiments/useless-button/images/Screenshot*.png
 optimization-guide.html
 
 # Sanity Studio
+node_modules/
 studio/node_modules/
 studio/dist/
 studio/.sanity/
 studio/.env
 .pnpm-store/
+
+# Static site build output
+dist/
