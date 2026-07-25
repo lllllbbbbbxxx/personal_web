@@ -21,6 +21,22 @@ for (const name of requiredEnvironment) {
 
 const bucket = process.env.COS_BUCKET;
 const region = process.env.COS_REGION;
+const mebibyte = 1024 * 1024;
+const multipartThreshold = 5 * mebibyte;
+const maxUploadAttempts = 4;
+const transientCosErrorCodes = new Set([
+  "EAI_AGAIN",
+  "ECONNRESET",
+  "ECONNREFUSED",
+  "EPIPE",
+  "ESOCKETTIMEDOUT",
+  "ETIMEDOUT",
+  "InternalError",
+  "RequestTimeout",
+  "ServiceUnavailable",
+  "SlowDown",
+  "UserNetworkTooSlow",
+]);
 const distDir = path.resolve(
   path.dirname(fileURLToPath(import.meta.url)),
   "../dist",
@@ -35,6 +51,9 @@ if (!/^[a-z0-9][a-z0-9-]*-\d+$/.test(bucket)) {
 const cos = new COS({
   SecretId: process.env.TENCENT_SECRET_ID,
   SecretKey: process.env.TENCENT_SECRET_KEY,
+  ChunkRetryTimes: 3,
+  FileParallelLimit: 3,
+  ChunkParallelLimit: 3,
 });
 
 const contentTypes = new Map([
@@ -72,6 +91,55 @@ function callCos(method, parameters) {
       resolve(data);
     });
   });
+}
+
+function sleep(milliseconds) {
+  return new Promise((resolve) => {
+    setTimeout(resolve, milliseconds);
+  });
+}
+
+function isTransientCosError(error) {
+  const statusCode = Number(error?.statusCode);
+
+  return (
+    transientCosErrorCodes.has(error?.code) ||
+    statusCode === 408 ||
+    statusCode === 429 ||
+    statusCode >= 500
+  );
+}
+
+function tagUploadError(error, fileKey) {
+  const taggedError = new Error(
+    error?.message ?? String(error ?? "Unknown COS upload error"),
+    { cause: error },
+  );
+  taggedError.code = error?.code;
+  taggedError.statusCode = error?.statusCode;
+  taggedError.fileKey = fileKey;
+  return taggedError;
+}
+
+async function withUploadRetry(fileKey, operation) {
+  for (let attempt = 1; attempt <= maxUploadAttempts; attempt += 1) {
+    try {
+      return await operation();
+    } catch (error) {
+      if (!isTransientCosError(error) || attempt === maxUploadAttempts) {
+        throw tagUploadError(error, fileKey);
+      }
+
+      const delay = 1000 * 2 ** (attempt - 1);
+      const code = error?.code ?? `HTTP ${error?.statusCode ?? "unknown"}`;
+      console.warn(
+        `Upload retry ${attempt}/${maxUploadAttempts - 1} for ${fileKey} after ${code}; waiting ${delay}ms.`,
+      );
+      await sleep(delay);
+    }
+  }
+
+  throw new Error(`Upload retry loop ended unexpectedly for ${fileKey}.`);
 }
 
 async function walk(directory, prefix = "") {
@@ -127,38 +195,53 @@ async function uploadFile(file) {
   const fileStat = await stat(file.absolutePath);
   const extension = path.extname(file.key).toLowerCase();
 
-  await callCos("putObject", {
-    Bucket: bucket,
-    Region: region,
-    Key: file.key,
-    Body: createReadStream(file.absolutePath),
-    ContentLength: fileStat.size,
-    ContentType:
-      contentTypes.get(extension) ?? "application/octet-stream",
-    ContentDisposition: "inline",
-    CacheControl: cacheControlFor(file.key),
-  });
+  await withUploadRetry(file.key, () =>
+    callCos("uploadFile", {
+      Bucket: bucket,
+      Region: region,
+      Key: file.key,
+      FilePath: file.absolutePath,
+      ContentLength: fileStat.size,
+      ContentType:
+        contentTypes.get(extension) ?? "application/octet-stream",
+      ContentDisposition: "inline",
+      CacheControl: cacheControlFor(file.key),
+      SliceSize: multipartThreshold,
+      ChunkSize: multipartThreshold,
+    }),
+  );
 
-  console.log(`Uploaded: ${file.key}`);
+  const uploadMode =
+    fileStat.size > multipartThreshold ? "multipart" : "single request";
+  console.log(`Uploaded (${uploadMode}): ${file.key}`);
 }
 
 async function runWithConcurrency(items, concurrency, worker) {
   let nextIndex = 0;
+  let firstError;
 
   async function runWorker() {
-    while (nextIndex < items.length) {
+    while (!firstError && nextIndex < items.length) {
       const item = items[nextIndex];
       nextIndex += 1;
-      await worker(item);
+      try {
+        await worker(item);
+      } catch (error) {
+        firstError ??= error;
+      }
     }
   }
 
-  await Promise.all(
+  await Promise.allSettled(
     Array.from(
       { length: Math.min(concurrency, items.length) },
       runWorker,
     ),
   );
+
+  if (firstError) {
+    throw firstError;
+  }
 }
 
 async function deleteRemoteObjects(keys) {
@@ -225,14 +308,29 @@ try {
   const assetFiles = filesToUpload.filter(
     (file) => path.extname(file.key).toLowerCase() !== ".html",
   );
+  const largeAssetFiles = [];
+  const regularAssetFiles = [];
+
+  for (const file of assetFiles) {
+    const fileStat = await stat(file.absolutePath);
+    if (fileStat.size > multipartThreshold) {
+      largeAssetFiles.push(file);
+    } else {
+      regularAssetFiles.push(file);
+    }
+  }
 
   console.log(
     `Sync plan: ${filesToUpload.length} upload(s), ${unchangedCount} unchanged, ${staleKeys.length} deletion(s).`,
   );
+  console.log(
+    `Upload plan: ${largeAssetFiles.length} multipart asset(s), ${regularAssetFiles.length} regular asset(s), ${htmlFiles.length} HTML file(s).`,
+  );
 
   // Upload assets first and HTML last so new pages do not reference missing assets.
-  await runWithConcurrency(assetFiles, 6, uploadFile);
-  await runWithConcurrency(htmlFiles, 6, uploadFile);
+  await runWithConcurrency(largeAssetFiles, 2, uploadFile);
+  await runWithConcurrency(regularAssetFiles, 4, uploadFile);
+  await runWithConcurrency(htmlFiles, 4, uploadFile);
 
   // Stale objects are deleted only after their names were printed and uploads succeeded.
   if (staleKeys.length > 0) {
@@ -246,6 +344,7 @@ try {
 } catch (error) {
   const code = error?.code ? ` [${error.code}]` : "";
   const message = error?.message ?? "Unknown COS deployment error";
-  console.error(`Deployment failed${code}: ${message}`);
+  const file = error?.fileKey ? ` while uploading "${error.fileKey}"` : "";
+  console.error(`Deployment failed${code}${file}: ${message}`);
   process.exitCode = 1;
 }
