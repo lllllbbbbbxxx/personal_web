@@ -77,6 +77,7 @@ const DOT_R         = 0.30;    // ring radius (fraction of disc) the dot/wedge t
 const LABEL_R       = 0.42;    // arc radius the project labels sit on
 const SLOT_ANGLE    = 24 * Math.PI / 180;  // angular gap between adjacent projects
 const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const mobileProjectLayout = window.matchMedia('(max-width: 640px)');
 
 // ── Demo carousel slides ──────────────────────────────────────────────────────
 
@@ -201,6 +202,12 @@ function setActiveIndex(index) {
 
 function updateStory() {
   if (!story) return;
+
+  if (mobileProjectLayout.matches) {
+    navItems.forEach(el => el.classList.remove('active'));
+    navItems[0]?.classList.add('active');
+    return;
+  }
 
   const rect       = story.getBoundingClientRect();
   const scrollable = Math.max(1, rect.height - window.innerHeight);
@@ -529,6 +536,10 @@ window.addEventListener('resize', () => {
 
 document.querySelector('[data-explore]')?.addEventListener('click', e => {
   e.preventDefault();
+  if (mobileProjectLayout.matches) {
+    document.querySelector('.mobile-projects')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    return;
+  }
   if (!story) return;
   const max = story.offsetHeight - window.innerHeight;
   window.scrollTo({ top: story.offsetTop + max * HERO_END, behavior: 'smooth' });
@@ -622,7 +633,7 @@ window.addEventListener('load', updateStory);
 // ── Auto-snap: settle on the nearest project when scrolling stops ──────────────
 let snapTimer = null;
 function snapToNearest() {
-  if (!story || casefile?.classList.contains('is-open')) return;
+  if (!story || mobileProjectLayout.matches || casefile?.classList.contains('is-open')) return;
   const rect = story.getBoundingClientRect();
   const scrollable = Math.max(1, rect.height - window.innerHeight);
   const progress = clamp(-rect.top / scrollable);

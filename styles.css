@@ -199,6 +199,10 @@ button, input { font: inherit; }
   display: none;
 }
 
+.mobile-projects {
+  display: none;
+}
+
 /* identity: who / what role / what background — the 30-second answer */
 .hero-identity { margin: 0 0 34px; }
 
@@ -1979,14 +1983,127 @@ button, input { font: inherit; }
     font-size: 11px;
   }
 
-  .story-left {
-    padding: 106px 22px 36px;
+  .scroll-story {
+    height: auto;
+    min-height: 0;
   }
 
-  .hero-block,
+  .story-sticky {
+    position: relative;
+    display: block;
+    height: auto;
+    min-height: 0;
+    overflow: visible;
+  }
+
+  .story-left {
+    padding: 116px 16px 72px;
+  }
+
+  .hero-block {
+    position: relative;
+    top: auto;
+    left: auto;
+    right: auto;
+    min-height: calc(100svh - 116px);
+    padding: 42px 6px 72px;
+    opacity: 1 !important;
+    transform: none !important;
+    will-change: auto;
+  }
+
   .demo-block {
-    left: 22px;
-    right: 22px;
+    display: none;
+  }
+
+  .mobile-projects {
+    display: grid;
+    gap: 18px;
+    padding-top: 8px;
+    scroll-margin-top: 104px;
+  }
+
+  .mobile-projects-head {
+    margin-bottom: 8px;
+    padding: 0 6px 16px;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .mobile-projects-head span,
+  .mobile-project-copy > span {
+    display: block;
+    color: var(--muted);
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.08em;
+  }
+
+  .mobile-projects-head h2 {
+    margin: 8px 0 0;
+    font-size: 26px;
+    line-height: 1.15;
+  }
+
+  .mobile-project-card {
+    display: block;
+    overflow: hidden;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.5);
+    color: var(--ink);
+    text-decoration: none;
+  }
+
+  .mobile-project-card:active {
+    background: rgba(255, 255, 255, 0.82);
+  }
+
+  .mobile-project-media {
+    aspect-ratio: 16 / 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #efefe9, #e4e4dd);
+  }
+
+  .mobile-project-media img {
+    width: min(54%, 180px);
+    aspect-ratio: 1;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: 0 12px 28px rgba(20, 24, 18, 0.12);
+  }
+
+  .mobile-project-copy {
+    padding: 18px 18px 20px;
+  }
+
+  .mobile-project-copy h3 {
+    margin: 8px 0 5px;
+    font-size: 20px;
+    line-height: 1.25;
+  }
+
+  .mobile-project-copy p {
+    margin: 0;
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.6;
+  }
+
+  .mobile-project-copy strong {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 20px;
+    padding-top: 14px;
+    border-top: 1px solid var(--line);
+    font-size: 12px;
+  }
+
+  .mobile-project-copy i {
+    font-style: normal;
+    font-size: 16px;
   }
 
   .hero-name {
