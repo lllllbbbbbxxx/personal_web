@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "build": "node scripts/build.mjs",
-    "deploy:cos": "node scripts/deploy-cos.mjs"
+    "deploy:cos": "node scripts/deploy-cos.mjs",
+    "verify:cache": "node scripts/verify-cache-policy.mjs"
   },
   "dependencies": {
     "cos-nodejs-sdk-v5": "3.0.0"

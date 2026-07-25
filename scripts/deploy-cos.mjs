@@ -4,6 +4,7 @@ import { readdir, stat } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import COS from "cos-nodejs-sdk-v5";
+import { cacheControlFor, isCacheManagedAsset } from "./cache-policy.mjs";
 
 const requiredEnvironment = [
   "TENCENT_SECRET_ID",
@@ -59,24 +60,6 @@ const contentTypes = new Map([
   [".woff", "font/woff"],
   [".woff2", "font/woff2"],
   [".xml", "application/xml; charset=utf-8"],
-]);
-
-const longCacheExtensions = new Set([
-  ".bin",
-  ".css",
-  ".gif",
-  ".ico",
-  ".jpeg",
-  ".jpg",
-  ".js",
-  ".mp3",
-  ".mp4",
-  ".png",
-  ".svg",
-  ".webm",
-  ".webp",
-  ".woff",
-  ".woff2",
 ]);
 
 function callCos(method, parameters) {
@@ -138,17 +121,6 @@ async function listRemoteObjects() {
   } while (marker);
 
   return objects;
-}
-
-function cacheControlFor(key) {
-  const extension = path.extname(key).toLowerCase();
-  if (extension === ".html") {
-    return "no-cache";
-  }
-  if (longCacheExtensions.has(extension)) {
-    return "public,max-age=31536000,immutable";
-  }
-  return "public, max-age=3600";
 }
 
 async function uploadFile(file) {
@@ -237,7 +209,8 @@ try {
 
   for (const file of localFiles) {
     const extension = path.extname(file.key).toLowerCase();
-    const alwaysRefreshHeaders = [".html", ".css", ".js"].includes(extension);
+    const alwaysRefreshHeaders =
+      extension === ".html" || isCacheManagedAsset(file.key);
     const localMd5 = await md5File(file.absolutePath);
     if (!alwaysRefreshHeaders && remoteObjects.get(file.key) === localMd5) {
       unchangedCount += 1;

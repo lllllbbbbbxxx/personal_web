@@ -35,6 +35,9 @@ jobs:
       - name: Build website
         run: npm run build
 
+      - name: Verify cache policy
+        run: npm run verify:cache
+
       - name: Deploy dist to COS
         env:
           TENCENT_SECRET_ID: ${{ secrets.TENCENT_SECRET_ID }}
