@@ -21,6 +21,7 @@ for (const name of requiredEnvironment) {
 
 const bucket = process.env.COS_BUCKET;
 const region = process.env.COS_REGION;
+const requiredRootFiles = ["index.html", "404.html"];
 const mebibyte = 1024 * 1024;
 const multipartThreshold = 5 * mebibyte;
 const maxUploadAttempts = 4;
@@ -261,14 +262,34 @@ async function deleteRemoteObjects(keys) {
   }
 }
 
+async function verifyRemoteRootFiles() {
+  const remoteObjects = await listRemoteObjects();
+  const missingKeys = requiredRootFiles.filter(
+    (key) => !remoteObjects.has(key),
+  );
+
+  if (missingKeys.length > 0) {
+    throw new Error(
+      `Root object verification failed; missing from COS: ${missingKeys.join(", ")}.`,
+    );
+  }
+
+  for (const key of requiredRootFiles) {
+    console.log(`Verified COS root object: ${key}`);
+  }
+}
+
 try {
   const localFiles = await walk(distDir);
   if (
     localFiles.length < 10 ||
-    !localFiles.some((file) => file.key === "index.html")
+    requiredRootFiles.some(
+      (requiredKey) =>
+        !localFiles.some((file) => file.key === requiredKey),
+    )
   ) {
     throw new Error(
-      "Safety check failed: dist is unexpectedly small or has no index.html; COS was not changed.",
+      "Safety check failed: dist is unexpectedly small or is missing index.html/404.html; COS was not changed.",
     );
   }
 
@@ -337,6 +358,8 @@ try {
     await deleteRemoteObjects(staleKeys);
     console.log(`Deleted ${staleKeys.length} stale COS object(s).`);
   }
+
+  await verifyRemoteRootFiles();
 
   console.log(
     `Deployment successful: ${localFiles.length} local object(s) synchronized to COS.`,
