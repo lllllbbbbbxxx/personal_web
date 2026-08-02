@@ -1,4 +1,4 @@
-name: Deploy website to Tencent Cloud COS
+name: Deploy website to Hong Kong COS
 
 on:
   push:
@@ -10,7 +10,7 @@ permissions:
   contents: read
 
 concurrency:
-  group: deploy-cos-production
+  group: deploy-cos-hong-kong-production
   cancel-in-progress: false
 
 jobs:
@@ -45,47 +45,6 @@ jobs:
           path: dist
           if-no-files-found: error
           retention-days: 1
-
-  deploy-shanghai:
-    name: Deploy to Shanghai COS
-    needs: build
-    runs-on: ubuntu-latest
-    timeout-minutes: 60
-
-    steps:
-      - name: Check out repository
-        uses: actions/checkout@v4
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 22
-          cache: npm
-
-      - name: Install deployment dependencies
-        run: npm install --ignore-scripts
-
-      - name: Restore dist artifact
-        uses: actions/download-artifact@v4
-        with:
-          name: website-dist-${{ github.sha }}
-          path: dist
-
-      - name: Deploy dist to Shanghai COS root
-        env:
-          TENCENT_SECRET_ID: ${{ secrets.TENCENT_SECRET_ID }}
-          TENCENT_SECRET_KEY: ${{ secrets.TENCENT_SECRET_KEY }}
-          COS_BUCKET: ${{ secrets.COS_BUCKET }}
-          COS_REGION: ${{ secrets.COS_REGION }}
-        run: npm run deploy:cos
-
-      - name: Shanghai deployment summary
-        if: success()
-        run: |
-          echo "### Shanghai COS deployment succeeded" >> "$GITHUB_STEP_SUMMARY"
-          echo "- Commit: \`$GITHUB_SHA\`" >> "$GITHUB_STEP_SUMMARY"
-          echo "- Root objects verified: \`index.html\`, \`404.html\`" >> "$GITHUB_STEP_SUMMARY"
-          echo "Shanghai deployment successful."
 
   deploy-hong-kong:
     name: Deploy to Hong Kong COS
