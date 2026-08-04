@@ -12,6 +12,7 @@ const rootStaticExtensions = new Set([
   ".js",
   ".json",
   ".map",
+  ".md",
   ".txt",
   ".webmanifest",
   ".xml",
@@ -56,6 +57,10 @@ for (const relativePath of sourceFiles) {
 
 if (!sourceFiles.includes("index.html")) {
   throw new Error("Build failed: index.html was not included in dist.");
+}
+
+if (!sourceFiles.includes("项目档案.md")) {
+  throw new Error("Build failed: project case data was not included in dist.");
 }
 
 console.log(`Build complete: ${sourceFiles.length} files written to dist/`);
