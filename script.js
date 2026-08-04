@@ -11,6 +11,9 @@ const PROJECTS = [
     github: 'https://github.com/lllllbbbbbxxx/replan-v2',
     caseUrl: './replan.html',
     cover: './assets/covers/replan.webp',
+    demo: './assets/demos/replan-demo.mp4',
+    demoPoster: './assets/demos/replan-demo-poster.webp',
+    demoLandscape: true,
     tags: ['React', 'Python', 'LLM', 'Rule Engine', 'Evals'],
     link: '查看完整案例 →'
   },
@@ -24,6 +27,9 @@ const PROJECTS = [
     github: 'https://github.com/lllllbbbbbxxx/bookmark',
     caseUrl: './bookmark.html',
     cover: './assets/covers/bookmark.webp',
+    demo: './assets/demos/bookmark-demo.mp4',
+    demoPoster: './assets/demos/bookmark-demo-poster.webp',
+    demoLandscape: true,
     tags: ['Chrome Extension', 'Python', 'BGE-M3', 'LLM'],
     link: '查看项目详情 →'
   },
@@ -87,7 +93,7 @@ function buildDemoSlides() {
     <div class="demo-slide">
       <span class="demo-proj-tag">${p.num} · ${p.title}</span>
       ${p.demo
-        ? `<video class="demo-cover" src="${p.demo}" muted loop playsinline preload="metadata" poster="${p.cover || ''}" aria-label="${p.title} demo"></video>`
+        ? `<video class="demo-cover${p.demoLandscape ? ' demo-cover--landscape' : ''}" src="${p.demo}" muted loop playsinline preload="metadata" poster="${p.demoPoster || p.cover || ''}" aria-label="${p.title} demo"></video>`
         : p.cover
         ? `<img class="demo-cover demo-cover--round" src="${p.cover}" alt="${p.title} 封面" loading="lazy" />`
         : `<span class="demo-proj-tag" style="position:static">${p.title}</span>`}
@@ -431,10 +437,11 @@ function openCaseFile() {
   if (cfVideo) {
     cfVideo.pause();
     cfVideo.removeAttribute('src');
+    cfVideo.classList.toggle('cf-video--landscape', !!p.demoLandscape);
     cfVideo.style.display = 'none';
     if (p.demo) {
       cfVideo.src = p.demo;
-      if (p.cover) cfVideo.poster = p.cover;
+      if (p.demoPoster || p.cover) cfVideo.poster = p.demoPoster || p.cover;
       cfVideo.style.display = '';
       cfVideo.load();
       cfVideo.play().catch(() => {});

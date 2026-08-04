@@ -18,6 +18,10 @@ assets/archive/service-design-*/*.pdf
 assets/experiments/**/*.mov
 assets/experiments/**/*.MOV
 
+# homepage demo source videos (optimized MP4 files are deployed)
+assets/demos/*.mov
+assets/demos/*.MOV
+
 # experiment source images (optimized WebP files are deployed)
 assets/experiments/ai-memory/images/demo示意图.png
 assets/experiments/useless-button/images/IMG_*.JPG

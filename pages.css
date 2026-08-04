@@ -879,6 +879,18 @@
   background: #000;
 }
 
+.case-demo-video {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 2 / 1;
+  margin: 18px auto 0;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  display: block;
+  object-fit: contain;
+  background: #10110f;
+}
+
 /* ── Experiment detail pages ── */
 .experiment-page { max-width: 1040px; }
 .experiment-links {

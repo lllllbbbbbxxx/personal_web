@@ -384,6 +384,13 @@ button, input { font: inherit; }
   object-fit: contain;
 }
 
+.demo-cover--landscape {
+  width: 94%;
+  max-width: 94%;
+  max-height: 86%;
+  border-radius: 8px;
+}
+
 .demo-cover--round,
 .cf-cover--round {
   border-radius: 50%;
@@ -1495,6 +1502,13 @@ button, input { font: inherit; }
   box-shadow: 0 12px 30px rgba(20, 24, 18, 0.14);
   display: block;
   object-fit: contain;
+}
+
+.cf-video--landscape {
+  width: 94%;
+  max-width: 94%;
+  max-height: 88%;
+  border-radius: 8px;
 }
 
 .cf-back {
