@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Cache-Control" content="no-cache, must-revalidate" />
+    <title>在线简历编辑器 — jun.</title>
+    <meta name="description" content="在线简历编辑器 — 在浏览器内直接编辑、自动保存并导出 PDF 或高分辨率图片。" />
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231a1d1b'/%3E%3Ctext x='29' y='46' font-family='-apple-system,sans-serif' font-size='38' font-weight='800' fill='%23f8f8f5' text-anchor='middle'%3Ej%3C/text%3E%3Ccircle cx='47' cy='42' r='5.5' fill='%23c5ff57'/%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600&family=IBM+Plex+Mono:ital,wght@0,400;0,700;1,400&family=Inter:ital,opsz,wght@0,14..32,300..900;1,14..32,300..900&family=Noto+Sans+SC:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./styles.css?v=50" />
+    <link rel="stylesheet" href="./pages.css?v=52" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand-mark" href="./index.html" aria-label="jun."><span class="brand-logo">jun.</span><i></i></a>
+      <nav class="top-nav" aria-label="Primary navigation">
+        <a href="./index.html#systems">Systems</a>
+        <a class="active" href="./experiments.html">Experiments</a>
+        <a href="./cambium.html">Cambium</a>
+        <a href="./archive.html">Archive</a>
+        <a href="./about.html">About</a>
+      </nav>
+      <div class="time-place"><b></b><span>Building</span></div>
+    </header>
+
+    <main class="page experiment-page">
+      <a class="page-back" href="./experiments.html"><span>←</span> Experiments</a>
+      <div class="page-intro">
+        <p class="page-kicker">DOCUMENT TOOL · BROWSER EDITING</p>
+        <h1>在线简历编辑器</h1>
+        <p>为频繁修改的一页简历做的轻量编辑器。文字直接在 A4 页面中编辑，浏览器自动保存，修改完成后可导出 PDF 或高分辨率图片，不需要在排版软件和预览文件之间反复切换。</p>
+        <p class="experiment-note"><strong>当前状态：</strong>可用原型。核心编辑、自动保存、字号微调、溢出提醒与导出已经实现；多版本管理仍在继续整理。</p>
+      </div>
+
+      <div class="experiment-facts" aria-label="项目能力">
+        <div class="experiment-fact"><strong>A4 预览</strong><span>编辑结果与最终页面同步</span></div>
+        <div class="experiment-fact"><strong>自动保存</strong><span>内容只存于当前浏览器</span></div>
+        <div class="experiment-fact"><strong>PDF / PNG</strong><span>支持打印与高分辨率图片导出</span></div>
+        <div class="experiment-fact"><strong>溢出提醒</strong><span>内容超过一页时及时提示</span></div>
+      </div>
+
+      <section class="subpage-section">
+        <h2>所见即所得编辑</h2>
+        <p class="experiment-copy">工具栏只保留高频动作：调整字号、保存、恢复初始版和导出。页面主体就是最终简历，点击文字即可修改，避免抽象表单与最终版式脱节。</p>
+        <figure class="experiment-figure experiment-figure--wide">
+          <img src="./assets/experiments/resume-editor/images/editor.webp" alt="在线简历编辑器中的 A4 简历与顶部操作栏" />
+          <figcaption><strong>真实编辑界面</strong>顶部集中放置字号、保存、恢复和导出控制，A4 页面始终保持可见。</figcaption>
+        </figure>
+      </section>
+
+      <section class="subpage-section">
+        <h2>设计取舍</h2>
+        <div class="experiment-method">
+          <div><strong>直接编辑</strong><p>用页面内文字编辑替代长表单，修改后立刻看到版式变化。</p></div>
+          <div><strong>本地优先</strong><p>自动保存到浏览器，不建立账户，也不把简历内容上传到数据库。</p></div>
+          <div><strong>控制一页</strong><p>字号微调与溢出检测共同处理内容密度，而不是隐藏超出内容。</p></div>
+          <div><strong>多种交付</strong><p>既可通过浏览器打印得到 PDF，也可导出适合快速分享的图片。</p></div>
+        </div>
+      </section>
+
+      <section class="subpage-section">
+        <h2>下一步</h2>
+        <p class="experiment-copy">当前版本服务于一份具体简历，验证了浏览器内直接编辑的效率。下一步会把“基础经历”和“岗位版本”分开管理，让不同方向的简历共享事实数据，同时保留各自的内容顺序与表述。</p>
+      </section>
+
+      <a class="page-back" href="./experiments.html"><span>←</span> 返回 Experiments</a>
+    </main>
+  </body>
+</html>

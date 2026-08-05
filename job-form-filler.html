@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Cache-Control" content="no-cache, must-revalidate" />
+    <title>资料一键填充 — jun.</title>
+    <meta name="description" content="资料一键填充 — 仅在用户点击时，用浏览器本地资料填写招聘网站表单。" />
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231a1d1b'/%3E%3Ctext x='29' y='46' font-family='-apple-system,sans-serif' font-size='38' font-weight='800' fill='%23f8f8f5' text-anchor='middle'%3Ej%3C/text%3E%3Ccircle cx='47' cy='42' r='5.5' fill='%23c5ff57'/%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600&family=IBM+Plex+Mono:ital,wght@0,400;0,700;1,400&family=Inter:ital,opsz,wght@0,14..32,300..900;1,14..32,300..900&family=Noto+Sans+SC:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./styles.css?v=50" />
+    <link rel="stylesheet" href="./pages.css?v=52" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand-mark" href="./index.html" aria-label="jun."><span class="brand-logo">jun.</span><i></i></a>
+      <nav class="top-nav" aria-label="Primary navigation">
+        <a href="./index.html#systems">Systems</a>
+        <a class="active" href="./experiments.html">Experiments</a>
+        <a href="./cambium.html">Cambium</a>
+        <a href="./archive.html">Archive</a>
+        <a href="./about.html">About</a>
+      </nav>
+      <div class="time-place"><b></b><span>Building</span></div>
+    </header>
+
+    <main class="page experiment-page">
+      <a class="page-back" href="./experiments.html"><span>←</span> Experiments</a>
+      <div class="page-intro">
+        <p class="page-kicker">CHROME EXTENSION · LOCAL-FIRST</p>
+        <h1>资料一键填充</h1>
+        <p>一个面向招聘表单的本地 Chrome / Edge 扩展。它在用户主动点击后识别当前页面字段，用保存在浏览器内的资料填写常见信息，并把核对与最终提交留给用户。</p>
+        <p class="experiment-note"><strong>当前状态：</strong>本地测试中。常见个人信息、教育经历、链接、附件和项目经历已支持；复杂级联选择器、多步表单与部分网站自绘组件仍需手动处理。</p>
+      </div>
+
+      <div class="experiment-facts" aria-label="项目边界">
+        <div class="experiment-fact"><strong>无联网权限</strong><span>资料保存在当前浏览器配置</span></div>
+        <div class="experiment-fact"><strong>按需触发</strong><span>只在点击插件后读取当前页</span></div>
+        <div class="experiment-fact"><strong>保守填写</strong><span>默认不覆盖已有内容</span></div>
+        <div class="experiment-fact"><strong>不自动提交</strong><span>核对与申请始终由用户完成</span></div>
+      </div>
+
+      <section class="subpage-section">
+        <h2>本地资料库</h2>
+        <p class="experiment-copy">设置页将常用资料按基本信息、教育与求职、链接与介绍、项目经历和本地文件组织。空白项不会被猜测，敏感字段默认跳过，资料可导入导出备份。</p>
+        <figure class="experiment-figure experiment-figure--wide">
+          <img src="./assets/experiments/job-form-filler/images/profile-settings.webp" alt="求职表单助手的本地资料设置页" />
+          <figcaption><strong>真实设置界面</strong>先检查并维护资料，再在招聘页面按需调用；工具没有联网权限。</figcaption>
+        </figure>
+      </section>
+
+      <section class="subpage-section">
+        <h2>交互流程</h2>
+        <div class="experiment-method">
+          <div><strong>维护资料</strong><p>用户在设置页确认基础资料、项目经历和本地简历附件。</p></div>
+          <div><strong>识别字段</strong><p>点击扩展后读取当前标签页，用中英文标签做保守匹配。</p></div>
+          <div><strong>填写与学习</strong><p>填入已识别字段；新增内容只有在用户勾选确认后才会保存。</p></div>
+          <div><strong>人工核对</strong><p>复杂控件和敏感内容保持空白，最终提交由用户在招聘网站完成。</p></div>
+        </div>
+      </section>
+
+      <section class="subpage-section">
+        <h2>仍在解决的问题</h2>
+        <p class="experiment-copy">招聘网站对字段命名和组件实现没有统一规范。当前策略宁可少填，也不在不确定时写入错误资料；验证码、文件框限制、复杂下拉和弹窗选择器仍需要人工操作。后续测试重点是扩展字段匹配覆盖，同时维持明确的隐私边界。</p>
+      </section>
+
+      <a class="page-back" href="./experiments.html"><span>←</span> 返回 Experiments</a>
+    </main>
+  </body>
+</html>

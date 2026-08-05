@@ -116,6 +116,9 @@
 }
 .xp-thumb--map img { object-position: center 58%; }
 .xp-thumb--typing img { object-position: center 45%; }
+.xp-thumb--spire img { object-position: center 16%; }
+.xp-thumb--resume img { object-position: center 8%; }
+.xp-thumb--filler img { object-position: center 8%; }
 .xp-thumb--mint  { background: linear-gradient(150deg, #d3e4cf, #a9c4a3); }
 .xp-thumb--dark  { background: linear-gradient(150deg, #2b3128, #14170f); color: rgba(255,255,255,0.55); }
 .xp-thumb--night { background: radial-gradient(circle at 60% 40%, #3a4a32, #14170f 70%); color: var(--accent); }
@@ -124,6 +127,28 @@
 .xp-thumb--warm  { background: linear-gradient(150deg, #e7ddc9, #cbb68f); color: #fff; }
 
 .xp-card-body { padding: 18px 20px 22px; }
+.xp-status {
+  display: inline-flex !important;
+  align-items: center;
+  width: fit-content;
+  margin-bottom: 9px;
+  color: #52604f !important;
+  font-family: var(--mono);
+  font-size: 10px !important;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.xp-status::before {
+  width: 6px;
+  height: 6px;
+  margin-right: 7px;
+  border-radius: 50%;
+  background: #95a890;
+  content: "";
+}
+.xp-status--usable::before { background: #4e8961; }
+.xp-status--building::before { background: #b18b52; }
 .xp-card-body strong {
   display: block;
   font-size: 16px;
