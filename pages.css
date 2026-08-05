@@ -567,6 +567,7 @@
 .arf--2 { background: linear-gradient(160deg, #c4d0a8, #8fa078); }
 .arf--3 { background: linear-gradient(160deg, #d4c898, #b0a070); }
 .arf--4 { background: linear-gradient(160deg, #c2cbb4, #97a487); }
+.arf--evolution { background: linear-gradient(160deg, #b8c5bb, #6f8475); }
 
 .ar-folder strong { font-size: 15px; font-weight: 700; }
 .ar-folder small { display: block; margin-top: 3px; font-size: 12px; color: var(--muted); font-family: var(--mono); }
@@ -1103,6 +1104,98 @@
   border: 0;
 }
 
+/* ── Personal site evolution archive ── */
+.evolution-page { max-width: 1120px; }
+.evolution-thesis {
+  max-width: 820px;
+  margin: 8px 0 64px;
+  padding: 24px 0;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  color: var(--ink);
+  font-size: clamp(19px, 2.3vw, 28px);
+  font-weight: 600;
+  line-height: 1.5;
+}
+.evolution-phase {
+  padding: 68px 0 72px;
+  border-top: 1px solid var(--line);
+}
+.evolution-phase-head {
+  display: grid;
+  grid-template-columns: 76px minmax(0, 1fr);
+  gap: 20px;
+  align-items: start;
+  margin-bottom: 28px;
+}
+.evolution-phase-no {
+  color: var(--soft);
+  font-family: var(--mono);
+  font-size: 30px;
+  line-height: 1;
+}
+.evolution-phase-date {
+  margin: 0 0 7px;
+  color: var(--muted);
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+}
+.evolution-phase h2 {
+  margin: 0;
+  font-size: clamp(25px, 3.2vw, 40px);
+  letter-spacing: 0;
+}
+.evolution-visual {
+  margin: 0;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #f6f6f2;
+}
+.evolution-visual img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.evolution-visual figcaption {
+  padding: 12px 16px 14px;
+  color: var(--muted);
+  font-family: var(--mono);
+  font-size: 11px;
+}
+.evolution-reasoning {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-top: 28px;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+.evolution-reasoning > div {
+  min-width: 0;
+  padding: 22px 22px 24px 0;
+}
+.evolution-reasoning > div + div {
+  padding-left: 22px;
+  border-left: 1px solid var(--line);
+}
+.evolution-reasoning strong {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 14px;
+}
+.evolution-reasoning p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.75;
+}
+.evolution-gallery {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
 /* ── Service-design portfolio boards ── */
 .sd-page {
   max-width: 1320px;
@@ -1434,6 +1527,17 @@
     height: 500px;
     min-height: 500px;
   }
+  .evolution-phase { padding: 50px 0 56px; }
+  .evolution-phase-head { grid-template-columns: 48px minmax(0, 1fr); gap: 10px; }
+  .evolution-phase-no { font-size: 21px; }
+  .evolution-reasoning { grid-template-columns: 1fr; }
+  .evolution-reasoning > div,
+  .evolution-reasoning > div + div {
+    padding: 17px 0 19px;
+    border-left: 0;
+  }
+  .evolution-reasoning > div + div { border-top: 1px solid var(--line); }
+  .evolution-gallery { grid-template-columns: 1fr; }
   .probe-video { height: min(66vh, 590px); }
   .ar-folder { padding: 16px; }
   .ar-folder--visual { padding: 0; }

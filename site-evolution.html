@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Cache-Control" content="no-cache, must-revalidate" />
+    <title>这个网站如何长出来 — jun.</title>
+    <meta name="description" content="个人网站迭代档案：旧版界面、主要改动、改动原因与持续反思。" />
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231a1d1b'/%3E%3Ctext x='29' y='46' font-family='-apple-system,sans-serif' font-size='38' font-weight='800' fill='%23f8f8f5' text-anchor='middle'%3Ej%3C/text%3E%3Ccircle cx='47' cy='42' r='5.5' fill='%23c5ff57'/%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600&family=IBM+Plex+Mono:ital,wght@0,400;0,700;1,400&family=Inter:ital,opsz,wght@0,14..32,300..900;1,14..32,300..900&family=Noto+Sans+SC:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./styles.css?v=50" />
+    <link rel="stylesheet" href="./pages.css?v=54" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand-mark" href="./index.html" aria-label="jun."><span class="brand-logo">jun.</span><i></i></a>
+      <nav class="top-nav" aria-label="Primary navigation">
+        <a href="./index.html#systems">Systems</a>
+        <a href="./experiments.html">Experiments</a>
+        <a href="./cambium.html">Cambium</a>
+        <a class="active" href="./archive.html">Archive</a>
+        <a href="./about.html">About</a>
+      </nav>
+      <div class="time-place"><b></b><span>Building</span></div>
+    </header>
+
+    <main class="page evolution-page">
+      <a class="page-back" href="./archive.html"><span>←</span> Archive</a>
+      <div class="page-intro">
+        <p class="page-kicker">META ARCHIVE · 2026.06 — NOW</p>
+        <h1>这个网站如何长出来</h1>
+        <p>在独立课程作品集的尝试之后，它最初只是一个关于 AI 研究方向的单页，后来逐步变成项目入口、过程档案、实验台和写作系统。这份档案保留旧界面，也记录每次大改背后的判断。</p>
+      </div>
+
+      <div class="experiment-facts" aria-label="网站迭代概况">
+        <div class="experiment-fact"><strong>2026.06</strong><span>第一版上线</span></div>
+        <div class="experiment-fact"><strong>1 + 4</strong><span>一条旁支前史与四个迭代阶段</span></div>
+        <div class="experiment-fact"><strong>Git 记录</strong><span>截图来自真实历史版本</span></div>
+        <div class="experiment-fact"><strong>持续更新</strong><span>未来的大改继续追加在这里</span></div>
+      </div>
+
+      <p class="evolution-thesis">网站不是一次设计完成的展示壳，而是随着项目、身份和使用场景不断校正的信息系统。</p>
+
+      <section class="evolution-phase" id="coursework-prehistory">
+        <div class="evolution-phase-head">
+          <span class="evolution-phase-no">00</span>
+          <div><p class="evolution-phase-date">2026.06.10 · COURSEWORK PORTFOLIO · PARALLEL REPOSITORY</p><h2>旁支前史：第一次把过程放到网页里</h2></div>
+        </div>
+        <figure class="evolution-visual">
+          <img src="./assets/archive/site-evolution/images/v0-coursework-portfolio.webp" alt="Human-Centred Approaches in Data Science 课程周记作品集首页" />
+          <figcaption>Weekly Portfolio · 独立仓库 portfolio_web · commit 9ed5aaa 起</figcaption>
+        </figure>
+        <div class="evolution-reasoning">
+          <div><strong>它是什么</strong><p>Human-Centred Approaches in Data Science 的课程网站，按周整理 Body-storming、可用性观察、Figma、文化探针和最终原型。</p></div>
+          <div><strong>留下了什么</strong><p>它第一次验证了“过程本身值得被展示”：每周任务、原始照片和原型证据都可以成为作品的一部分。</p></div>
+          <div><strong>和本站的关系</strong><p>它不是个人网站仓库的直接旧版本，而是一条并行前史；其中的文化探针内容后来进入 Experiments 与 Archive。</p></div>
+        </div>
+      </section>
+
+      <section class="evolution-phase">
+        <div class="evolution-phase-head">
+          <span class="evolution-phase-no">01</span>
+          <div><p class="evolution-phase-date">2026.06.03 · INITIAL PROTOTYPE</p><h2>从“我在研究什么”开始</h2></div>
+        </div>
+        <figure class="evolution-visual">
+          <img src="./assets/archive/site-evolution/images/v1-initial.webp" alt="个人网站第一版首页，以人与 AI 长期协作为主标题" />
+          <figcaption>第一版首页 · Git commit 12c2dc7</figcaption>
+        </figure>
+        <div class="evolution-reasoning">
+          <div><strong>当时的目标</strong><p>先建立一个明确的研究方向：人与 AI 的长期协作，以及 Agent、Workflow 和信息系统。</p></div>
+          <div><strong>暴露的问题</strong><p>页面更像研究宣言。概念很完整，但个人身份、真实项目、过程证据和下一步入口都不够清楚。</p></div>
+          <div><strong>为什么要改</strong><p>招聘者和合作对象需要先知道“我做过什么”，而不是先理解一整套抽象主题。</p></div>
+        </div>
+      </section>
+
+      <section class="evolution-phase">
+        <div class="evolution-phase-head">
+          <span class="evolution-phase-no">02</span>
+          <div><p class="evolution-phase-date">2026.07.11 · PORTFOLIO REBUILD</p><h2>从主题网站改成项目型作品集</h2></div>
+        </div>
+        <figure class="evolution-visual">
+          <img src="./assets/archive/site-evolution/images/v2-portfolio.webp" alt="重构后的 jun. 首页，右侧为三个环形排列的主项目" loading="lazy" />
+          <figcaption>作品集重构 · Git commit 1172d2c</figcaption>
+        </figure>
+        <div class="evolution-reasoning">
+          <div><strong>做了什么</strong><p>建立 jun. 品牌与 Systems、Experiments、Cambium、Archive、About 五个入口；首页聚焦三个主项目。</p></div>
+          <div><strong>信息架构变化</strong><p>主项目负责快速判断，详情页负责完整阅读；实验、文章与历史材料不再和核心作品混在一起。</p></div>
+          <div><strong>为什么这样改</strong><p>让访问者先看到能力主线，再按兴趣深入；同时为未完成项目保留诚实的过程空间。</p></div>
+        </div>
+      </section>
+
+      <section class="evolution-phase">
+        <div class="evolution-phase-head">
+          <span class="evolution-phase-no">03</span>
+          <div><p class="evolution-phase-date">2026.07.14 — 07.25 · CREDIBILITY & RESPONSIVE</p><h2>让身份、证据和移动端都站得住</h2></div>
+        </div>
+        <figure class="evolution-visual">
+          <img src="./assets/archive/site-evolution/images/v3-responsive.webp" alt="补充真实身份、求职状态和简历入口后的首页" loading="lazy" />
+          <figcaption>可信度与响应式阶段 · Git commits 3f56270 / 9919dcb / 83798f4</figcaption>
+        </figure>
+        <div class="evolution-reasoning">
+          <div><strong>可信度清理</strong><p>删除没有真实记录支持的完美指标和占位内容，统一项目名称、状态、链接与个人身份。</p></div>
+          <div><strong>交互修正</strong><p>增加简历与联系方式；为平板和手机重排导航、项目浏览和详情内容，降低环形切换的误触。</p></div>
+          <div><strong>为什么重要</strong><p>作品集首先是判断工具。真实边界比漂亮数字更可信，手机端也不能只是桌面版的缩小副本。</p></div>
+        </div>
+      </section>
+
+      <section class="evolution-phase">
+        <div class="evolution-phase-head">
+          <span class="evolution-phase-no">04</span>
+          <div><p class="evolution-phase-date">2026.07.26 — NOW · LIVING ARCHIVE</p><h2>从静态作品集变成持续更新的档案</h2></div>
+        </div>
+        <div class="evolution-gallery">
+          <figure class="evolution-visual">
+            <img src="./assets/archive/site-evolution/images/v4-current.webp" alt="当前个人网站首页" loading="lazy" />
+            <figcaption>当前首页 · 真实身份与三个主系统</figcaption>
+          </figure>
+          <figure class="evolution-visual">
+            <img src="./assets/archive/site-evolution/images/v4-archive.webp" alt="当前 Archive 页面，包含系统项目与服务设计作品" loading="lazy" />
+            <figcaption>当前 Archive · 项目、作品与过程材料</figcaption>
+          </figure>
+        </div>
+        <div class="evolution-reasoning">
+          <div><strong>内容扩展</strong><p>加入项目 Demo、服务设计 PDF 档案、课程实验和正在开发的小工具，让不同成熟度的工作各归其位。</p></div>
+          <div><strong>发布方式</strong><p>网站迁移到自定义域名与自动部署；Cambium 接入独立内容后台，文章不再写死在页面里。</p></div>
+          <div><strong>现在的原则</strong><p>主项目讲完整判断，Experiments 保留快速尝试，Archive 保存过程，Cambium 记录认知变化。</p></div>
+        </div>
+      </section>
+
+      <section class="subpage-section">
+        <h2>以后怎么记录</h2>
+        <div class="experiment-method">
+          <div><strong>保留旧界面</strong><p>大改前从可运行的 Git 版本截图，不用重新绘制“假旧版”。</p></div>
+          <div><strong>说明触发原因</strong><p>不只列功能变化，也记录是哪一个真实问题迫使结构改变。</p></div>
+          <div><strong>区分事实与反思</strong><p>提交记录说明做了什么，回顾文字解释当时为什么这样判断。</p></div>
+          <div><strong>继续追加</strong><p>只有影响结构、内容策略或核心交互的变化才进入主时间线。</p></div>
+        </div>
+      </section>
+
+      <a class="page-back" href="./archive.html"><span>←</span> 返回 Archive</a>
+    </main>
+  </body>
+</html>
