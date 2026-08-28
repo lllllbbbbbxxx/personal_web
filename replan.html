@@ -4,16 +4,16 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="Cache-Control" content="no-cache, must-revalidate" />
-    <title>灵活规划（Replan）｜反馈驱动的持续规划系统 — jun.</title>
-    <meta name="description" content="灵活规划（Replan）｜反馈驱动的持续规划系统。记录任务拆解、排期、反馈与重排模块的实现，以及端到端联调中暴露的问题与纠偏过程。" />
+    <title>Replan｜Personal Workflow Optimizer — jun.</title>
+    <meta name="description" content="Replan：从真实行为而不只是计划中学习的个人工作流优化系统。" />
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231a1d1b'/%3E%3Ctext x='29' y='46' font-family='-apple-system,sans-serif' font-size='38' font-weight='800' fill='%23f8f8f5' text-anchor='middle'%3Ej%3C/text%3E%3Ccircle cx='47' cy='42' r='5.5' fill='%23c5ff57'/%3E%3C/svg%3E" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600&family=IBM+Plex+Mono:ital,wght@0,400;0,700;1,400&family=Inter:ital,opsz,wght@0,14..32,300..900;1,14..32,300..900&family=Noto+Sans+SC:wght@400;500;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./styles.css?v=50" />
     <link rel="stylesheet" href="./pages.css?v=52" />
-      <meta property="og:title" content="灵活规划（Replan）｜反馈驱动的持续规划系统 — jun." />
-    <meta property="og:description" content="记录任务拆解、排期、反馈与重排模块的实现，以及端到端联调中暴露的问题与纠偏过程。" />
+      <meta property="og:title" content="Replan｜Personal Workflow Optimizer — jun." />
+    <meta property="og:description" content="从真实行为而不只是计划中学习的个人工作流优化系统。" />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://lllllbbbbbxxx.github.io/personal_web/replan.html" />
     <meta property="og:image" content="https://lllllbbbbbxxx.github.io/personal_web/assets/covers/replan.png" />
@@ -42,15 +42,37 @@
         <p class="subpage-tag">SYSTEM · CASE STUDY</p>
         <h1>灵活规划（Replan）</h1>
         <p class="cs-oneliner">
-          反馈驱动的持续规划系统 · 传统日程工具的问题不是记录，而是计划生成之后，世界就变了。
-          <br><em>尝试把「一次生成计划」改成「持续规划」：LLM 负责理解与拆解自然语言任务，规则引擎负责排期与重排。各模块已经分别实现，但真实端到端交互仍在收束中。</em>
+          从实际行为而不只是计划中学习的个人工作流优化系统。
+          <br><em>它观察我真正做了什么，理解执行与计划的偏差，并用这些证据改进之后的排期与自动化；完整优化闭环仍在开发中。</em>
         </p>
         <div class="subpage-meta">
-          <span>状态 · V1 原型归档 / V2 进行中</span>
+          <span>状态 · ACTIVE / IN DEVELOPMENT</span>
           <span>角色 · 独立开发</span>
           <span>阶段 · 模块实现与场景联调</span>
         </div>
       </header>
+
+      <section class="subpage-section">
+        <h2>正在形成的闭环</h2>
+        <div class="cs-flow">
+          <div class="cs-node"><div class="cs-node-t">Plan → Observe → Interpret</div><div class="cs-node-d">计划任务，捕获真实行为，并把活动转成可比较的证据。</div></div>
+          <div class="cs-arrow">↓</div>
+          <div class="cs-node"><div class="cs-node-t">Compare → Learn → Replan</div><div class="cs-node-d">比较计划与执行，学习个人时长和工作模式，再调整未来安排。</div></div>
+          <div class="cs-arrow">↓<small>第二条未来回路</small></div>
+          <div class="cs-node"><div class="cs-node-t">发现重复工作 → 自动化候选</div><div class="cs-node-d">从反复出现的手工操作中识别可以建议或执行的自动化。</div></div>
+        </div>
+      </section>
+
+      <section class="subpage-section">
+        <h2>当前运行中的证据</h2>
+        <ul class="subpage-list">
+          <li>ActivityWatch 已在本地持续捕获行为，并按约 5 分钟片段汇总。</li>
+          <li>本地模型每小时分类活动：专注、相关但偏移、分心与 AFK。</li>
+          <li>测试过不截屏、不持续轮询的 macOS 前台传感器原型；实时探针已捕获 ChatGPT → Chrome → Finder → 微信等应用切换。</li>
+          <li>频繁切换两个并行项目时，多个阶段可能被合并摘要。这被保留为产品与算法问题，而不是当作噪声隐藏。</li>
+        </ul>
+        <p>界面正在补充「上次汇总 / 下次汇总」的可见性，以及日、周、月时间使用视图。当前重点是证据驱动的自我优化，而不是通用日历助手。</p>
+      </section>
 
       <section class="subpage-section">
         <h2>Demo</h2>
@@ -183,8 +205,8 @@
 
       <section class="subpage-section">
         <h2>当前状态与下一步</h2>
-        <p><strong>当前状态：</strong>V1 已完成核心模块与部分场景测试，但端到端仍存在状态不同步、任务冲突与反馈后重排偏差，作为原型归档；V2 正在统一状态契约、重建验收基线并收束最小稳定闭环。</p>
-        <p><strong>下一步：</strong>先统一跨模块状态结构和验收场景，解决任务冲突与反馈重排偏差；在最小闭环稳定之前，不继续扩展多模态输入和其他 P1 功能。</p>
+        <p><strong>当前状态：</strong>原有的任务拆解、排期与反馈重排模块继续保留；新的行为观察与分类链路已在本地运行，但「观察 → 学习 → 重排」还不是完成态。</p>
+        <p><strong>下一步：</strong>先改善跨项目切换的分类边界，补齐汇总时效与时间使用视图，再把行为证据稳定接回重排决策。</p>
       </section>
 
       <section class="subpage-section">
@@ -199,7 +221,7 @@
           <p class="case-next-label">下一个项目</p>
           <a class="case-next-proj" href="./bookmark.html">Bookmark · 书签助手 →</a>
         </div>
-        <a class="case-next-contact" href="mailto:zxjzxj626@gmail.com" data-contact-trigger>觉得有意思？联系我</a>
+        <a class="case-next-contact" href="mailto:jun2026z@163.com" data-contact-trigger>觉得有意思？联系我</a>
       </div>
 
       <a class="page-back" href="./archive.html" style="margin-top:8px;"><span>←</span> 返回 Archive</a>

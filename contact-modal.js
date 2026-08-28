@@ -3,7 +3,7 @@
     wechat: 'zxj1122ll',
     phone: '18058358351',
     phoneDisplay: '180 5835 8351',
-    email: 'zxjzxj626@gmail.com',
+    email: 'jun2026z@163.com',
   };
 
   const triggers = document.querySelectorAll('[data-contact-trigger]');
